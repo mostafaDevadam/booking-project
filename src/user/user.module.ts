@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { HotelModule } from './hotel/hotel.module';
 import { GuestModule } from './guest/guest.module';
+import { UserService } from './user.service';
 
 @Module({
     imports: [
@@ -8,6 +9,7 @@ import { GuestModule } from './guest/guest.module';
         GuestModule,
     ],
     controllers: [],
-    providers: []
+    providers: [UserService],
+    exports: [UserService]
   })
 export class UserModule {}

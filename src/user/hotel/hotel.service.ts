@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Hotel } from './hotel';
+import { Hotel, HotelDocument } from './hotel';
 import { HOTEL_TYPE } from './hotel.types';
 
 @Injectable()
@@ -23,7 +23,7 @@ export class HotelService {
         return await this.hotelModel.findById(_id).exec()
     }
 
-    async findHotelByEmail(email: string): Promise<Hotel> {
+    async findHotelByEmail(email: string): Promise<HotelDocument> {
         return await this.hotelModel.findOne({email: email})
     }
 

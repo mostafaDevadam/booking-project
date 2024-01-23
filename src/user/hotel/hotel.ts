@@ -4,6 +4,7 @@ import { HydratedDocument, SchemaTypes, Types, } from "mongoose";
 
 export type HotelDocument = HydratedDocument<Hotel>
 
+
 @Schema({
     timestamps: true,
     toObject: {

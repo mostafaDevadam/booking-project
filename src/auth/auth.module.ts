@@ -4,6 +4,8 @@ import { AuthController } from './auth.controller';
 import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { secret, JWTConstants } from '../../constants';
+import { UserModule } from 'src/user/user.module';
+import { HotelModule } from 'src/user/hotel/hotel.module';
 
 @Module({
   imports: [
@@ -11,8 +13,13 @@ import { secret, JWTConstants } from '../../constants';
     ConfigModule.forRoot(),
     JwtModule.register({
       global: true,
-      secret: secret, //JWTConstants.secret,
-    })
+      secret: JWTConstants.secret,
+      //signOptions: { expiresIn: '60s'}
+    }),
+    ConfigModule.forRoot(),
+    UserModule,
+    HotelModule,
+
   ],
   providers: [AuthService],
   controllers: [AuthController]

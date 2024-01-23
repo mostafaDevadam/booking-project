@@ -1,4 +1,38 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post, Get, Patch, Param  } from '@nestjs/common';
+import { GuestService } from './guest.service';
+import { Guest } from './guest';
+import { GUEST_INPUT_TYPE } from './guest.types';
 
 @Controller('guest')
-export class GuestController {}
+export class GuestController {
+    constructor(private readonly guestService: GuestService){}
+
+    @Get()
+    async start() {
+        return {"msg": "start guest api"}
+    }
+
+
+    @Post()
+    async createGuest(@Body() createGuestDto: GUEST_INPUT_TYPE): Promise<Guest> {
+        console.log("@guest: ", createGuestDto)
+        return await this.guestService.create(createGuestDto)
+    }
+
+    @Get('all')
+    async getAllHotels(): Promise<Guest[]> {
+        return await this.guestService.getAll()
+    }
+
+    @Get('/:_id')
+    async getGuest(@Param('_id') _id: any): Promise<Guest> {
+        return await this.guestService.findById(_id)
+    }
+
+    @Patch('/:_id')
+    async updateGuest(@Param('_id') _id: any, @Body() guest: any): Promise<Guest> {
+        return await this.guestService.updateById(_id, guest)
+    }
+
+
+}
