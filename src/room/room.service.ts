@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Room } from './room';
+import { Room, RoomDocument, eROOM_enum_type } from './room';
 
 @Injectable()
 export class RoomService {
@@ -11,7 +11,7 @@ export class RoomService {
     ) { }
 
 
-    async create(hotel_id: any, data: any) {
+    async create(hotel_id: any, data: RoomDocument) {
         data.hotel = hotel_id
         return await this.roomModel.create(data)
     }
@@ -46,6 +46,13 @@ export class RoomService {
     }
     async findAllNotCleaned() {
         return this.roomModel.find({isBooked: false}).exec()
+    }
+
+    async findAllSingle() {
+        return await this.roomModel.find({room_type: eROOM_enum_type.single}).exec()
+    }
+    async findAllDouble() {
+        return await this.roomModel.find({room_type: eROOM_enum_type.double}).exec()
     }
 
     async updateOne(_id: any, data: any) {
