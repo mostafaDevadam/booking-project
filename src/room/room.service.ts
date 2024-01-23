@@ -55,6 +55,10 @@ export class RoomService {
         return await this.roomModel.find({room_type: eROOM_enum_type.double}).exec()
     }
 
+    async findOneByRoomNumber(room_number: string){
+        return await this.roomModel.findOne({room_number: room_number})
+    }
+
     async updateOne(_id: any, data: any) {
         return this.roomModel.findByIdAndUpdate(_id, data, { new: true, })
     }

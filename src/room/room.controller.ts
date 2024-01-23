@@ -64,6 +64,11 @@ export class RoomController {
         return await this.roomService.findAllDouble()
     }
 
+    @Get('/number')
+    async getOneByRoomNumber(@Body() data: any) {
+        return await this.roomService.findOneByRoomNumber(data.room_number)
+    }
+
     @Patch('/:_id')
     async updateOne(@Param('_id') _id: any, @Body() data: any) {
         return await this.roomService.updateOne(_id, data)
