@@ -1,5 +1,6 @@
 import { Body, Controller, Post, Get, Patch, Param, Delete } from '@nestjs/common';
 import { RoomService } from './room.service';
+import { RoomDocument } from './room';
 
 @Controller('room')
 export class RoomController {
@@ -11,7 +12,7 @@ export class RoomController {
     }
 
     @Post('/create/hotel/:hotel_id')
-    async create(@Param('hotel_id') hotel_id: any, @Body() data: any) {
+    async create(@Param('hotel_id') hotel_id: any, @Body() data: RoomDocument) {
         return await this.roomService.create(hotel_id, data)
     }
 
@@ -38,18 +39,29 @@ export class RoomController {
     async getAllByGuestId(@Param('guest_id') guest_id: any) {
         return await this.roomService.findAllByGuestId(guest_id)
     }*/
-
+    @Get('all/available')
     async getAllAvailable() {
         return await this.roomService.findAllAvailable()
     }
+    @Get('all/booked')
     async getAllIsBooked() {
         return await this.roomService.findAllIsBooked()
     }
+    @Get('all/cleaned')
     async getAllCleaned() {
         return await this.roomService.findAllCleaned()
     }
+    @Get('all/not/cleaned')
     async getAllNotCleaned() {
         return await this.roomService.findAllNotCleaned()
+    }
+    @Get('all/single')
+    async getAllSingle() {
+        return await this.roomService.findAllSingle()
+    }
+    @Get('all/double')
+    async getAllDouble() {
+        return await this.roomService.findAllDouble()
     }
 
     @Patch('/:_id')
