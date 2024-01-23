@@ -9,7 +9,10 @@ export enum eROOM_enum_type {
     double = "double",
 }
 @Schema({
-    timestamps: true,
+    timestamps: {
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
+    },
     toJSON: {
         versionKey: false,
     },
@@ -26,7 +29,7 @@ export class Room {
     @Prop({required: false})
     size: string //{width: string, height: string}
 
-    @Prop()
+    @Prop({required: true, unique: true})
     room_number: string
 
     @Prop({ default: false})
@@ -35,7 +38,7 @@ export class Room {
     @Prop({enum: eROOM_enum_type})
     room_type: eROOM_enum_type
 
-    @Prop()
+    @Prop({ default: true})
     isCleaned: boolean
 
     /*@Prop()
@@ -46,6 +49,9 @@ export class Room {
 
     @Prop()
     price: string
+
+    //@Prop()
+    //currency: string
 
     // ref
     @Prop({type: SchemaTypes.ObjectId,ref:'Hotel', required: true})
