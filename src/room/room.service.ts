@@ -19,7 +19,7 @@ export class RoomService {
     async findAll() {
         return this.roomModel.find().exec()
     }
-    async findOneById(_id) {
+    async findOneById(_id): Promise<RoomDocument> {
         return this.roomModel.findById(_id)
     }
 
@@ -64,6 +64,12 @@ export class RoomService {
     }
     async removeOne(_id: any) {
         return this.roomModel.findByIdAndDelete(_id)
+    }
+
+     checkRoomIsBooked = async (_id: any) => {
+       const room = await this.findOneById(_id)
+       console.log("check room:", room)
+       return room.isBooked //? true : false
     }
 
 }
