@@ -10,9 +10,6 @@ export class BookingService {
         private readonly bookingModel: Model<Booking>
     ) { }
 
-    /*create(by hotel_id,room_id, guest_id),findAll()
-    findAllByHotelId,findAllByRoomId,findOneById, findAllByguestId, findOneByguestId, updateOne,removeOne,*/
-
     async create(hotel_id: any, room_id: any, guest_id: any, data: any) {
         data.hotel = hotel_id
         data.room = room_id

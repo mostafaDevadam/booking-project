@@ -4,20 +4,29 @@ import { Booking, BookingDocument } from './booking';
 
 @Controller('booking')
 export class BookingController {
-    constructor(private readonly bookingService: BookingService){}
+    constructor(private readonly bookingService: BookingService) { }
 
     @Get()
     async start() {
-        return {"msg": "start room api"}
+        return { "msg": "start room api" }
+    }
+
+    @Post('/hotel/:hotel_id/room/:room_id/guest/:guest_id')
+    async create(
+        @Param('hotel_id') hotel_id: any,
+        @Param('room_id') room_id: any,
+        @Param('guest_id') guest_id: any,
+        @Body() data: any) {
+        return await this.bookingService.create(hotel_id, room_id, guest_id, data)
     }
 
     @Get('all')
-    async getAll() {
+    async getAllBookings() {
         return await this.bookingService.findAll()
     }
 
     @Get('/:_id')
-    async getOneById(@Param('_id') _id: any) {
+    async getOneBookingById(@Param('_id') _id: any) {
         return await this.bookingService.findOneById(_id)
     }
 
