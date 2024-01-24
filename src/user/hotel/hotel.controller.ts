@@ -29,6 +29,13 @@ export class HotelController {
         return await this.hotelService.findHotelById(_id)
     }
 
+    // getAllByCity
+    // getAllByCountry
+    // getByName
+
+    // search by city, country, name
+    
+
     @Patch('/:_id')
     async updateHotel(@Param('_id') _id: any, @Body() hotel: any): Promise<Hotel> {
         return await this.hotelService.updateHotelById(_id, hotel)

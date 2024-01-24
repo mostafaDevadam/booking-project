@@ -27,7 +27,32 @@ export class HotelService {
         return await this.hotelModel.findOne({email: email})
     }
 
+    // findHotelByName
+    async findHotelByName(name: string): Promise<HotelDocument> {
+        return await this.hotelModel.findOne({name: name})
+    }
+
+    // findAllHotelsByCity
+    async findAllHotelsByCity(city: string): Promise<HotelDocument[]> {
+        return await this.hotelModel.findOne({city: city})
+    }
+    // findAllHotelsByCountry
+    async findAllHotelsByCountry(country: string): Promise<HotelDocument[]> {
+        return await this.hotelModel.findOne({country: country})
+    }
+    // findByStreet
+    async findByStreet(street: string): Promise<HotelDocument[]> {
+        return await this.hotelModel.findOne({street: street})
+    }
+
+    // search by city, country, name, street
+    async search(fulltext: string) {
+        return
+    }
+
     async updateHotelById(_id: any, data: any): Promise<Hotel> {
         return await this.hotelModel.findByIdAndUpdate(_id, data, {new: true})
     }
+
+    // remove
 }
