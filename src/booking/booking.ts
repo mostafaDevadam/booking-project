@@ -1,10 +1,28 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { SchemaTypes, Types, HydratedDocument } from 'mongoose';
+import { SchemaTypes, Types, HydratedDocument, model } from 'mongoose';
+import { Room, RoomSchema } from "src/room/room";
 
 export type BookingDocument = HydratedDocument<Booking>
 
-@Schema({ timestamps: true })
+@Schema({
+    timestamps: {
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
+    },
+    toJSON: {
+        versionKey: false,
+    },
+    toObject: {
+        versionKey: false,
+    },
+
+
+})
 export class Booking {
+
+    @Prop({required: true, default: 1})
+    nights: number
+
     @Prop()
     start_date: string
 
@@ -17,32 +35,67 @@ export class Booking {
     @Prop()
     check_out_date: string
 
-    @Prop({default: false})
+    @Prop({ default: false })
     is_paid: boolean
 
-    @Prop({default: false})
+    @Prop({ default: false })
     is_check_in: boolean
 
-    @Prop({default: false})
+    @Prop({ default: false })
     is_check_out: boolean
 
-    @Prop({default: false})
+    @Prop({ default: false })
     is_confirmed: boolean
 
+    @Prop({type: SchemaTypes.Decimal128})
+    total_price: string
+
     // ref
-    @Prop({ type: Types.ObjectId, ref: 'Hotel' })
+    @Prop({ type: SchemaTypes.ObjectId, ref: 'Hotel', required: true })
     hotel: Types.ObjectId
 
-    @Prop({ type: Types.ObjectId, ref: 'Guest' })
+    @Prop({ type: SchemaTypes.ObjectId, ref: 'Guest', required: true })
     guest: Types.ObjectId
 
-    @Prop({ type: Types.ObjectId, ref: 'Room' })
+    @Prop({ type: SchemaTypes.ObjectId, ref: 'Room', required: true })
     room: Types.ObjectId // if room is not booked
 
-    @Prop()
-    total_price: string
+
 
 }
 
 
 export const BookingSchema = SchemaFactory.createForClass(Booking)
+
+
+BookingSchema.pre<Booking>('save', function (next) {
+    // get room by id and check if it's booked
+    // then return msg = 'can't book because it's already booked'
+    // else book the room -> update the room: isBooked = true and create the booking doc
+    //---------
+    // calculate the total_price -> get price of room from room_doc and
+    // total_price = room.price * nights
+
+    if(this.nights){
+        console.log("booking pre save: ", this)
+        //this.total_price = String(this.nights * 30)
+    }
+
+    //const room = model("Room").findById(this.room._id)
+    //console.log("pre save:", room)
+
+
+    next()
+
+    //return
+
+})
+
+
+BookingSchema.pre<Booking>('deleteOne', function(next){
+
+    const room = model("Room").findById(this.room._id)
+    console.log("delete room doc from booking pre deleteOne:", room)
+
+    next()
+})
