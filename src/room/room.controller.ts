@@ -1,7 +1,9 @@
-import { Body, Controller, Post, Get, Patch, Param, Delete } from '@nestjs/common';
+import { Body, Controller, Post, Get, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { RoomService } from './room.service';
 import { RoomDocument } from './room';
+import { AuthGuard } from 'src/auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('room')
 export class RoomController {
     constructor(private readonly roomService: RoomService) { }

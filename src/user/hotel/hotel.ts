@@ -40,7 +40,7 @@ export class Hotel {
     // @Prop()
     // phone_number: string
 
-    @Prop({ default: 0 })
+    @Prop({ default: 10 })
     count_rooms: number
 
     @Prop({ default: 0 })

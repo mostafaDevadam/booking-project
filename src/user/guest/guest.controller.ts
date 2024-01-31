@@ -1,8 +1,9 @@
-import { Body, Controller, Post, Get, Patch, Param  } from '@nestjs/common';
+import { Body, Controller, Post, Get, Patch, Param, UseGuards  } from '@nestjs/common';
 import { GuestService } from './guest.service';
 import { Guest } from './guest';
 import { GUEST_INPUT_TYPE } from './guest.types';
-
+import { AuthGuard } from 'src/auth/auth.guard';
+@UseGuards(AuthGuard)
 @Controller('guest')
 export class GuestController {
     constructor(private readonly guestService: GuestService){}

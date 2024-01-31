@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Booking, BookingDocument } from './booking';
 import { Model } from 'mongoose';
 import { RoomService } from 'src/room/room.service';
+import { BOOKING_TYPE } from './booking.types';
 
 @Injectable()
 export class BookingService {
@@ -13,7 +14,7 @@ export class BookingService {
     ) { }
 
     //!Advanced
-    async create(hotel_id: any, room_id: any, guest_id: any, data: BookingDocument) {
+    async create(hotel_id: any, room_id: any, guest_id: any, data: BookingDocument): Promise<BookingDocument | any> {
         data.hotel = hotel_id
         data.room = room_id
         data.guest = guest_id
@@ -42,37 +43,51 @@ export class BookingService {
         }
     }
 
-    async findAll() {
-        return this.bookingModel.find().exec()
-    }
-    async findOneById(_id) {
-        return this.bookingModel.findById(_id)
+    // createManyBookings
+    async createManyBookings(data: BOOKING_TYPE) { // hotel_id,guest_id,rooms, ...data
+        return
     }
 
-    async findAllByHotelId(hotel_id) {
+    async findAll(): Promise<BookingDocument[]> {
+        return this.bookingModel.find().exec()
+    }
+
+    async findOneById(_id): Promise<BookingDocument | any> {
+        const one = await (await this.bookingModel.findById(_id))
+        .populate('room')
+            return one
+    }
+
+    async findAllByHotelId(hotel_id): Promise<BookingDocument[]> {
         return this.bookingModel.find({ hotel: hotel_id }).exec()
     }
 
 
-    async findAllByRoomId(room_id) {
+    async findAllByRoomId(room_id): Promise<BookingDocument[]> {
         return this.bookingModel.find({ room: room_id }).exec()
     }
 
-    async findAllByGuestId(guest_id) {
+    async findAllByGuestId(guest_id): Promise<BookingDocument[]> {
         return this.bookingModel.find({ guest: guest_id }).exec()
     }
 
     //!Advanced
     // update: can change room
-    async changeRoomInBooking(booking_id: any, room_id: any) {
+    async changeRoomInBooking(booking_id: any, room_id: any): Promise<BookingDocument | any> {
         const new_room_id = room_id
         //1. get booking by _id
         const booking = await this.findOneById(booking_id)
         if (!booking) return { error: "can't change the room in booking" }
         const old_room_id = booking.room
+        // check if room by new_room_id is not-booked
+        const r = await this.roomService.findOneById(new_room_id)
+
+        if (r.isBooked) return { error: "can't change the room in booking because it is already booked" }
+
         //2. get room by old_room_id from booking and update it with isBooked = false
         const update_old_room = await this.roomService.updateOne(old_room_id, { isBooked: false })
         if (!update_old_room) return { error: "can't change the room in booking" }
+
         //3. update booking with new new_room_id
         const update_new_room = await this.roomService.updateOne(new_room_id, { isBooked: true })
         if (!update_new_room) return { error: "can't change the room in booking" }
@@ -84,8 +99,11 @@ export class BookingService {
     }
 
 
-    async updateOne(_id: any, data: any) {
-        return this.bookingModel.findByIdAndUpdate(_id, data, { new: true, })
+    async updateOne(_id: any, data: Partial<BookingDocument>) {
+        if(data.nights && data.room){
+            data.total_price = await this.calculateTotalPrice(data.room, data.nights)
+        }
+        return this.bookingModel.findByIdAndUpdate(_id, data, { new: true })
     }
 
     //!Advanced
@@ -105,9 +123,11 @@ export class BookingService {
 
 
     // private
-    private async calculateTotalPrice(room_id, nights) {
+    private async calculateTotalPrice(room_id: any, nights: number) {
         const room = await this.roomService.findOneById(room_id)
-        const total_price = String(Number(room?.price) * nights)
+        if(!room?.price) return ''
+        const total_price = Number(room?.price) * nights
+        console.log("total_price: ", room?.price , nights, typeof total_price, total_price)
         return total_price.toString()
     }
 

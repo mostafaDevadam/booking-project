@@ -41,8 +41,8 @@ export class Room {
     @Prop({ default: true})
     isCleaned: boolean
 
-    /*@Prop()
-    cleaned_date: string*/
+    @Prop()
+    cleaned_date: string
 
     @Prop()
     phone_number: string

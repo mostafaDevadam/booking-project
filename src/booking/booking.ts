@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { SchemaTypes, Types, HydratedDocument, model } from 'mongoose';
+import { SchemaTypes, Types, HydratedDocument, model, Schema as MongooseSchema  } from 'mongoose';
 import { Room, RoomSchema } from "src/room/room";
 
 export type BookingDocument = HydratedDocument<Booking>
@@ -30,29 +30,35 @@ export class Booking {
     end_date: string
 
     @Prop()
-    check_in_date: string
+    checkedIn_date: string
 
     @Prop()
-    check_out_date: string
+    checkedOut_date: string
+
+    @Prop()
+    paid_date: string
 
     @Prop({ default: false })
-    is_paid: boolean
+    isPaid: boolean
 
     @Prop({ default: false })
-    is_check_in: boolean
+    isCheckedIn: boolean
 
     @Prop({ default: false })
-    is_check_out: boolean
+    isCheckedOut: boolean
 
     @Prop({ default: false })
-    is_confirmed: boolean
+    isConfirmed: boolean
 
-    @Prop({type: SchemaTypes.Decimal128})
+    @Prop()
+    confirmed_date: string
+
+    @Prop()
     total_price: string
 
     // ref
-    @Prop({ type: SchemaTypes.ObjectId, ref: 'Hotel', required: true })
-    hotel: Types.ObjectId
+    @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Hotel', required: true })
+    hotel: MongooseSchema.Types.ObjectId
 
     @Prop({ type: SchemaTypes.ObjectId, ref: 'Guest', required: true })
     guest: Types.ObjectId

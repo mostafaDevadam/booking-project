@@ -28,48 +28,58 @@ export class RoomService {
     }*/
 
     async findAllByHotelId(hotel_id) {
-        return this.roomModel.find({hotel: hotel_id}).exec()
+        return this.roomModel.find({ hotel: hotel_id }).exec()
     }
     /*
     async findAllByGuestId(guest_id) {
         return
     }*/
 
-    async findAllAvailable() {
-        return this.roomModel.find({isBooked: false}).exec()
+    async findAllAvailable(): Promise<RoomDocument[]> {
+        const all = await this.roomModel.find({ isBooked: false }).exec()
+       // console.log("all findAllAvailable:", all)
+        return all
     }
-    async findAllIsBooked() {
-        return this.roomModel.find({isBooked: true}).exec()
+    async findAllIsBooked(): Promise<RoomDocument[]> {
+        return await this.roomModel.find({ isBooked: true }).exec()
     }
-    async findAllCleaned() {
-        return this.roomModel.find({isCleaned: true}).exec()
+    async findAllCleaned(): Promise<RoomDocument[]> {
+        return await this.roomModel.find({ isCleaned: true }).exec()
     }
-    async findAllNotCleaned() {
-        return this.roomModel.find({isBooked: false}).exec()
+    async findAllNotCleaned(): Promise<RoomDocument[]> {
+        return await this.roomModel.find({ isCleaned: false }).exec()
     }
 
     async findAllSingle() {
-        return await this.roomModel.find({room_type: eROOM_enum_type.single}).exec()
+        return await this.roomModel.find({ room_type: eROOM_enum_type.single }).exec()
     }
     async findAllDouble() {
-        return await this.roomModel.find({room_type: eROOM_enum_type.double}).exec()
+        return await this.roomModel.find({ room_type: eROOM_enum_type.double }).exec()
     }
 
-    async findOneByRoomNumber(room_number: string){
-        return await this.roomModel.findOne({room_number: room_number})
+    async findOneByRoomNumber(room_number: string) {
+        return await this.roomModel.findOne({ room_number: room_number })
     }
 
     async updateOne(_id: any, data: any) {
-        return this.roomModel.findByIdAndUpdate(_id, data, { new: true, })
-    }
-    async removeOne(_id: any) {
-        return this.roomModel.findByIdAndDelete(_id)
+        return await this.roomModel.findByIdAndUpdate(_id, data, { new: true })
     }
 
-     checkRoomIsBooked = async (_id: any) => {
-       const room = await this.findOneById(_id)
-       console.log("check room:", room)
-       return room.isBooked //? true : false
+    //! can't remove room if it's booked
+    async removeOne(_id: any) {
+        // get room
+        // check if room is booked
+        // then return 'cannot remove it
+        // else remove it
+        const isBooked = await this.checkRoomIsBooked(_id)
+        if (isBooked) return { error: 'cannot remove it' }
+        return await this.roomModel.findByIdAndDelete(_id)
+    }
+
+    checkRoomIsBooked = async (_id: any) => {
+        const room = await this.findOneById(_id)
+        console.log("check room:", room)
+        return room.isBooked //? true : false
     }
 
 }
