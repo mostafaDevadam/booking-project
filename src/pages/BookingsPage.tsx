@@ -114,10 +114,10 @@ const BookingsPage = () => {
     //dispatch(BookingActions.setBookingState(el))
     // fetch booking with room relation
     dispatch(RoomThunkFunctions.fetchAllAvailableRooms())
-    console.log('available rooms* ',roomsSelector.List)
+    console.log('available rooms* ', roomsSelector.List)
 
     dispatch(BookingThunkFunctions.fetchOneBookingById(el._id))
-    console.log('booking* ',bookingSelector.doc)
+    console.log('booking* ', bookingSelector.doc)
     setSelectedBooking(el)
     handleShow()
   }
@@ -129,25 +129,32 @@ const BookingsPage = () => {
 
 
   const backRemoveValue = async (val: boolean) => {
-    if (val) {
+    if (val && selectedBooking && selectedBooking?.room) {
       // remove
-      console.log("isRemove:", val, selectedBooking)
-       //await dispatch(BookingThunkFunctions.removeBookingsById(selectedBooking?._id))
-      //console.log("removed booking by id :", bookingSelector.doc)
+      console.log("isRemove:", val, selectedBooking?.room)
+      if(selectedBooking?.room?._id){
+        await dispatch(BookingThunkFunctions.removeBookingsById({booking_id: selectedBooking?._id,
+          room_id: selectedBooking?.room?._id }))
+      }else if(selectedBooking?.room){
+        await dispatch(BookingThunkFunctions.removeBookingsById({booking_id: selectedBooking?._id,
+          room_id:  selectedBooking?.room }))
+      }
+
+      console.log("removed booking by id :", bookingSelector.doc)
     }
   }
 
   const update = async (el: BOOKING_TYPE) => {
     console.log("update: ", el)
-    //await dispatch(BookingThunkFunctions.updateBookingById(el))
-    // console.log("updated booking by id :", bookingSelector.doc)
+    await dispatch(BookingThunkFunctions.updateBookingById(el))
+    console.log("updated booking by id :", bookingSelector.doc)
   }
 
   const changeRoomInBooking = async (new_room_id: any, booking_id: any) => {
     console.log("change room in booking: ", new_room_id, booking_id)
     await dispatch(BookingThunkFunctions
-      .changeRoomInBookingByIdAndRoomId({booking_id, room_id: new_room_id}))
-     // console.log("changed room in booking :", bookingSelector.doc)
+      .changeRoomInBookingByIdAndRoomId({ booking_id, room_id: new_room_id }))
+    console.log("changed room in booking :", bookingSelector.doc)
 
   }
 

@@ -89,7 +89,6 @@ const DefaultModal: React.FC<PROPS<ROOM_TYPE>> = ({ data, show, handleShow, hand
   const getRoomType = (t: KIND_OF_ROOM_ENUM) => lbls[t]
 
   const handleRoomTypeChanged = (e: any) => {
-
     const v = getRoomType(e.target.value)
     setSelectedRoomType(v)
     console.log(selectedRoomType, v)

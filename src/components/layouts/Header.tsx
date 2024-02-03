@@ -25,10 +25,18 @@ const Header = () => {
         <Container>
           <Navbar.Brand className="text-light"><Nav.Link as={Link} to={'/'}>Booking App</Nav.Link></Navbar.Brand>
           <Navbar.Toggle />
-          {isAuthenticated && <Navbar.Collapse className="justify-content-start">
+          {isAuthenticated && role === ROLE_USER_ENUM.hotel && <Navbar.Collapse className="justify-content-start">
             <NavItem className='me-3' ><Nav.Link as={Link} to={'/rooms'}>Rooms</Nav.Link></NavItem>
             <NavItem className='me-3' ><Nav.Link as={Link} to={'/bookings'}>Bookings</Nav.Link></NavItem>
           </Navbar.Collapse>}
+
+          {
+            isAuthenticated && role === ROLE_USER_ENUM.guest &&
+            <Navbar.Collapse className="justify-content-start">
+              <NavItem className='me-3' ><Nav.Link as={Link} to={'/guest'}>Home</Nav.Link></NavItem>
+            </Navbar.Collapse>
+
+          }
 
           {/* <Navbar.Collapse className="justify-content-center">
                   <NavItem className='me-3' ><Nav.Link as={Link} to={'/rooms'}>Rooms</Nav.Link></NavItem>
@@ -37,7 +45,7 @@ const Header = () => {
 
 
           {isAuthenticated && <Navbar.Collapse className="justify-content-end">
-          <NavItem className='me-3' >{user.email}</NavItem>
+            <NavItem className='me-3' >{user.email}</NavItem>
             <NavItem className='me-3' onClick={signOut}>SignOut</NavItem>
           </Navbar.Collapse>}
 

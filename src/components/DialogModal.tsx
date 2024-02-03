@@ -17,7 +17,7 @@ const DialogModal: React.FC<PROPS<ROOM_TYPE>> = ({ data, show, handleClose, ente
   //const roomsSelector = useAppSelector((state) => state.room.data)
 
   const handleClick = (e: any, el: ROOM_TYPE) => {
-    console.log(e.target.value)
+   // console.log(e.target.value)
     enterRoom && enterRoom(el)
     handleClose()
   }

@@ -12,8 +12,16 @@ import { useAuth } from '../auth/useAuth'
 import { ROLE_USER_ENUM } from '../utils/enums/enums'
 import RoomPage from '../pages/RoomPage'
 import BookingPage from '../pages/BookingPage'
+import Guest from '../pages/guest/Guest'
+import MyBookings from '../pages/guest/MyBookings'
 
-const ProtectedComponent = (element: JSX.Element): JSX.Element => {
+
+const ProtectedAuthComponent = (element: JSX.Element): JSX.Element => {
+  const { isAuthenticated, token, role } = useAuth()
+  return isAuthenticated || token ? element : <Navigate to={'/login'} replace />
+}
+
+const ProtectedAdminComponent = (element: JSX.Element): JSX.Element => {
   const { isAuthenticated, token, role } = useAuth()
   return (isAuthenticated || token) && (role === ROLE_USER_ENUM.hotel) ? element : <Navigate to={'/login'} replace />
 
@@ -46,7 +54,7 @@ const AppRouter = () => {
     )*/
   return (
     <Routes>
-      <Route path='/' element={ProtectedComponent(<Main />)}>
+      <Route path='/' element={ProtectedAdminComponent(<Main />)}>
         <Route path='/' element={<DashboardPage />}></Route>
         <Route path='/guests' element={<GuestsPage />}></Route>
         <Route path='/bookings'>
@@ -62,10 +70,12 @@ const AppRouter = () => {
         </Route>
       </Route>
 
-      {/*<Route path='/guest' element={ProtectedChildComponent(<Main />)}>
-
-         <Route path='/guest/b' element={<BookingsPage />}></Route>
-  </Route>*/}
+      {
+        <Route path='/guest' element={ProtectedChildComponent(<Main />)}>
+          <Route path='/guest' element={<Guest />}></Route>
+          <Route path='/guest/my' element={<MyBookings />}></Route>
+        </Route>
+      }
 
       <Route path='/login' element={isAuthenticated ? <Navigate to={"/"} replace /> : <AuthPage />}></Route>
 

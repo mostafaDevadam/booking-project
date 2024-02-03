@@ -8,7 +8,7 @@ import DialogModal from './DialogModal';
 import { RoomActions, RoomThunkFunctions } from '../store/slices/room.slice';
 
 
-type INPUTS = Partial<BOOKING_TYPE>
+type INPUTS = BOOKING_TYPE
 
 type PROPS<T> = {
   data?: T
@@ -68,10 +68,8 @@ const BookingModal: React.FC<PROPS<BOOKING_TYPE>> = ({ data, show, handleShow, h
       console.log("enterRoom: ", el._id, doc._id)
       const new_room_id = el._id
       const booking_id = doc._id
-      changeRoomInBooking && changeRoomInBooking( el._id, data?._id)
+      changeRoomInBooking && changeRoomInBooking(el._id, data?._id)
     }
-
-
   }
 
   // dialog Modal
@@ -121,17 +119,17 @@ const BookingModal: React.FC<PROPS<BOOKING_TYPE>> = ({ data, show, handleShow, h
               <p>Room: {bookingSelector.doc.room?.room_number}</p>
               <p>Booking info</p>
               <p>Nights: {bookingSelector.doc.nights}</p>
-              <p>Start: date</p>
-              <p>End: date</p>
-              <p>checked-in : yes icon</p>
-              <p>checked-in at: date icon</p>
-              <p>checked-out : no icon</p>
-              <p>checked-out at: date icon</p>
-              <p>confirmed: yes icon</p>
-              <p>confirmed at: date</p>
-              <p>paid at: date</p>
-              <p>paid : 210 €</p>
-              <p>paid at: date</p>
+              <p>Start: {bookingSelector.doc.start_date} date</p>
+              <p>End: {bookingSelector.doc.end_date}date</p>
+              <p>checked-in : {bookingSelector.doc.isCheckedIn}yes icon</p>
+              <p>checked-in at: {bookingSelector.doc.checkedIn_date}date icon</p>
+              <p>checked-out : {bookingSelector.doc.isCheckedOut}no icon</p>
+              <p>checked-out at: {bookingSelector.doc.checkedOut_date}date icon</p>
+              <p>confirmed: {bookingSelector.doc.isConfirmed} icon</p>
+              <p>confirmed at: {bookingSelector.doc.confirmed_date} date</p>
+              <p>paid at: {bookingSelector.doc.paid_date} date</p>
+              <p>paid : {bookingSelector.doc.isPaid}210 €</p>
+
             </div>
             :
 
@@ -149,7 +147,7 @@ const BookingModal: React.FC<PROPS<BOOKING_TYPE>> = ({ data, show, handleShow, h
                 <Form onSubmit={submitForm(submit)}>
                   <Form.Group className="mb-3" controlId="nights">
                     <Form.Label>Nights</Form.Label>
-                    <Form.Control {...register("nights")} type="number" placeholder="" defaultValue={data?.nights} />
+                    <Form.Control {...register("nights")} type="number" defaultValue={data?.nights} />
                     <Form.Text className="text-muted">
                       Enter your nights
                     </Form.Text>
@@ -158,7 +156,7 @@ const BookingModal: React.FC<PROPS<BOOKING_TYPE>> = ({ data, show, handleShow, h
 
                   <Form.Group className="mb-3" controlId="start_date">
                     <Form.Label>Start Date</Form.Label>
-                    <Form.Control {...register("start_date")} type="date" placeholder="" />
+                    <Form.Control {...register("start_date")} type="date" defaultValue={data?.start_date} />
                     <Form.Text className="text-muted">
                       Choose Start Date
                     </Form.Text>
@@ -166,7 +164,7 @@ const BookingModal: React.FC<PROPS<BOOKING_TYPE>> = ({ data, show, handleShow, h
 
                   <Form.Group className="mb-3" controlId="end_date">
                     <Form.Label>End Date</Form.Label>
-                    <Form.Control {...register("end_date")} type="date" placeholder="" />
+                    <Form.Control {...register("end_date")} type="date" defaultValue={data?.end_date} />
                     <Form.Text className="text-muted">
                       Choose End Date
                     </Form.Text>
@@ -176,33 +174,44 @@ const BookingModal: React.FC<PROPS<BOOKING_TYPE>> = ({ data, show, handleShow, h
 
                   <Form.Group className="mb-3" controlId="checkedIn_date">
                     <Form.Label>CheckIn Date</Form.Label>
-                    <Form.Control {...register("checkedIn_date")} type="date" placeholder="" />
+                    <Form.Control {...register("checkedIn_date")} type="date" defaultValue={data?.checkedIn_date} />
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="isCheckedIn" >
-                    <Form.Check {...register("isCheckedIn")} type="checkbox" label={"CheckedIn"} defaultChecked={data?.isCheckedIn} />
+                    <Form.Check {...register("isCheckedIn")} type="checkbox" label={"CheckedIn"}
+                      defaultChecked={data?.isCheckedIn ? data?.isCheckedIn : false}  />
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="checkedOut_date">
                     <Form.Label>CheckOut Date</Form.Label>
-                    <Form.Control {...register("checkedOut_date")} type="date" placeholder="" />
+                    <Form.Control {...register("checkedOut_date")} type="date" defaultValue={data?.checkedOut_date} />
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="isCheckedOut" >
-                    <Form.Check {...register("isCheckedOut")} type="checkbox" label={"CheckedOut"} defaultChecked={data?.isCheckedOut} />
+                    <Form.Check {...register("isCheckedOut")} type="checkbox" label={"CheckedOut"}
+                      defaultChecked={data?.isCheckedOut ? data?.isCheckedOut : false}  />
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="isConfirmed">
                     <Form.Label>Confirmed Date</Form.Label>
-                    <Form.Control {...register("isConfirmed")} type="date" placeholder="" />
+                    <Form.Control {...register("confirmed_date")} type="date" defaultValue={data?.confirmed_date}
+                     />
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="confirmed_date" >
-                    <Form.Check {...register("confirmed_date")} type="checkbox" label={"Confirmed"} defaultChecked={data?.confirmed_date} />
+                    <Form.Check {...register("isConfirmed")} type="checkbox" label={"Confirmed"}
+                      defaultChecked={data?.isConfirmed ? data?.isConfirmed : false}  />
+                  </Form.Group>
+
+                  <Form.Group className="mb-3" controlId="confirmed_date" >
+                  <Form.Label>Paid Date</Form.Label>
+                  <Form.Control {...register("paid_date")} type="date" defaultValue={data?.paid_date}
+                     />
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="isPaid" >
-                    <Form.Check {...register("isPaid")} type="checkbox" label={"isPaid"} defaultChecked={data?.isPaid} />
+                    <Form.Check {...register("isPaid")} type="checkbox" label={"isPaid"}
+                      defaultChecked={data?.isPaid} />
                   </Form.Group>
 
 

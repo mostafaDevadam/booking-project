@@ -1,4 +1,4 @@
-import { BOOKING_TYPE, ROOM_TYPE } from "./types"
+import { BOOKING_TYPE, GUEST_TYPE, ROOM_TYPE } from "./types"
 
 export type ROOM_STATE_TYPE = ROOM_TYPE
 
@@ -14,16 +14,7 @@ export type HOTEL_STATE_TYPE = {
     description?: any
 }
 
-export type GUEST_STATE_TYPE = {
-    _id?: any,
-    name?: any,
-    email?: any,
-    password?: any,
-    address?: any
-    gender?: any
-    birth_date?: any
-    amount?: any
-}
+export type GUEST_STATE_TYPE = GUEST_TYPE
 
 type STATE_TYPE<T> = {
     data: T| T[], // data: { doc: T, List: T[]}

@@ -1,18 +1,18 @@
-import { KIND_OF_ROOM_ENUM } from "../enums/enums"
+import { GENDER_ENUM, KIND_OF_ROOM_ENUM } from "../enums/enums"
 
 export type BOOKING_TYPE = {
     _id?: any,
     nights?: any
-    start_date?: any
-    end_date?: any
-    checkedIn_date?: any
-    checkedOut_date?: any
+    start_date?: string
+    end_date?: string
+    checkedIn_date?: string
+    checkedOut_date?: string
     paid_date?: string
     isPaid?: boolean
     isCheckedIn?: boolean
     isCheckedOut?: boolean
     isConfirmed?: boolean
-    confirmed_date?: any
+    confirmed_date?: string
     total_price?: any
     // ref
     hotel?: any,
@@ -43,3 +43,16 @@ export type HOTEL_TYPE = {
     count_stocks?: any
     description?: any
 }
+
+export type GUEST_TYPE = {
+    _id?: any,
+    name?: any,
+    email?: any,
+    password?: any,
+    birth_date?: any,
+    gender?: GENDER_ENUM
+    address?: any
+    amount?: any
+}
+
+

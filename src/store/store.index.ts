@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { userReducer } from "./slices/user.slice";
-import { guestReducer } from "./slices/guests.slice";
+import { guestReducer } from "./slices/guest/guests.slice";
 import { hotelReducer } from "./slices/hotel.slice";
 import { roomReducer } from "./slices/room.slice";
 import { bookingReducer } from "./slices/booking/booking.slice";

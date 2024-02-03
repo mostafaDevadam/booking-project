@@ -51,6 +51,7 @@ const fetchAllBookingsByGuestId = createAsyncThunk('booking/all/guest',
 
 const removeBookingsById = createAsyncThunk('booking/remove',
     async ({ booking_id, room_id }: any) => {
+        console.log("remove booking:", booking_id, room_id)
         return await BookingService.deleteBookingById(booking_id, room_id)
     })
 
