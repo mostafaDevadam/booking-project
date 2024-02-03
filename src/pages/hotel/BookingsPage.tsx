@@ -1,13 +1,13 @@
 import React, { SyntheticEvent, useEffect, useState, } from 'react'
-import { useGetBookingsQuery } from '../store/slices/api.slice'
+import { useGetBookingsQuery } from '../../store/slices/api.slice'
 import { Button, Spinner } from 'react-bootstrap'
-import { useAppDisptach, useAppSelector } from '../hooks/useRedux'
-import { BOOKING_TYPE } from '../utils/types/types'
-import { BookingThunkFunctions } from '../store/slices/booking/thunks/booking.thunks'
-import BookingsListComponent from '../components/BookingsListComponent'
-import BookingModal from '../components/BookingModal'
-import { BookingActions } from '../store/slices/booking/booking.slice'
-import { RoomThunkFunctions } from '../store/slices/room.slice'
+import { useAppDisptach, useAppSelector } from '../../hooks/useRedux'
+import { BOOKING_TYPE } from '../../utils/types/types'
+import { BookingThunkFunctions } from '../../store/slices/booking/thunks/booking.thunks'
+import BookingsListComponent from '../../components/BookingsListComponent'
+import BookingModal from '../../components/BookingModal'
+import { BookingActions } from '../../store/slices/booking/booking.slice'
+import { RoomThunkFunctions } from '../../store/slices/room.slice'
 
 const BookingsPage = () => {
 

@@ -1,15 +1,15 @@
 import React, { useState, } from 'react'
-import { useAppDisptach, useAppSelector } from '../hooks/useRedux';
-import { RoomThunkFunctions } from '../store/slices/room.slice';
-import DialogModal from '../components/DialogModal';
+import { useAppDisptach, useAppSelector } from '../../hooks/useRedux';
+import { RoomThunkFunctions } from '../../store/slices/room.slice';
+import DialogModal from '../../components/DialogModal';
 import { Button, Form, Image, Modal } from 'react-bootstrap';
-import { BOOKING_TYPE, GUEST_TYPE, ROOM_TYPE } from '../utils/types/types';
+import { BOOKING_TYPE, GUEST_TYPE, ROOM_TYPE } from '../../utils/types/types';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { GuestThunkFunctions } from '../store/slices/guest/guest.thunks';
-import { GENDER_ENUM } from '../utils/enums/enums';
-import { BookingThunkFunctions } from '../store/slices/booking/thunks/booking.thunks';
-import { GuestService } from '../services/api/requests/user/guest/guest.service';
-import { BookingService } from '../services/api/requests/booking/booking.service';
+import { GuestThunkFunctions } from '../../store/slices/guest/guest.thunks';
+import { GENDER_ENUM } from '../../utils/enums/enums';
+import { BookingThunkFunctions } from '../../store/slices/booking/thunks/booking.thunks';
+import { GuestService } from '../../services/api/requests/user/guest/guest.service';
+import { BookingService } from '../../services/api/requests/booking/booking.service';
 
 
 type INPUTS_BOOKING = BOOKING_TYPE

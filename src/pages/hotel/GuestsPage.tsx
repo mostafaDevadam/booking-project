@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useAppDisptach, useAppSelector } from '../hooks/useRedux'
-import { GuestThunkFunctions } from '../store/slices/guest/guest.thunks'
-import { GUEST_TYPE } from '../utils/types/types'
+import { useAppDisptach, useAppSelector } from '../../hooks/useRedux'
+import { GuestThunkFunctions } from '../../store/slices/guest/guest.thunks'
+import { GUEST_TYPE } from '../../utils/types/types'
 
 const GuestsPage = () => {
   const dispatch = useAppDisptach()

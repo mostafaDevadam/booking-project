@@ -1,17 +1,17 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import DashboardPage from '../pages/DashboardPage'
-import BookingsPage from '../pages/BookingsPage'
-import RoomsPage from '../pages/RoomsPage'
-import NewBookingPage from '../pages/NewBookingPage'
-import NewRoomPage from '../pages/NewRoomPage'
-import GuestsPage from '../pages/GuestsPage'
+import DashboardPage from '../pages/hotel/DashboardPage'
+import BookingsPage from '../pages/hotel/BookingsPage'
+import RoomsPage from '../pages/hotel/RoomsPage'
+import NewBookingPage from '../pages/hotel/NewBookingPage'
+import NewRoomPage from '../pages/hotel/NewRoomPage'
+import GuestsPage from '../pages/hotel/GuestsPage'
 import AuthPage from '../auth/AuthPage'
 import Main from '../components/layouts/Main'
 import { useAuth } from '../auth/useAuth'
 import { ROLE_USER_ENUM } from '../utils/enums/enums'
-import RoomPage from '../pages/RoomPage'
-import BookingPage from '../pages/BookingPage'
+import RoomPage from '../pages/hotel/RoomPage'
+import BookingPage from '../pages/hotel/BookingPage'
 import Guest from '../pages/guest/Guest'
 import MyBookings from '../pages/guest/MyBookings'
 
@@ -75,6 +75,10 @@ const AppRouter = () => {
           <Route path='/guest' element={<Guest />}></Route>
           <Route path='/guest/my' element={<MyBookings />}></Route>
         </Route>
+      }
+
+      {
+        // owner
       }
 
       <Route path='/login' element={isAuthenticated ? <Navigate to={"/"} replace /> : <AuthPage />}></Route>

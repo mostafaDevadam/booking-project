@@ -1,14 +1,14 @@
 import React, { useState, } from 'react'
 
-import { useAppDisptach, useAppSelector } from '../hooks/useRedux';
+import { useAppDisptach, useAppSelector } from '../../hooks/useRedux';
 
-import { RoomThunkFunctions } from '../store/slices/room.slice';
+import { RoomThunkFunctions } from '../../store/slices/room.slice';
 
 import { Button, Form, Image, Modal } from 'react-bootstrap';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { ROOM_TYPE } from '../utils/types/types';
-import { KIND_OF_ROOM_ENUM } from '../utils/enums/enums';
+import { ROOM_TYPE } from '../../utils/types/types';
+import { KIND_OF_ROOM_ENUM } from '../../utils/enums/enums';
 
 
 type INPUTS = ROOM_TYPE

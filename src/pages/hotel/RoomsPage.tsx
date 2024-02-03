@@ -1,15 +1,15 @@
 import React, { useEffect, useState, } from 'react'
-import { useAppDisptach, useAppSelector } from '../hooks/useRedux'
-import { RoomService } from '../services/api/requests/room/room.service'
-import { RoomActions, RoomThunkFunctions } from '../store/slices/room.slice';
+import { useAppDisptach, useAppSelector } from '../../hooks/useRedux'
+import { RoomService } from '../../services/api/requests/room/room.service'
+import { RoomActions, RoomThunkFunctions } from '../../store/slices/room.slice';
 import { Button } from 'react-bootstrap';
-import { ROOM_STATE_TYPE } from '../utils/types/redux.types';
-import { KIND_OF_ROOM_ENUM } from '../utils/enums/enums';
-import { BOOKING_TYPE, ROOM_TYPE } from '../utils/types/types';
-import DefaultModal from '../components/DefaultModal';
-import { room_types } from '../utils/types/room.types';
-import RoomsListComponent from '../components/RoomsListComponent';
-import MessageModal from '../components/MessageModal';
+import { ROOM_STATE_TYPE } from '../../utils/types/redux.types';
+import { KIND_OF_ROOM_ENUM } from '../../utils/enums/enums';
+import { BOOKING_TYPE, ROOM_TYPE } from '../../utils/types/types';
+import DefaultModal from '../../components/DefaultModal';
+import { room_types } from '../../utils/types/room.types';
+import RoomsListComponent from '../../components/RoomsListComponent';
+import MessageModal from '../../components/MessageModal';
 
 const RoomsPage = () => {
 
