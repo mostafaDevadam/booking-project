@@ -63,8 +63,8 @@ export class Booking {
     @Prop({ type: SchemaTypes.ObjectId, ref: 'Guest', required: true })
     guest: Types.ObjectId
 
-    @Prop({ type: SchemaTypes.ObjectId, ref: 'Room', required: true })
-    room: Types.ObjectId // if room is not booked
+    @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Room', required: true })
+    room: MongooseSchema.Types.ObjectId // if room is not booked
 
 
 
@@ -98,10 +98,10 @@ BookingSchema.pre<Booking>('save', function (next) {
 })
 
 
-BookingSchema.pre<Booking>('deleteOne', function(next){
+BookingSchema.pre<Booking>('findOneAndDelete', function(next){
 
-    const room = model("Room").findById(this.room._id)
-    console.log("delete room doc from booking pre deleteOne:", room)
+   // const room = model("Room").findById(this.room?._)
+    //console.log("delete room doc from booking pre deleteOne:", room)
 
     next()
 })

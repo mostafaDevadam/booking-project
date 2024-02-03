@@ -100,6 +100,7 @@ export class BookingService {
 
 
     async updateOne(_id: any, data: Partial<BookingDocument>) {
+        console.log("before update booking: ", data)
         if(data.nights && data.room){
             data.total_price = await this.calculateTotalPrice(data.room, data.nights)
         }
@@ -108,14 +109,16 @@ export class BookingService {
 
     //!Advanced
     async removeOne(booking_id: any, room_id: any) {
+        console.log(booking_id, room_id)
         // get booking by _id, room_id
-        const booking = await this.bookingModel.findOne({ _id: booking_id, room: room_id })//.exists()
+        const booking = await this.bookingModel.findOne({ _id: booking_id}) //, room: room_id })//.exists()
         //console.log("booking: ", booking)
         if (booking) {
             // if booking ist exist
             //then update room -> isBooked = false
             const updated_room = await this.roomService.updateOne(room_id, { isBooked: false })
             // and remove booking
+           if (!updated_room) return false
             return await this.bookingModel.findByIdAndDelete(booking_id)
         }
 

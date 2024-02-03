@@ -6,7 +6,8 @@ import {HydratedDocument, SchemaTypes, Types, } from "mongoose";
 export type GuestDocument = HydratedDocument<Guest>
 
 export enum enum_gender {
-    male, female
+    male = 'male',
+    female = 'female'
 }
 
 @Schema({ timestamps: true })
@@ -17,7 +18,7 @@ export class Guest {
     @Prop({ required: true })
     email: string
 
-    @Prop({ required: true })
+    @Prop({ required: false })
     password: string
 
     @Prop({enum: enum_gender, required: false})
@@ -41,11 +42,15 @@ export class Guest {
     //@Prop()
     //currency: string
 
-    //@Prop()
-    //phone_number: string
+    @Prop()
+    phone_number: string
 
     //@Prop()
     //nationality: string
+
+    // ref
+    @Prop({type: SchemaTypes.ObjectId,ref:'Hotel', required: false})
+    hotel: Types.ObjectId
 
 
 }

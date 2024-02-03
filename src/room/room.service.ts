@@ -13,6 +13,15 @@ export class RoomService {
 
     async create(hotel_id: any, data: RoomDocument) {
         data.hotel = hotel_id
+        // generate room_number:
+        // get the last document
+        //const room = await this.roomModel.find().limit(1).sort({ $natural: -1 })
+        //const room_ = room[0]
+        //const room_num = Number(room_.room_number) + 1
+        //console.log('last room:', room_num)
+        const count = await this.roomModel.countDocuments() // find().countDocuments()
+        console.log('count rooms:', count, (count + 1))
+        data.room_number = (count + 1).toString()
         return await this.roomModel.create(data)
     }
 
@@ -37,7 +46,7 @@ export class RoomService {
 
     async findAllAvailable(): Promise<RoomDocument[]> {
         const all = await this.roomModel.find({ isBooked: false }).exec()
-       // console.log("all findAllAvailable:", all)
+        console.log("all findAllAvailable:", all)
         return all
     }
     async findAllIsBooked(): Promise<RoomDocument[]> {

@@ -35,13 +35,13 @@ export class Room {
     @Prop({ default: false})
     isBooked: boolean
 
-    @Prop({enum: eROOM_enum_type})
+    @Prop({enum: eROOM_enum_type, default: eROOM_enum_type.single})
     room_type: eROOM_enum_type
 
     @Prop({ default: true})
     isCleaned: boolean
 
-    @Prop()
+    @Prop({default: new Date().toISOString()})
     cleaned_date: string
 
     @Prop()
