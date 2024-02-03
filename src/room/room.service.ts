@@ -19,6 +19,8 @@ export class RoomService {
         //const room_ = room[0]
         //const room_num = Number(room_.room_number) + 1
         //console.log('last room:', room_num)
+
+        // get count rooms by hotel_id
         const count = await this.roomModel.countDocuments() // find().countDocuments()
         console.log('count rooms:', count, (count + 1))
         data.room_number = (count + 1).toString()
