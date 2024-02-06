@@ -50,6 +50,11 @@ const routes: Routes = [
     loadChildren: () => import('./hotel/new-room/new-room.module').then(m => m.NewRoomPageModule),
     canLoad: [HotelGuard]
   },
+  {
+    path: 'calendar',
+    loadChildren: () => import('./pages/calendar/calendar.module').then( m => m.CalendarPageModule),
+    canLoad: [HotelGuard]
+  },
 
 
   // for guest
@@ -67,6 +72,7 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthPageModule)
   },
+
 ];
 
 @NgModule({

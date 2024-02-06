@@ -1,0 +1,90 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>calendar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">calendar</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <!-- ion-datetime:
+       presentation="date"
+       cancelText="Never mind"
+       doneText="All set"
+       [showDefaultTitle]="true"
+       [format]="format"
+ [(ngModel)]="date"
+      -->
+    <ion-datetime
+    color="rose"
+    [value]="date"
+    [showClearButton]="true"
+    [showDefaultButtons]="true"
+    (confirm)="confirm(dateinput)"
+    (monthChange)="monthChange($event)"
+    (ionChange)="onSelectDate(dateinput)"
+    #dateinput
+
+
+
+
+
+    >
+      <span slot="title">Select a Reservation Date</span>
+      <span slot="time-label">Zeit</span>
+    </ion-datetime>
+  </ion-card>
+
+
+
+  <ion-card *ngIf="date">
+     {{date}}
+
+     <ion-range
+     min="0"
+     max="23"
+     step="0.5"
+
+     [pin]="true"
+     [ticks]="true" [snaps]="true"
+     (ionChange)="onIonChange($event)"
+     (ionKnobMoveStart)="onIonKnobMoveStart($event)"
+      (ionKnobMoveEnd)="onIonKnobMoveEnd($event)"
+
+     >
+      <ion-label slot="start">0:00</ion-label>
+      <ion-label slot="end">23:00</ion-label>
+    </ion-range>
+
+    <ion-range aria-label="Custom range"
+    [value]="1" step="0.1" [pin]="true" min="0" max="23"></ion-range>
+
+    <ion-range
+        aria-label="Custom range"
+        [min]="00.00"
+        [max]="23.00"
+        [step]="05"
+        [value]="12"
+        [pin]="true"
+        [ticks]="true"
+        [snaps]="true"
+      >
+      <ion-label slot="start">00:00</ion-label>
+      <ion-label slot="end">23:00</ion-label>
+    </ion-range>
+
+  </ion-card>
+
+
+
+
+
+</ion-content>
