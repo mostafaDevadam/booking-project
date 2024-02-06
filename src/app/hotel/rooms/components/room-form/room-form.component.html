@@ -1,0 +1,57 @@
+  <div>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title></ion-card-title>
+        <ion-card-subtitle></ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+
+
+        <form [formGroup]="editForm" (ngSubmit)="submit()">
+          <ion-list>
+            <ion-item>
+              <ion-select label="Room Type" placeholder="Choose One" formControlName="room_type" >
+                <div *ngFor="let item of roomTypes_keys">
+                  <ion-select-option value={{item}}> {{item}}</ion-select-option>
+                </div>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="text" label="Price" formControlName="price"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="tel" label="Phone" formControlName="phone_number"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="date" label="CleanedDate" formControlName="cleaned_date"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-checkbox labelPlacement="start" title="Cleaned" formControlName="isCleaned">Cleaned</ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+              <ion-checkbox  labelPlacement="start" formControlName="isBooked">Booked</ion-checkbox>
+            </ion-item>
+
+
+          </ion-list>
+          <ion-button type="submit" >Update</ion-button>
+          <div>
+
+          </div>
+
+        </form>
+
+
+
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+

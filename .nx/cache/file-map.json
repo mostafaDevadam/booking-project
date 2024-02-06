@@ -1,0 +1,469 @@
+{
+  "version": "6.0",
+  "nxVersion": "17.2.8",
+  "deps": {
+    "@angular/animations": "^17.0.2",
+    "@angular/common": "^17.0.2",
+    "@angular/compiler": "^17.0.2",
+    "@angular/core": "^17.0.2",
+    "@angular/forms": "^17.0.2",
+    "@angular/platform-browser": "^17.0.2",
+    "@angular/platform-browser-dynamic": "^17.0.2",
+    "@angular/router": "^17.0.2",
+    "@capacitor/app": "5.0.7",
+    "@capacitor/core": "5.6.0",
+    "@capacitor/haptics": "5.0.7",
+    "@capacitor/keyboard": "5.0.8",
+    "@capacitor/splash-screen": "^5.0.7",
+    "@capacitor/status-bar": "5.0.7",
+    "@ionic/angular": "^7.7.0",
+    "@ionic/angular-server": "^7.6.7-dev.11706894781.1cd59fde",
+    "@ionic/core": "^7.7.0",
+    "@nguniversal/express-engine": "^7.0.2",
+    "ionicons": "^7.0.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.14.2",
+    "@angular-devkit/build-angular": "^17.0.0",
+    "@angular-eslint/builder": "^17.0.0",
+    "@angular-eslint/eslint-plugin": "^17.0.0",
+    "@angular-eslint/eslint-plugin-template": "^17.0.0",
+    "@angular-eslint/schematics": "^17.0.0",
+    "@angular-eslint/template-parser": "^17.0.0",
+    "@angular/cli": "^17.0.0",
+    "@angular/compiler-cli": "^17.0.2",
+    "@angular/language-service": "^17.0.2",
+    "@capacitor/cli": "5.6.0",
+    "@ionic/angular-toolkit": "^11.0.1",
+    "@types/jasmine": "~5.1.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^7.26.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jsdoc": "30.7.6",
+    "eslint-plugin-prefer-arrow": "1.2.2",
+    "jasmine-core": "~5.1.0",
+    "jasmine-spec-reporter": "~5.0.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "typescript": "~5.2.2"
+  },
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {},
+    "nonProjectFiles": [
+      {
+        "file": ".browserslistrc",
+        "hash": "7979060078399394427"
+      },
+      {
+        "file": ".editorconfig",
+        "hash": "6686520031028425313"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "18210278994710539225"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "91109559695469517"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "592272277800690021"
+      },
+      {
+        "file": ".vscode/settings.json",
+        "hash": "1151538777131426085"
+      },
+      {
+        "file": "angular.json",
+        "hash": "11992048326398934745"
+      },
+      {
+        "file": "capacitor.config.ts",
+        "hash": "4011386400845851879"
+      },
+      {
+        "file": "ionic.config.json",
+        "hash": "10257990460216524084"
+      },
+      {
+        "file": "karma.conf.js",
+        "hash": "13719387092471133633"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "4982951247378591452"
+      },
+      {
+        "file": "package.json",
+        "hash": "9446641003831745736"
+      },
+      {
+        "file": "src/app/app-routing.module.ts",
+        "hash": "9165404674732789916"
+      },
+      {
+        "file": "src/app/app.component.html",
+        "hash": "2396489184792075239"
+      },
+      {
+        "file": "src/app/app.component.scss",
+        "hash": "9165532487268628528"
+      },
+      {
+        "file": "src/app/app.component.spec.ts",
+        "hash": "16655258543879266906"
+      },
+      {
+        "file": "src/app/app.component.ts",
+        "hash": "1399322020752518374"
+      },
+      {
+        "file": "src/app/app.module.ts",
+        "hash": "15526894354945337295"
+      },
+      {
+        "file": "src/app/auth/auth-routing.module.ts",
+        "hash": "3399689109133977175"
+      },
+      {
+        "file": "src/app/auth/auth.module.ts",
+        "hash": "17285952682425681164"
+      },
+      {
+        "file": "src/app/auth/auth.page.html",
+        "hash": "4074242013512493012"
+      },
+      {
+        "file": "src/app/auth/auth.page.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/auth/auth.page.spec.ts",
+        "hash": "8094658420224740902"
+      },
+      {
+        "file": "src/app/auth/auth.page.ts",
+        "hash": "7954718623786330080"
+      },
+      {
+        "file": "src/app/auth/auth.service.spec.ts",
+        "hash": "6927655796975040699"
+      },
+      {
+        "file": "src/app/auth/auth.service.ts",
+        "hash": "12089024462001638677"
+      },
+      {
+        "file": "src/app/auth/guards/auth.guard.spec.ts",
+        "hash": "9334869295420867325"
+      },
+      {
+        "file": "src/app/auth/guards/auth.guard.ts",
+        "hash": "2023875600251901147"
+      },
+      {
+        "file": "src/app/auth/guards/guest.guard.spec.ts",
+        "hash": "18284102284106268582"
+      },
+      {
+        "file": "src/app/auth/guards/guest.guard.ts",
+        "hash": "2832151415720565611"
+      },
+      {
+        "file": "src/app/auth/guards/hotel.guard.spec.ts",
+        "hash": "13099312368881912115"
+      },
+      {
+        "file": "src/app/auth/guards/hotel.guard.ts",
+        "hash": "5394725698727822726"
+      },
+      {
+        "file": "src/app/auth/user.ts",
+        "hash": "17023916732513305227"
+      },
+      {
+        "file": "src/app/common/enums.ts",
+        "hash": "11297339898937973260"
+      },
+      {
+        "file": "src/app/guest/home-guest/home-guest-routing.module.ts",
+        "hash": "7587171236304272299"
+      },
+      {
+        "file": "src/app/guest/home-guest/home-guest.module.ts",
+        "hash": "18276851558695659100"
+      },
+      {
+        "file": "src/app/guest/home-guest/home-guest.page.html",
+        "hash": "8238885216443132155"
+      },
+      {
+        "file": "src/app/guest/home-guest/home-guest.page.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/guest/home-guest/home-guest.page.spec.ts",
+        "hash": "5054492736335475554"
+      },
+      {
+        "file": "src/app/guest/home-guest/home-guest.page.ts",
+        "hash": "3764299817559043203"
+      },
+      {
+        "file": "src/app/guest/my-bookings/my-bookings-routing.module.ts",
+        "hash": "15911377909035920321"
+      },
+      {
+        "file": "src/app/guest/my-bookings/my-bookings.module.ts",
+        "hash": "6534106302113272719"
+      },
+      {
+        "file": "src/app/guest/my-bookings/my-bookings.page.html",
+        "hash": "17113438046503190419"
+      },
+      {
+        "file": "src/app/guest/my-bookings/my-bookings.page.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/guest/my-bookings/my-bookings.page.spec.ts",
+        "hash": "13388429381900798019"
+      },
+      {
+        "file": "src/app/guest/my-bookings/my-bookings.page.ts",
+        "hash": "4177571290112284498"
+      },
+      {
+        "file": "src/app/home/home-routing.module.ts",
+        "hash": "15640276891962985461"
+      },
+      {
+        "file": "src/app/home/home.module.ts",
+        "hash": "11132792541070780270"
+      },
+      {
+        "file": "src/app/home/home.page.html",
+        "hash": "11962870082766488065"
+      },
+      {
+        "file": "src/app/home/home.page.scss",
+        "hash": "14250411118003398491"
+      },
+      {
+        "file": "src/app/home/home.page.spec.ts",
+        "hash": "17001972042763736139"
+      },
+      {
+        "file": "src/app/home/home.page.ts",
+        "hash": "5581467261881332960"
+      },
+      {
+        "file": "src/app/hotel/bookings/bookings-routing.module.ts",
+        "hash": "12085558058729033816"
+      },
+      {
+        "file": "src/app/hotel/bookings/bookings.module.ts",
+        "hash": "2815187732609860023"
+      },
+      {
+        "file": "src/app/hotel/bookings/bookings.page.html",
+        "hash": "1314354463837971152"
+      },
+      {
+        "file": "src/app/hotel/bookings/bookings.page.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/hotel/bookings/bookings.page.spec.ts",
+        "hash": "4237448477750895312"
+      },
+      {
+        "file": "src/app/hotel/bookings/bookings.page.ts",
+        "hash": "1997747513396751370"
+      },
+      {
+        "file": "src/app/hotel/dashboard/dashboard-routing.module.ts",
+        "hash": "17539954454289649274"
+      },
+      {
+        "file": "src/app/hotel/dashboard/dashboard.module.ts",
+        "hash": "1729686176567888049"
+      },
+      {
+        "file": "src/app/hotel/dashboard/dashboard.page.html",
+        "hash": "6524582806437730738"
+      },
+      {
+        "file": "src/app/hotel/dashboard/dashboard.page.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/hotel/dashboard/dashboard.page.spec.ts",
+        "hash": "15860121979940362694"
+      },
+      {
+        "file": "src/app/hotel/dashboard/dashboard.page.ts",
+        "hash": "13336687465604128618"
+      },
+      {
+        "file": "src/app/hotel/guests/guests-routing.module.ts",
+        "hash": "14525426673524930823"
+      },
+      {
+        "file": "src/app/hotel/guests/guests.module.ts",
+        "hash": "2784998738680937221"
+      },
+      {
+        "file": "src/app/hotel/guests/guests.page.html",
+        "hash": "5464143581562477039"
+      },
+      {
+        "file": "src/app/hotel/guests/guests.page.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/hotel/guests/guests.page.spec.ts",
+        "hash": "17053909656714015095"
+      },
+      {
+        "file": "src/app/hotel/guests/guests.page.ts",
+        "hash": "16586560846243953438"
+      },
+      {
+        "file": "src/app/hotel/new-booking/new-booking-routing.module.ts",
+        "hash": "16624663607318812466"
+      },
+      {
+        "file": "src/app/hotel/new-booking/new-booking.module.ts",
+        "hash": "8567803092703740954"
+      },
+      {
+        "file": "src/app/hotel/new-booking/new-booking.page.html",
+        "hash": "335167457744873857"
+      },
+      {
+        "file": "src/app/hotel/new-booking/new-booking.page.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/hotel/new-booking/new-booking.page.spec.ts",
+        "hash": "2713726470314279479"
+      },
+      {
+        "file": "src/app/hotel/new-booking/new-booking.page.ts",
+        "hash": "5724426055587854003"
+      },
+      {
+        "file": "src/app/hotel/new-room/new-room-routing.module.ts",
+        "hash": "173137147707503331"
+      },
+      {
+        "file": "src/app/hotel/new-room/new-room.module.ts",
+        "hash": "4329896694372616122"
+      },
+      {
+        "file": "src/app/hotel/new-room/new-room.page.html",
+        "hash": "15152299603716360990"
+      },
+      {
+        "file": "src/app/hotel/new-room/new-room.page.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/hotel/new-room/new-room.page.spec.ts",
+        "hash": "13327419569042114492"
+      },
+      {
+        "file": "src/app/hotel/new-room/new-room.page.ts",
+        "hash": "11508350345722772098"
+      },
+      {
+        "file": "src/app/hotel/rooms/rooms-routing.module.ts",
+        "hash": "17634877829418663701"
+      },
+      {
+        "file": "src/app/hotel/rooms/rooms.module.ts",
+        "hash": "12510714517195068686"
+      },
+      {
+        "file": "src/app/hotel/rooms/rooms.page.html",
+        "hash": "3448174400468959961"
+      },
+      {
+        "file": "src/app/hotel/rooms/rooms.page.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/hotel/rooms/rooms.page.spec.ts",
+        "hash": "16848442861852298255"
+      },
+      {
+        "file": "src/app/hotel/rooms/rooms.page.ts",
+        "hash": "17708018311486870613"
+      },
+      {
+        "file": "src/assets/icon/favicon.png",
+        "hash": "17482944836898362639"
+      },
+      {
+        "file": "src/assets/shapes.svg",
+        "hash": "4708889011185296100"
+      },
+      {
+        "file": "src/environments/environment.prod.ts",
+        "hash": "5406836414239361753"
+      },
+      {
+        "file": "src/environments/environment.ts",
+        "hash": "853016174310957791"
+      },
+      {
+        "file": "src/global.scss",
+        "hash": "16777120732726033300"
+      },
+      {
+        "file": "src/index.html",
+        "hash": "5962093970713772175"
+      },
+      {
+        "file": "src/main.ts",
+        "hash": "3447864527603543144"
+      },
+      {
+        "file": "src/polyfills.ts",
+        "hash": "16163444994210036896"
+      },
+      {
+        "file": "src/test.ts",
+        "hash": "12412031923219697029"
+      },
+      {
+        "file": "src/theme/variables.scss",
+        "hash": "10683809365950317113"
+      },
+      {
+        "file": "src/zone-flags.ts",
+        "hash": "3323586086306676158"
+      },
+      {
+        "file": "tsconfig.app.json",
+        "hash": "9041030522571917449"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "9300148005582941852"
+      },
+      {
+        "file": "tsconfig.spec.json",
+        "hash": "17198424518534092990"
+      }
+    ]
+  }
+}

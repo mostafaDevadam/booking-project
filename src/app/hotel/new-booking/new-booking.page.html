@@ -1,0 +1,149 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>NewBooking</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">NewBooking</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>New Guest</ion-card-title>
+        <ion-card-subtitle></ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+
+        Here's a small text description for the card content. Nothing more, nothing less.
+        <form [formGroup]="guestForm" (ngSubmit)="submitGuest()">
+          <ion-list>
+            <ion-item>
+              <ion-input type="text" label="Name" formControlName="name"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="email" label="Email" formControlName="email"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="date" label="BirthDate" formControlName="birth_date"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-select label="Gender" placeholder="Choose One" formControlName="gender">
+                <div *ngFor="let item of gender_keys">
+                  <ion-select-option value={{item}}> {{item}}</ion-select-option>
+                </div>
+              </ion-select>
+
+
+            </ion-item>
+
+
+          </ion-list>
+          <ion-button type="submit">Create Guest</ion-button>
+          <div>
+          </div>
+        </form>
+      </ion-card-content>
+    </ion-card>
+
+
+
+    <ion-card *ngIf="isNextForm">
+      <ion-card-header>
+        <ion-card-title>New Booking Info.</ion-card-title>
+        <ion-card-subtitle></ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        Here's a small text description for the card content. Nothing more, nothing less.
+        <form [formGroup]="bookingForm" (ngSubmit)="submitBooking()">
+          <ion-list>
+            <ion-item>
+
+              <ion-select label="Room" placeholder="Choose One" formControlName="room">
+                <div *ngFor="let item of roomService.availableRoomsByHotel">
+                  <ion-select-option value={{item._id}}> {{item.room_number}} {{item.isBooked ? 'not' : 'free'}}</ion-select-option>
+                </div>
+              </ion-select>
+
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="number" label="Nights" formControlName="nights"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="date" label="Start Date" formControlName="start_date"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="date" label="End Date" formControlName="end_date"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="date" label="CheckedIn Date" formControlName="checkedIn_date"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-checkbox labelPlacement="start" formControlName="isCheckedIn">CheckedIn</ion-checkbox>
+
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="date" label="CheckedOut Date" formControlName="checkedOut_date"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-checkbox labelPlacement="start" formControlName="isCheckedOut">CheckedOut</ion-checkbox>
+            </ion-item>
+
+
+            <ion-item>
+              <ion-input type="date" label="Confirmed Date" formControlName="confirmed_date"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-checkbox labelPlacement="start" formControlName="isConfirmed">Confirmed</ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="date" label="Paid Date" formControlName="paid_date"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-checkbox labelPlacement="start" formControlName="isPaid">Paid</ion-checkbox>
+            </ion-item>
+
+
+          </ion-list>
+          <ion-button type="submit">Create Booking</ion-button>
+          <div>
+
+          </div>
+
+        </form>
+      </ion-card-content>
+    </ion-card>
+
+
+
+  </div>
+
+
+
+
+
+
+</ion-content>

@@ -1,0 +1,68 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>auth</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Booking-App </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title></ion-card-title>
+        <ion-card-subtitle></ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <!--<form [formGroup]="profileForm" (ngSubmit)="signIn()">
+          <label for="first-name">First Name: </label>
+          <input id="first-name" type="text" formControlName="firstName">
+          <label for="last-name">Last Name: </label>
+          <input id="last-name" type="text" formControlName="lastName">
+          <ion-button type="submit">SignIn</ion-button>
+        </form>-->
+
+
+
+        Here's a small text description for the card content. Nothing more, nothing less.
+        <form [formGroup]="authForm" (ngSubmit)="signIn()">
+          <ion-list>
+            <ion-item>
+              <ion-select label="Role" placeholder="Choose One" formControlName="role">
+                <div *ngFor="let item of role_keys">
+                  <ion-select-option value={{item}}> {{item}}</ion-select-option>
+                </div>
+
+
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="email" label="Email" formControlName="email"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="password" label="Password" formControlName="password"></ion-input>
+            </ion-item>
+          </ion-list>
+
+          <div>
+            <ion-button>SignUp</ion-button>
+            <ion-button type="submit">SignIn</ion-button>
+          </div>
+
+        </form>
+
+
+
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

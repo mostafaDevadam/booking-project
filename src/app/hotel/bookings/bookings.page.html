@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Bookings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Bookings</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+ <div *ngFor="let item of bookingService.bookingsByHotel">
+  <ion-card (click)="selectedBooking(item)" >
+    <ion-card-header >
+      <ion-card-title>Booking</ion-card-title>
+      <ion-card-subtitle>Room </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-row>
+        <ion-col size="">
+          <ion-row><p>nights: {{ item.nights }}</p></ion-row>
+          <ion-row><p>Total Price: {{ item.total_price ? item.total_price  : 105}}</p></ion-row>
+        </ion-col>
+      </ion-row>
+
+
+
+      <p ></p>
+
+    </ion-card-content>
+
+
+  </ion-card>
+</div>
+
+
+
+
+</ion-content>
