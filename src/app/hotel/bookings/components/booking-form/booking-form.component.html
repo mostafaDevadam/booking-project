@@ -1,3 +1,89 @@
 <p>
   booking-form works!
 </p>
+
+<div>
+  <ion-card >
+    <ion-card-header>
+      <ion-card-title>  </ion-card-title>
+      <ion-card-subtitle></ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      Here's a small text description for the card content. Nothing more, nothing less.
+      <form [formGroup]="bookingForm" (ngSubmit)="submit()">
+        <ion-list>
+          <ion-item>
+
+
+            <!--<ion-label>Room</ion-label>-->
+            <ion-select label="Room" placeholder="Choose One" formControlName="room" >
+              <ion-select-option value={{bookingService.booking.room._id}} *ngIf="bookingService.booking.room._id"> {{bookingService.booking.room.room_number}}</ion-select-option>
+              <div *ngFor="let item of roomService.availableRoomsByHotel">
+                <ion-select-option value={{item._id === bookingService.booking.room._id && item_.id}} *ngIf="item._id === bookingService.booking.room._id"> {{item.room_number}}</ion-select-option>
+                <ion-select-option value={{item._id}}> {{item.room_number}} {{item.isBooked ? 'not' : 'free'}}</ion-select-option>
+              </div>
+            </ion-select>
+            <ion-button (click)="changeRoom()">Change</ion-button>
+
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="number" label="Nights" formControlName="nights"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="date" label="Start Date" formControlName="start_date"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="date" label="End Date" formControlName="end_date"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="date" label="ChInDate" formControlName="checkedIn_date"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-checkbox labelPlacement="start" formControlName="isCheckedIn">CheckedIn</ion-checkbox>
+
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="date" label="ChOutDate" formControlName="checkedOut_date"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-checkbox labelPlacement="start" formControlName="isCheckedOut">CheckedOut</ion-checkbox>
+          </ion-item>
+
+
+          <ion-item>
+            <ion-input type="date" label="ConfirmedDate" formControlName="confirmed_date"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-checkbox labelPlacement="start" formControlName="isConfirmed">Confirmed</ion-checkbox>
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="date" label="Paid Date" formControlName="paid_date"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-checkbox labelPlacement="start" formControlName="isPaid">Paid</ion-checkbox>
+          </ion-item>
+
+
+        </ion-list>
+        <ion-button type="submit">Update</ion-button>
+        <div>
+
+        </div>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+
+</div>

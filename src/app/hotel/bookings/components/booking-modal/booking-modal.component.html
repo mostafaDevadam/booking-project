@@ -1,3 +1,44 @@
-<p>
-  booking-modal works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="close()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>{{isEdit ? "Edit Booking" : "View Booking"}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div *ngIf="isView">
+    View Info
+
+    <p>nights: {{data.nights}}</p>
+    <p>start_date: {{data.start_date}}</p>
+    <p>end_date: {{data.end_date}}</p>
+    <p>isCheckedIn: {{ data.isCheckedIn}}</p>
+    <p>isCheckedOut: {{ data.isCheckedOut}}</p>
+    <p>isConfirmed: {{ data.isConfirmed}}</p>
+    <p>isPaid: {{ data.isPaid}}</p>
+    <p>checkedIn_date: {{ data.checkedIn_date}}</p>
+    <p>checkedOut_date: {{data.checkedOut_date}}</p>
+    <p>confirmed_date: {{data.confirmed_date}}</p>
+    <p>paid_date: {{data.paid_date}}</p>
+    <p>total_price: {{data.total_price}}</p>
+
+
+
+
+
+
+  </div>
+
+  <div *ngIf="isEdit">
+    <app-booking-form [data]="data"></app-booking-form>
+  </div>
+
+  <ion-button (click)="close()">Close</ion-button>
+
+
+
+
+</ion-content>

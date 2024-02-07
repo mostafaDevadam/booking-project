@@ -11,13 +11,27 @@
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Rooms </ion-title>
+
+      <ion-item>
+        <ion-select label="Filter" placeholder="Choose One"  >
+          <div *ngFor="let item of roomFilter_keys">
+              <ion-select-option value={{item}}> {{item}}</ion-select-option>
+            <!--<ion-select-option value="available">Available</ion-select-option>
+            <ion-select-option value="booked">Booked</ion-select-option>
+            <ion-select-option value="cleaned">Cleaned</ion-select-option>
+            <ion-select-option value="notCleaned">NotCleaned</ion-select-option>
+            <ion-select-option value="single">Single</ion-select-option>
+            <ion-select-option value="double">Double</ion-select-option>-->
+          </div>
+        </ion-select>
+      </ion-item>
     </ion-toolbar>
   </ion-header>
 
-  
+
 
   <div *ngFor="let item of roomService.roomsByHotel">
-    <ion-card (click)="selectedRoom(item)">
+    <ion-card >
       <ion-card-header [color]="item.isBooked ? 'danger' : 'primary'">
         <ion-card-title></ion-card-title>
         <ion-card-subtitle>Room {{ item.room_number }}</ion-card-subtitle>
@@ -43,9 +57,16 @@
 
 
 
-        <p>{{ item.isBooked ? 'Booked' : 'Available' }}</p>
+        <div>{{ item.isBooked ? 'Booked' : 'Available' }} <ion-icon name="lock-closed" *ngIf="item.isBooked"></ion-icon></div>
 
       </ion-card-content>
+
+
+      <ion-buttons class="ion-padding">
+        <ion-button class="ion-padding" (click)="viewRoom(item)"><ion-icon name="eye"></ion-icon>View</ion-button>
+        <ion-button class="ion-padding" (click)="editRoom(item)">Edit</ion-button>
+        <ion-button class="ion-padding" (click)="removeRoom(item)"><ion-icon name="trash"></ion-icon>Remove</ion-button>
+      </ion-buttons>
 
 
     </ion-card>

@@ -31,26 +31,29 @@ export class RoomFormComponent implements OnInit {
 
   ngOnInit() {
     console.log('----Room Form----')
+    console.log("room: ", this.roomService.room, this.data)
     console.log(this.data)
-    if (this.data.room) {
-      this.room = this.data.room
+    if (this.data ) {
+      this.room = this.data
       this.editForm = new FormGroup({
-        _id: new FormControl(this.room._id),
-        room_type: new FormControl(this.room.room_type || KIND_OF_ROOM_ENUM.single),
-        price: new FormControl(this.room.price),
-        phone_number: new FormControl(this.room.phone_number),
-        cleaned_date: new FormControl(this.room.cleaned_date),
-        isCleaned: new FormControl(this.room.isCleaned),
-        isBooked: new FormControl<boolean>({value: Boolean(this.room.isBooked), disabled: true } ),
+        _id: new FormControl(this.roomService.room._id || this.room._id),
+        room_type: new FormControl(this.roomService.room.room_type || this.room.room_type || KIND_OF_ROOM_ENUM.single),
+        price: new FormControl(this.roomService.room.price || this.room.price),
+        phone_number: new FormControl(this.roomService.room.phone_number || this.room.phone_number),
+        cleaned_date: new FormControl(this.roomService.room.cleaned_date || this.room.cleaned_date),
+        isCleaned: new FormControl(this.roomService.room.isCleaned || this.room.isCleaned),
+        isBooked: new FormControl<boolean>({ value: Boolean(this.roomService.room.isBooked || this.room.isBooked), disabled: true }),
       })
-     }
+    }
   }
 
   submit = () => {
     console.log("submit update room: ", this.editForm.value)
     this.roomService.setEditRoom(this.editForm.value)
-    this.modalCtrl.dismiss()
-
+    this.modalCtrl.dismiss(this.editForm.value, 'edit-room-form')
   }
+
+
+
 
 }

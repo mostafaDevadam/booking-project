@@ -121,6 +121,9 @@ export class RoomService {
       })*/
   }
 
+
+  
+
   // local
   setEditRoom(room: ROOM_TYPE) {
     this.editRoom = room

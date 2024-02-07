@@ -5,6 +5,7 @@ import { ROOM_TYPE } from '../../common/types';
 import { AlertController, IonModal, ModalController, ToastController } from '@ionic/angular';
 import { RoomModalComponent } from './components/room-modal/room-modal.component';
 import { OverlayEventDetail } from '@ionic/core';
+import { ROOM_FILTER } from 'src/app/common/enums';
 
 @Component({
   selector: 'app-rooms',
@@ -21,11 +22,28 @@ export class RoomsPage implements OnInit {
   name: string
   message = "This Room Modal..."
 
+  selectedRoom: ROOM_TYPE
+
+  roomFilter_keys = Object.keys(ROOM_FILTER)
+
+  lbls: { [key in ROOM_FILTER]: ROOM_FILTER } = {
+    available: ROOM_FILTER.available,
+    booked: ROOM_FILTER.booked,
+    cleaned: ROOM_FILTER.cleaned,
+    notCleaned: ROOM_FILTER.notCleaned,
+    single: ROOM_FILTER.single,
+    double: ROOM_FILTER.double,
+  }
+
+  getRoomFilter = (t: ROOM_FILTER) => this.lbls[t]
+
+
   constructor(
     private hotelService: HotelService,
     public roomService: RoomService,
     public modalCtrl: ModalController,
     private toastCtrl: ToastController,
+    private alertCtrl: AlertController,
 
   ) { }
 
@@ -46,7 +64,11 @@ export class RoomsPage implements OnInit {
 
   //ngDoCheck() {}
 
+  ionViewWillEnter() {
+    console.log('----ionViewWillEnter-----')
+    this.initialize()
 
+  }
 
   initialize() {
     if (this.hotelService.getHotelId()) {
@@ -56,74 +78,110 @@ export class RoomsPage implements OnInit {
     }
   }
 
-  ionViewWillEnter() {
-    console.log('----ionViewWillEnter-----')
-    this.initialize()
 
-  }
 
-  selectedRoom = (room: ROOM_TYPE) => {
+  /*selectedRoom = (room: ROOM_TYPE) => {
     console.log('selected Room: ', room)
     this.roomService.fetchOneRoomById(room._id)
     this.showModal({ room, fetchRoom: this.roomService.room })
 
+  }*/
+
+
+  viewRoom = (item: ROOM_TYPE) => {
+    this.roomService.fetchOneRoomById(item._id)
+    this.presentModal({ role: 'view', room: item })
+
+
+  }
+  editRoom = (item: ROOM_TYPE) => {
+    this.roomService.fetchOneRoomById(item._id)
+    this.presentModal({ role: 'edit', room: item })
+
   }
 
-  async showModal(data_: any) {
-    const modal = await this.modalCtrl.create({
-      component: RoomModalComponent,
-      componentProps: { data: data_ }
-    })
-    await modal.present()
+  removeRoom = (item: ROOM_TYPE) => {
+    this.roomService.fetchOneRoomById(item._id)
+    this.selectedRoom = item
+    this.presentAlert()
 
-    const { data, role } = await modal.onWillDismiss()
+  }
+  /*
+    async showModal(data_: any) {
+      const modal = await this.modalCtrl.create({
+        component: RoomModalComponent,
+        componentProps: { data: data_ }
+      })
+      await modal.present()
 
-    if (role === 'confirm') {
-      // this.message = `Hallo ${data}`
-      // remove room
-      //this.roomService.patchUpdateRoomById(data.room._id, data.room)
-      //await this.roomService.deleteRoomById(data_.room._id)
-      if (data) {
-        console.log("remove confirm: ", data)
-        await this.roomService.deleteRoomById(data_.room._id)
-          .then(th => th.subscribe((sub) => {
-            if (sub) {
-              console.log("sub removed:", sub.error)
-              this.presentToast(sub.error)
-            }
+      const { data, role } = await modal.onWillDismiss()
 
-          }))
-        /*if(!data_.room.isBooked){
-         await this.roomService.deleteRoomById(data_.room._id)
-        }else{
-         alert("can't remove the room because is already booked")
-        }*/
-        //this.presentToast(this.roomService.msgRemoved || "ssss!!!")
+      if (role === 'confirm') {
+        // this.message = `Hallo ${data}`
+        // remove room
+        //this.roomService.patchUpdateRoomById(data.room._id, data.room)
+        //await this.roomService.deleteRoomById(data_.room._id)
+        if (data) {
+          console.log("remove confirm: ", data)
+          await this.roomService.deleteRoomById(data_.room._id)
+            .then(th => th.subscribe((sub) => {
+              if (sub) {
+                console.log("sub removed:", sub.error)
+                this.presentToast(sub.error)
+              }
 
+            }))
+          /*if(!data_.room.isBooked){
+           await this.roomService.deleteRoomById(data_.room._id)
+          }else{
+           alert("can't remove the room because is already booked")
+          }*/
+  //this.presentToast(this.roomService.msgRemoved || "ssss!!!")
+  /*
 
+        }
+      }
+  */
+  /*
+      const editRoom = this.roomService.editRoom
+      if (editRoom) {
+        console.log("edit room from rooms page: ", editRoom)
+        await this.roomService.patchUpdateRoomById(editRoom._id, editRoom)
+      }
+
+    }
+    // IonModal
+    cancel = () => {
+      this.modal.dismiss(null, 'cancel')
+    }
+
+    confirm = () => {
+      this.modal.dismiss(this.name, 'confirm')
+    }
+
+    onWillDismiss = (event: Event) => {
+      const e = event as CustomEvent<OverlayEventDetail<string>>;
+      if (e.detail.role === 'confirm') {
+        this.message = `Hallo, ${e.detail.data}`
       }
     }
+  */
+  handleRemove = async (val: boolean) => {
+    if (val) {
+      await this.roomService.deleteRoomById(this.selectedRoom._id)
+        .then(th => th.subscribe((sub) => {
+          if (sub) {
+            console.log("sub removed room:", sub.error)
+            if (sub.error) {
+              this.presentToast(sub.error)
+              return
+            } else if (sub._id) {
+              this.presentToast("removed the room")
+              return
+            }
 
-    const editRoom = this.roomService.editRoom
-    if (editRoom) {
-      console.log("edit room from rooms page: ", editRoom)
-      await this.roomService.patchUpdateRoomById(editRoom._id, editRoom)
-    }
-
-  }
-  // IonModal
-  cancel = () => {
-    this.modal.dismiss(null, 'cancel')
-  }
-
-  confirm = () => {
-    this.modal.dismiss(this.name, 'confirm')
-  }
-
-  onWillDismiss = (event: Event) => {
-    const e = event as CustomEvent<OverlayEventDetail<string>>;
-    if (e.detail.role === 'confirm') {
-      this.message = `Hallo, ${e.detail.data}`
+          }
+        }))
     }
   }
 
@@ -136,6 +194,58 @@ export class RoomsPage implements OnInit {
     })
 
     await toast.present()
+
+  }
+
+  presentAlert = async () => {
+    const alert = await this.alertCtrl.create({
+      header: 'Do you want remove it?',
+      message: '',
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        handler: () => this.handleRemove(false)
+      },
+      {
+        text: 'Confirm',
+        role: 'confirm',
+        handler: () => this.handleRemove(true)
+      }
+      ],
+
+
+    })
+
+    await alert.present()
+
+  }
+
+  presentModal = async (props: any) => {
+    const modal = await this.modalCtrl.create({
+      component: RoomModalComponent,
+      componentProps: { props: props },
+
+    })
+
+    //const {data, role} = await modal.onWillDismiss()
+    this.getDataFromModal(modal)
+
+
+
+
+    return await modal.present()
+
+  }
+
+
+  getDataFromModal = async (modal: any) => {
+    const { data, role } = await modal.onWillDismiss()
+
+    console.log("modal data:", data, role)
+
+    if (data) {
+      await this.roomService.patchUpdateRoomById(data._id, data)
+    }
 
   }
 

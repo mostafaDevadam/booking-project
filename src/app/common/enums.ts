@@ -19,3 +19,12 @@ export enum METHODS_REQUEST_ENUM {
   PATCH = 'PATCH',
   DELETE = 'DELETE',
 }
+
+export enum ROOM_FILTER {
+  available = "available",
+  booked = "booked",
+  cleaned = "cleaned",
+  notCleaned = "notCleaned",
+  single = "single",
+  double = "double",
+}

@@ -2,12 +2,10 @@
       <ion-header>
         <ion-toolbar>
           <ion-buttons slot="start">
-            <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+            <ion-button color="medium" (click)="closeModal()">Cancel</ion-button>
           </ion-buttons>
-          <ion-title>Room {{data.room.room_number}}</ion-title>
-          <!--<ion-buttons slot="end">
-            <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
-          </ion-buttons>-->
+          <ion-title>Room {{data.room_number}}</ion-title>
+
         </ion-toolbar>
       </ion-header>
 
@@ -22,7 +20,11 @@
           ></ion-input>
         </ion-item>-->
 
-        <div *ngIf="!isEdit">Room Info</div>
+        <div *ngIf="isView">Room Info
+
+
+
+        </div>
 
         <div *ngIf="isEdit">
              Edit Room Form
@@ -32,8 +34,8 @@
 
         <div>
           <ion-buttons>
-            <ion-button (click)="displayEditForm()">Edit</ion-button>
-            <ion-button [disabled]="isEdit" (click)="openRemoveModal()">Remove</ion-button>
+            <!--<ion-button (click)="displayEditForm()">Edit</ion-button>
+            <ion-button [disabled]="isEdit" (click)="openRemoveModal()">Remove</ion-button>-->
           </ion-buttons>
         </div>
       </ion-content>
