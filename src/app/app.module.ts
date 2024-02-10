@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { ServerModule } from '@angular/platform-server';
@@ -19,10 +19,18 @@ import { CallApiService } from './services/callAPI/call-api.service';
 import { AddHeaderInterceptor } from './auth/interceptors/add-header.interceptor';
 import { MessageDialogModalComponent } from './shared/components/message-dialog-modal/message-dialog-modal.component';
 
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { ChatService } from './services/chat/chat.service';
+
+const config: SocketIoConfig = { url: 'http://localhost:7070/', options: {} };
+
+
+
 @NgModule({
   declarations: [AppComponent, MessageDialogModalComponent],
   imports: [
     BrowserModule,
+    SocketIoModule.forRoot(config),
      HttpClientModule,
      IonicModule.forRoot(),
      AppRoutingModule,
@@ -33,9 +41,11 @@ import { MessageDialogModalComponent } from './shared/components/message-dialog-
     {provide: HTTP_INTERCEPTORS, useClass: AddHeaderInterceptor , multi: true},
     CallApiService,
     AuthService,HotelService,RoomService,BookingService,GuestService,UserService,
+    ChatService,
 
 
   ],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

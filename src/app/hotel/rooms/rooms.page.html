@@ -13,7 +13,8 @@
       <ion-title size="large">Rooms </ion-title>
 
       <ion-item>
-        <ion-select label="Filter" placeholder="Choose One"  >
+        <ion-select label="Filter" interface="popover" placeholder="Choose One" [(ngModel)]="selectedRoomFilter"
+        (ionChange)="detectRoomFilter($event)"  >
           <div *ngFor="let item of roomFilter_keys">
               <ion-select-option value={{item}}> {{item}}</ion-select-option>
             <!--<ion-select-option value="available">Available</ion-select-option>
@@ -30,9 +31,9 @@
 
 
 
-  <div *ngFor="let item of roomService.roomsByHotel">
+  <div *ngFor="let item of rooms">
     <ion-card >
-      <ion-card-header [color]="item.isBooked ? 'danger' : 'primary'">
+      <ion-card-header [color]="item.isBooked ? 'danger' : !item.isCleaned ? 'warning' : 'primary' ">
         <ion-card-title></ion-card-title>
         <ion-card-subtitle>Room {{ item.room_number }}</ion-card-subtitle>
       </ion-card-header>

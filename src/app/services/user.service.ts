@@ -13,6 +13,8 @@ import { CallApiService } from './callAPI/call-api.service';
 export class UserService {
 
   role: string = ''
+  currentUser: any
+  currentUserID: any
 
   constructor(
     private storageService: StorageService,
@@ -20,13 +22,15 @@ export class UserService {
     private guestService: GuestService,
     private callApiService: CallApiService
 
-    ) { }
+  ) { }
 
 
   CheckAndFetchUser = async () => {
     const user = await this.storageService.getItem(keys.ION_USER)
     if (user) {
       console.log('ion_user: ', user.role)
+      this.currentUser = user
+      this.currentUserID = user._id
       //this.authService.setRole(user.role)
       this.setRole(user.role)
       /*if (user.role == 'hotel') {
@@ -36,18 +40,18 @@ export class UserService {
     }
   }
 
-  setRole(role: ROLE_ENUM){
+  setRole(role: ROLE_ENUM) {
     this.role = role;
   }
 
   getRole = () => this.role
 
-  async fetchUserByID( _id: any) {
-     if(this.role === ROLE_ENUM.hotel) {
-         this.hotelService.fetchHotelById(_id)
-     }else if(this.role === ROLE_ENUM.guest) {
-        this.guestService.fetchGuestById(_id)
-     }
+  async fetchUserByID(_id: any) {
+    if (this.role === ROLE_ENUM.hotel) {
+      this.hotelService.fetchHotelById(_id)
+    } else if (this.role === ROLE_ENUM.guest) {
+      this.guestService.fetchGuestById(_id)
+    }
   }
 
   postSignUp = async (inputs: AUTH_INPUTS_TYPE): Promise<any> => {
@@ -56,7 +60,7 @@ export class UserService {
 
 
   postSignIn = async (inputs: AUTH_INPUTS_TYPE) => {
-   return await this.callApiService.post('auth/signin', inputs)
+    return await this.callApiService.post('auth/signin', inputs)
   }
 
 

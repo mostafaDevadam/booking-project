@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { CallApiService } from './callAPI/call-api.service';
 import { keys } from '../common/keys';
 import { map } from 'rxjs';
+import { ROOM_FILTER } from '../common/enums';
 
 const apiURL = environment.API_URL + 'room/'
 
@@ -19,6 +20,9 @@ export class RoomService {
 
   rooms: ROOM_TYPE[] = []
   roomsByHotel: ROOM_TYPE[] = []
+
+  filterRooms: ROOM_TYPE[]
+
   bookedRoomsByHotel: ROOM_TYPE[] = []
   availableRoomsByHotel: ROOM_TYPE[] = []
   cleanedRoomsByHotel: ROOM_TYPE[] = []
@@ -122,7 +126,33 @@ export class RoomService {
   }
 
 
-  
+  // filter rooms by
+  /*
+    Booked
+    Available
+    Cleaned
+    NotCleaned
+    Single
+    Double
+  */
+
+  fetchFilterRooms = async (room_filter: ROOM_FILTER, hotel_id: any) => {
+
+      console.log('fetchFilterRooms: ', room_filter, hotel_id)
+      const result = await this.callAPiService.get(`room/all/${room_filter}/hotel/${hotel_id}`)
+      return result.pipe(map((data: any) => {
+        this.filterRooms = data
+        return data
+      }))
+    
+
+
+    /*.subscribe((sub) => {
+      this.filterRooms = sub
+      console.log("sub filter rooms :", sub)
+    })*/
+  }
+
 
   // local
   setEditRoom(room: ROOM_TYPE) {

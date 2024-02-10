@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="closeModal()">Close</ion-button>
+    </ion-buttons>
+    <ion-title>View Chat</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+
+
+
+
+  <div *ngFor="let item of messages">
+
+
+
+    <div>
+      <ion-row *ngIf="userService.currentUser._id !== item.sender">
+        <ion-col size="2" offset="">avatar</ion-col>
+        <ion-col size="10" offset="">
+          <ion-row>
+            <ion-card class="ion-padding ion-text-start">
+
+              <div >
+                <ion-text color="primary">
+                  {{ item.message }}
+                </ion-text>
+              </div>
+
+            </ion-card>
+          </ion-row>
+          <ion-row>2</ion-row>
+        </ion-col>
+
+      </ion-row>
+
+    </div>
+
+    <div class="ion-text-end">
+      <ion-row class="ion-text-end" *ngIf="userService.currentUser._id === item.sender">
+        <ion-col size="11" offset="">
+          <ion-row>
+            <ion-card class="ion-padding">
+
+              <div class="ion-text-end">
+                <ion-text color="success" class="ion-text-end">
+                  {{ item.message }}
+                </ion-text>
+
+              </div>
+
+            </ion-card>
+            <span>image</span>
+          </ion-row>
+          <ion-row>2</ion-row>
+        </ion-col>
+        <ion-col size="1" offset="">avatar</ion-col>
+      </ion-row>
+    </div>
+
+
+    <!--<ion-card class="ion-padding">
+
+      <div [class]="userService.currentUser._id === item.sender ?  'ion-text-end' : 'ion-text-start' ">
+        <ion-text [color]="userService.currentUser._id === item.sender ? 'success' : 'primary' ">
+          {{ item.message }}
+        </ion-text>
+      </div>
+
+    </ion-card>-->
+    <div [class]="userService.currentUser._id === item.sender ?  'ion-text-end' : 'ion-text-start' ">
+      <ion-text
+        [class]="userService.currentUser._id === item.sender ? 'ion-margin-end ion-margin-bottom' : 'ion-margin-start ion-margin-bottom'">{{
+        doFormateDateTime(item.created_at)}}</ion-text>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer class="">
+  <ion-toolbar color="light">
+    <ion-row align-items-center>
+      <ion-col size="10">
+        <ion-textarea auto-grow class="message-input" row="1" [(ngModel)]="message_input"></ion-textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button expand="block" fill="clear" color="primary" [disabled]="message_input === ''" class="msg-btn"
+          (click)="sendMessage()">Send</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-toolbar>
+
+</ion-footer>

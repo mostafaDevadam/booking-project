@@ -1,9 +1,12 @@
-import { NgModule } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { HotelGuard } from './auth/guards/hotel.guard';
 import { DataResolver } from './auth/resolvers/data.resolver';
 import { RoomResolver, roomResolver } from './auth/resolvers/room.resolver';
+import { ChatService } from './services/chat/chat.service';
+import { chatResolverFn,  } from './auth/resolvers/chat.resolver';
+import { GuestGuard } from './auth/guards/guest.guard';
 
 const routes: Routes = [
   {
@@ -55,23 +58,36 @@ const routes: Routes = [
     loadChildren: () => import('./pages/calendar/calendar.module').then( m => m.CalendarPageModule),
     canLoad: [HotelGuard]
   },
+  {
+    path: 'messages',
+    loadChildren: () => import('./pages/messages/messages.module').then( m => m.MessagesPageModule),
+    canLoad: [HotelGuard]
+  },
+  {
+    path: 'chat',
+    loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule),
+    canLoad: [HotelGuard],
+    resolve: {'chats': chatResolverFn}
+  },
 
 
   // for guest
   {
     path: 'my-bookings',
     loadChildren: () => import('./guest/my-bookings/my-bookings.module').then(m => m.MyBookingsPageModule),
-    //canActivate: [AuthGuard]
+    canLoad: [GuestGuard]
   },
   {
     path: 'home-guest',
     loadChildren: () => import('./guest/home-guest/home-guest.module').then(m => m.HomeGuestPageModule),
-   // canActivate: [AuthGuard]
+    canLoad: [GuestGuard]
   },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthPageModule)
   },
+
+
 
 ];
 

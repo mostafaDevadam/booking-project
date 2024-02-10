@@ -12,17 +12,18 @@
 
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi&#64;ionicframework.com</ion-note>
+          <ion-list-header>Inbox {{currentUser && currentUser.role}}</ion-list-header>
+          <ion-note *ngIf="!currentUser">hi&#64;ionicframework.com</ion-note>
+          <ion-note *ngIf="currentUser">{{ currentUser.email }}</ion-note>
 
-          <ion-menu-toggle auto-hide="false" >
-            <ion-item lines="none" detail="false" >
+          <ion-menu-toggle auto-hide="false">
+            <ion-item lines="none" detail="false">
               <ion-label>title</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
 
-        <ion-list id="labels-list">
+        <ion-list id="labels-list" *ngIf="authService.getRole() === 'hotel' ">
           <ion-list-header>Labels</ion-list-header>
 
           <ion-item lines="none" routerLink="/home" routerLinkActive="selected">
@@ -53,12 +54,43 @@
             <ion-label>Guests</ion-label>
           </ion-item>
 
+          <ion-item lines="none" routerLink="/chat">
+            <ion-label>Chat</ion-label>
+          </ion-item>
+
+          <!--<ion-item lines="none" routerLink="/messages">
+            <ion-label>Messages</ion-label>
+          </ion-item>-->
+
+
           <ion-item lines="none" routerLink="/calendar">
             <ion-label>Calendar</ion-label>
           </ion-item>
 
+          <ion-item lines="none" (click)="SignOut()" routerLink="/">
+            <ion-label>SignOut</ion-label>
+          </ion-item>
+
+        </ion-list>
+
+        <ion-list id="labels-list" *ngIf="authService.getRole() === 'guest' ">
+
+          <ion-item lines="none" routerLink="/home-guest">
+            <ion-label>Home-Guest</ion-label>
+          </ion-item>
+
+          <ion-item lines="none" routerLink="/my-bookings">
+            <ion-label>MyBookings</ion-label>
+          </ion-item>
 
 
+          <ion-item lines="none" routerLink="/chat">
+            <ion-label>Chat</ion-label>
+          </ion-item>
+
+          <ion-item lines="none" (click)="SignOut()" routerLink="/">
+            <ion-label>SignOut</ion-label>
+          </ion-item>
 
         </ion-list>
       </ion-content>

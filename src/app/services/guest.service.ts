@@ -20,27 +20,30 @@ export class GuestService {
   constructor(private callApiService: CallApiService) { }
 
   fetchGuestById = async (_id: any) => {
-    const result = await this.callApiService.get(_id)
-    result.subscribe(sub => {
+    const result = await this.callApiService.get(`guest/${_id}`)
+
+    result.subscribe((sub: GUEST_TYPE )=> {
       console.log('fetchGuestById: ', sub)
       this.guest = sub
+      //this.guest_id = sub._id
+      this.setGuestId(sub._id)
       this.setGuest(sub)
     })
   }
 
   fetchAllGuestsByHotelId = async (hotel_id: any) => {
-    const result = await this.callApiService.get('all/hotel/' + hotel_id)
-    result.pipe(
+    const result = await this.callApiService.get('guest/all/hotel/' + hotel_id)
+    return result.pipe(
       map((data: any) => {
-
+        this.getGuests = data
         return data
       })
     )
-      .subscribe((sub: any) => {
+     /* .subscribe((sub: any) => {
         console.log('fetchAllGuetsByHotelId: ', sub)
         this.getGuests = sub
         this.setGuest(sub)
-      })
+      })*/
   }
 
   postCreateGuestByHotelId = async (hotel_id: any, data: GUEST_TYPE) => {
@@ -58,7 +61,15 @@ export class GuestService {
     })
   }
 
-  getGuests = () => this.guests
+  setGuestId(_id: any) {
+    this.guest_id = _id
+  }
+
+  getGuestId(){
+    return this.guest_id
+  }
+
+  getGuests() { return this.guests }
 
   setGuests = (guests: GUEST_TYPE[]) => { this.guests = guests }
 

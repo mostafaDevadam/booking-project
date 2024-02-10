@@ -24,18 +24,23 @@ export class RoomsPage implements OnInit {
 
   selectedRoom: ROOM_TYPE
 
+  rooms: ROOM_TYPE[]
+
   roomFilter_keys = Object.keys(ROOM_FILTER)
 
   lbls: { [key in ROOM_FILTER]: ROOM_FILTER } = {
+    all: ROOM_FILTER.all,
     available: ROOM_FILTER.available,
     booked: ROOM_FILTER.booked,
     cleaned: ROOM_FILTER.cleaned,
-    notCleaned: ROOM_FILTER.notCleaned,
+    notcleaned: ROOM_FILTER.notcleaned,
     single: ROOM_FILTER.single,
     double: ROOM_FILTER.double,
   }
 
   getRoomFilter = (t: ROOM_FILTER) => this.lbls[t]
+
+  selectedRoomFilter: any
 
 
   constructor(
@@ -74,7 +79,7 @@ export class RoomsPage implements OnInit {
     if (this.hotelService.getHotelId()) {
       this.hotel_id = this.hotelService.getHotelId()
       this.roomService.fetchAllRoomsByHotelId(this.hotel_id)
-
+      this.rooms = this.roomService.roomsByHotel
     }
   }
 
@@ -87,6 +92,27 @@ export class RoomsPage implements OnInit {
 
   }*/
 
+  detectRoomFilter = async (event: any) => {
+    console.log('detectRoomFilter: ', this.selectedRoomFilter, event.detail.value)
+    if(this.selectedRoomFilter == ROOM_FILTER.all) {
+      this.roomService.fetchAllRoomsByHotelId(this.hotel_id)
+      this.rooms = this.roomService.roomsByHotel
+      return
+    }
+
+    await this.roomService.fetchFilterRooms(event.detail.value, this.hotelService.getHotelId())
+      .then((th) => {
+        if(th){
+          th.subscribe(sub => {
+          this.rooms = sub
+          console.log("filtered rooms: ", sub)
+        })
+        }
+      })
+    // this.rooms = this.roomService.filterRooms
+
+
+  }
 
   viewRoom = (item: ROOM_TYPE) => {
     this.roomService.fetchOneRoomById(item._id)

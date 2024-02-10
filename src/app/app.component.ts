@@ -7,7 +7,11 @@ import { SplashScreen } from '@capacitor/splash-screen';
 import { StorageService } from './services/storage.service';
 import { HotelService } from './services/hotel.service';
 import { UserService } from './services/user.service';
+import { HOTEL_TYPE } from './common/types';
+import { register } from 'swiper/element/bundle';
+import { GuestService } from './services/guest.service';
 
+register();
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -17,13 +21,18 @@ export class AppComponent implements OnInit {
 
   menuOpen: boolean = false
 
-  constructor(private authService: AuthService, private router: Router,
+  hotel: HOTEL_TYPE
+  public currentUser: any
+
+  constructor(public authService: AuthService, private router: Router,
 
     private menu: MenuController,
     private platform: Platform,
     private storageService: StorageService,
-    private hotelService: HotelService,
+    public hotelService: HotelService,
     private userService: UserService,
+    private guestService: GuestService,
+
 
 
   ) { }
@@ -36,18 +45,47 @@ export class AppComponent implements OnInit {
 
 
     if (token) {
-
       this.authService.setIsUserLoggedIn(true)
-      this.authService.setRedirectUrl('/home')
+      //this.authService.setRedirectUrl('/home')
     }
 
+    await this.userService.CheckAndFetchUser()
+    this.currentUser = this.userService.currentUser
+    if (this.currentUser) {
+      console.log("user this.currentUser: ", this.currentUser)
+      if (this.currentUser.role) {
+        this.authService.setRole(this.currentUser.role)
+        console.log("user auth role: ", this.authService.getRole())
+        // auth role
+        if (this.authService.getRole() === 'hotel') {
+           this.hotelService.fetchHotelById(this.currentUser._id)
+          console.log("user auth role hotel: ", this.authService.getRole())
+          this.authService.setRedirectUrl('/home')
+        } else if (this.authService.getRole() === 'guest') {
+           this.guestService.fetchGuestById(this.currentUser._id)
+          console.log("user auth role guest: ", this.authService.getRole())
+          this.authService.setRedirectUrl('/home-guest')
+        }
+      }
 
-    this.userService.CheckAndFetchUser()
+    }
 
 
   }
 
-   CheckAndFetchUser = async () => {
+  async ionViewWillEnter() {
+    await this.userService.CheckAndFetchUser()
+    this.currentUser = this.userService.currentUser
+    //this.hotel = this.hotelService.getHotel()
+
+    if (this.currentUser) {
+      this.authService.setRole(this.currentUser.role)
+      console.log("user currentUser: ", this.currentUser)
+    }
+
+  }
+
+  CheckAndFetchUser = async () => {
     const user = await this.storageService.getItem('ION_USER')
 
     if (user) {
@@ -74,6 +112,10 @@ export class AppComponent implements OnInit {
   notify() {
     this.menuOpen = !this.menuOpen
     console.log("menu: ", this.menuOpen)
+  }
+
+  SignOut = () => {
+    this.authService.singOut()
   }
 
   logout() {

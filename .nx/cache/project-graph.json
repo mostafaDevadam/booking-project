@@ -4510,6 +4510,15 @@
         "hash": "sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q=="
       }
     },
+    "npm:core-js": {
+      "type": "npm",
+      "name": "npm:core-js",
+      "data": {
+        "version": "3.35.1",
+        "packageName": "core-js",
+        "hash": "sha512-IgdsbxNyMskrTFxa9lWHyMwAJU5gXOPP+1yO+K59d50VLVAIDAbs7gIv705KzALModfK3ZrSZTPNpC0PQgIZuw=="
+      }
+    },
     "npm:core-js-compat": {
       "type": "npm",
       "name": "npm:core-js-compat",
@@ -5039,6 +5048,15 @@
         "version": "6.5.4",
         "packageName": "engine.io",
         "hash": "sha512-KdVSDKhVKyOi+r5uEabrDLZw2qXStVvCsEB/LN3mw4WFi6Gx50jTyuxYVCwAAC0U46FdnzP/ScKRBTXb/NiEOg=="
+      }
+    },
+    "npm:engine.io-client": {
+      "type": "npm",
+      "name": "npm:engine.io-client",
+      "data": {
+        "version": "6.5.3",
+        "packageName": "engine.io-client",
+        "hash": "sha512-9Z0qLB0NIisTRt1DZ/8U2k12RJn8yls/nXMZLn+/N8hANT3TcYjKFKcwbw5zFQiN4NTde3TSY9zb79e1ij6j9Q=="
       }
     },
     "npm:engine.io-parser": {
@@ -7615,6 +7633,15 @@
         "hash": "sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw=="
       }
     },
+    "npm:moment": {
+      "type": "npm",
+      "name": "npm:moment",
+      "data": {
+        "version": "2.30.1",
+        "packageName": "moment",
+        "hash": "sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how=="
+      }
+    },
     "npm:mrmime": {
       "type": "npm",
       "name": "npm:mrmime",
@@ -7694,6 +7721,15 @@
         "version": "2.6.2",
         "packageName": "neo-async",
         "hash": "sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw=="
+      }
+    },
+    "npm:ngx-socket-io": {
+      "type": "npm",
+      "name": "npm:ngx-socket-io",
+      "data": {
+        "version": "4.6.1",
+        "packageName": "ngx-socket-io",
+        "hash": "sha512-R8Ja/f9Kj+SOLk8WH+uwKrpaoTwiW5/DXmSpBKfzy7SzfoUUxQSCzVGJ4PZ20UfqsT1KKhF3kqqsxWdkPWliLQ=="
       }
     },
     "npm:nice-napi": {
@@ -9091,6 +9127,15 @@
         "hash": "sha512-87C3LO/NOMc+eMcpcxUBebGjkpMDkNBS9tf7KJqcDsmL936EChtVva71Dw2q4tQcuVC+hAUy4an2NO/sYXmwRA=="
       }
     },
+    "npm:socket.io-client": {
+      "type": "npm",
+      "name": "npm:socket.io-client",
+      "data": {
+        "version": "4.7.4",
+        "packageName": "socket.io-client",
+        "hash": "sha512-wh+OkeF0rAVCrABWQBaEjLfb7DVPotMbu0cgWgyR0v6eA4EoVnAwcIeIbcdTE3GT/H3kbdLl7OoH2+asoDRIIg=="
+      }
+    },
     "npm:socket.io-parser": {
       "type": "npm",
       "name": "npm:socket.io-parser",
@@ -9350,6 +9395,15 @@
         "version": "1.0.0",
         "packageName": "supports-preserve-symlinks-flag",
         "hash": "sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w=="
+      }
+    },
+    "npm:swiper": {
+      "type": "npm",
+      "name": "npm:swiper",
+      "data": {
+        "version": "11.0.6",
+        "packageName": "swiper",
+        "hash": "sha512-W/Me7MQl5rNgdM5x9i3Gll76WsyVpnHn91GhBOyL7RCFUeg62aVnflzlVfIpXzZ/87FtJOfAoDH79ZH2Yq76zA=="
       }
     },
     "npm:symbol-observable": {
@@ -10016,6 +10070,15 @@
         "version": "15.1.1",
         "packageName": "xmlbuilder",
         "hash": "sha512-yMqGBqtXyeN1e3TGYvgNgDVZ3j84W4cwkOXQswghol6APgZWaff9lnbvN7MHYJOiXsvGPXtjTYJEiC9J2wv9Eg=="
+      }
+    },
+    "npm:xmlhttprequest-ssl": {
+      "type": "npm",
+      "name": "npm:xmlhttprequest-ssl",
+      "data": {
+        "version": "2.0.0",
+        "packageName": "xmlhttprequest-ssl",
+        "hash": "sha512-QKxVRxiRACQcVuQEYFsI1hhkrMlrXHPegbbd1yn9UHOmRxY+si12nQYzri3vbzt8VdTTRviqcKxcyllFas5z2A=="
       }
     },
     "npm:y18n": {
@@ -16652,6 +16715,33 @@
         "type": "static"
       }
     ],
+    "npm:engine.io-client": [
+      {
+        "source": "npm:engine.io-client",
+        "target": "npm:@socket.io/component-emitter",
+        "type": "static"
+      },
+      {
+        "source": "npm:engine.io-client",
+        "target": "npm:debug",
+        "type": "static"
+      },
+      {
+        "source": "npm:engine.io-client",
+        "target": "npm:engine.io-parser",
+        "type": "static"
+      },
+      {
+        "source": "npm:engine.io-client",
+        "target": "npm:ws",
+        "type": "static"
+      },
+      {
+        "source": "npm:engine.io-client",
+        "target": "npm:xmlhttprequest-ssl",
+        "type": "static"
+      }
+    ],
     "npm:enhanced-resolve": [
       {
         "source": "npm:enhanced-resolve",
@@ -19632,6 +19722,53 @@
         "type": "static"
       }
     ],
+    "npm:ngx-socket-io": [
+      {
+        "source": "npm:ngx-socket-io",
+        "target": "npm:@angular/common",
+        "type": "static"
+      },
+      {
+        "source": "npm:ngx-socket-io",
+        "target": "npm:@angular/core",
+        "type": "static"
+      },
+      {
+        "source": "npm:ngx-socket-io",
+        "target": "npm:rxjs",
+        "type": "static"
+      },
+      {
+        "source": "npm:ngx-socket-io",
+        "target": "npm:core-js",
+        "type": "static"
+      },
+      {
+        "source": "npm:ngx-socket-io",
+        "target": "npm:reflect-metadata",
+        "type": "static"
+      },
+      {
+        "source": "npm:ngx-socket-io",
+        "target": "npm:socket.io",
+        "type": "static"
+      },
+      {
+        "source": "npm:ngx-socket-io",
+        "target": "npm:socket.io-client",
+        "type": "static"
+      },
+      {
+        "source": "npm:ngx-socket-io",
+        "target": "npm:tslib",
+        "type": "static"
+      },
+      {
+        "source": "npm:ngx-socket-io",
+        "target": "npm:zone.js",
+        "type": "static"
+      }
+    ],
     "npm:nice-napi": [
       {
         "source": "npm:nice-napi",
@@ -21558,6 +21695,28 @@
       {
         "source": "npm:socket.io-adapter",
         "target": "npm:ws",
+        "type": "static"
+      }
+    ],
+    "npm:socket.io-client": [
+      {
+        "source": "npm:socket.io-client",
+        "target": "npm:@socket.io/component-emitter",
+        "type": "static"
+      },
+      {
+        "source": "npm:socket.io-client",
+        "target": "npm:debug",
+        "type": "static"
+      },
+      {
+        "source": "npm:socket.io-client",
+        "target": "npm:engine.io-client",
+        "type": "static"
+      },
+      {
+        "source": "npm:socket.io-client",
+        "target": "npm:socket.io-parser",
         "type": "static"
       }
     ],

@@ -84,10 +84,20 @@ export class AuthPage implements OnInit {
 
     (await this.authService.signIn(inputs)).subscribe((sub: any) => {
        if(sub){
+         console.log("signIn sub:", sub)
+         console.log("inputs role: ", inputs.role, this.authService.getRole())
+         if(this.authService.getRole() === ROLE_ENUM.hotel){
+          //this.authService.setRedirectUrl('/home')
+          console.log("auth role hotel: ", this.authService.getRole())
+         } else  if(this.authService.getRole() === ROLE_ENUM.guest){
+          //this.authService.setRedirectUrl('/home-guest')
+          console.log("auth role guest: ", this.authService.getRole())
+         }
          let url = this.authService.getRedirectUrl()
+         console.log("auth page url: ", url)
          this.router.navigate([url])
        }else{
-        this.invalidCredentialMsg = 'Inavild Credentials. Try again.'
+        this.invalidCredentialMsg = 'Invalid Credentials. Try again.'
        }
     })
 
@@ -103,6 +113,16 @@ export class AuthPage implements OnInit {
          }
        }
      );*/
+  }
+
+  checkRole = () => {
+    if(this.authService.getRole() === ROLE_ENUM.hotel){
+      //this.authService.setRedirectUrl('/home')
+      console.log("auth role hotel: ", this.authService.getRole())
+     } else  if(this.authService.getRole() === ROLE_ENUM.guest){
+      //this.authService.setRedirectUrl('/home-guest')
+      console.log("auth role guest: ", this.authService.getRole())
+     }
   }
 
 

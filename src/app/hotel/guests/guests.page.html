@@ -14,17 +14,41 @@
     </ion-toolbar>
   </ion-header>
 
-
-  <ion-button id="open-modal" expand="block">Open Sheet Modal</ion-button>
+  <!--<swiper-container>
+    <swiper-slide>Slide 1</swiper-slide>
+    <swiper-slide>Slide 2</swiper-slide>
+    <swiper-slide>Slide 3</swiper-slide>
+  </swiper-container>-->
+  <!--<ion-button id="open-modal" expand="block">Open Sheet Modal</ion-button>
 
   <ion-modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
     <ng-template>
       <div class="block">Block of Content</div>
     </ng-template>
-  </ion-modal>
+  </ion-modal>-->
 
 
-  <ion-list *ngFor="let item of [1,2,3]">
+
+
+  <ion-list>
+    <div *ngFor="let item of guests">
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>
+        </ion-avatar>
+        <ion-label>
+          <h2> {{item.name ? item.name : 'Connor Smith'}}</h2>
+          <p>Sales Rep</p>
+          <p>{{item.email}}</p>
+        </ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
+
+
+
+
+  <!-- <ion-list *ngFor="let item of [1,2,3]">
     <ion-item>
       <ion-avatar slot="start">
         <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>
@@ -61,7 +85,7 @@
         <p>CEO</p>
       </ion-label>
     </ion-item>
-  </ion-list>
+  </ion-list>-->
 
 
 

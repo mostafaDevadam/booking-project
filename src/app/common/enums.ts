@@ -21,10 +21,16 @@ export enum METHODS_REQUEST_ENUM {
 }
 
 export enum ROOM_FILTER {
+  all = "all",
   available = "available",
   booked = "booked",
   cleaned = "cleaned",
-  notCleaned = "notCleaned",
+  notcleaned = "notcleaned",
   single = "single",
   double = "double",
+}
+
+export enum SENDER_RECEIVER_ROLE {
+  Hotel = 'Hotel',
+  Guest = 'Guest',
 }
