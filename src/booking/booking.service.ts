@@ -22,6 +22,9 @@ export class BookingService {
         // then return msg = 'can't book because it's already booked'
         // else book the room -> update the room: isBooked = true and create the booking doc
         const isBooked = await this.roomService.checkRoomIsBooked(room_id)
+        const isCleaned = await this.roomService.checkRoomIsCleaned(room_id)
+         if(!isCleaned) return { error: "You can't book the room because it's not cleaned" }
+        // check if room is cleaned then error: "You can't book the because it's not cleaned"
         console.log("isBooked", isBooked)
         if (isBooked) {
             return { error: "You can't book the room because it's already booked" }
@@ -54,8 +57,8 @@ export class BookingService {
 
     async findOneById(_id): Promise<BookingDocument | any> {
         const one = await (await this.bookingModel.findById(_id))
-        .populate('room')
-            return one
+            .populate('room')
+        return one
     }
 
     async findAllByHotelId(hotel_id): Promise<BookingDocument[]> {
@@ -83,6 +86,9 @@ export class BookingService {
         const r = await this.roomService.findOneById(new_room_id)
 
         if (r.isBooked) return { error: "can't change the room in booking because it is already booked" }
+        if (r.isCleaned) return { error: "can't change the room in booking because the new room is not cleaned" }
+
+
 
         //2. get room by old_room_id from booking and update it with isBooked = false
         const update_old_room = await this.roomService.updateOne(old_room_id, { isBooked: false })
@@ -101,8 +107,9 @@ export class BookingService {
 
     async updateOne(_id: any, data: Partial<BookingDocument>) {
         console.log("before update booking: ", data)
-        if(data.nights && data.room){
+        if (data.nights && data.room) {
             data.total_price = await this.calculateTotalPrice(data.room, data.nights)
+            console.log("total_price update: ", data.total_price)
         }
         return this.bookingModel.findByIdAndUpdate(_id, data, { new: true })
     }
@@ -111,14 +118,17 @@ export class BookingService {
     async removeOne(booking_id: any, room_id: any) {
         console.log(booking_id, room_id)
         // get booking by _id, room_id
-        const booking = await this.bookingModel.findOne({ _id: booking_id}) //, room: room_id })//.exists()
+        const booking = await this.bookingModel.findOne({ _id: booking_id }) //, room: room_id })//.exists()
         //console.log("booking: ", booking)
+        if(!booking) return { error: 'cannot remove it' }
+
         if (booking) {
             // if booking ist exist
             //then update room -> isBooked = false
             const updated_room = await this.roomService.updateOne(room_id, { isBooked: false })
             // and remove booking
-           if (!updated_room) return false
+            if (!updated_room) return { error: 'cannot remove it' }
+
             return await this.bookingModel.findByIdAndDelete(booking_id)
         }
 
@@ -128,9 +138,9 @@ export class BookingService {
     // private
     private async calculateTotalPrice(room_id: any, nights: number) {
         const room = await this.roomService.findOneById(room_id)
-        if(!room?.price) return ''
+        if (!room?.price) return ''
         const total_price = Number(room?.price) * nights
-        console.log("total_price: ", room?.price , nights, typeof total_price, total_price)
+        console.log("total_price: ", room?.price, nights, typeof total_price, total_price)
         return total_price.toString()
     }
 

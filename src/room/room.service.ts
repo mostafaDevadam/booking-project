@@ -46,23 +46,54 @@ export class RoomService {
         return
     }*/
 
+    async findAllAvailableRoomsByHotelId(hotel_id): Promise<RoomDocument[]> {
+        const all = await this.roomModel.find({hotel: hotel_id, isBooked: false}).exec()
+        return all
+    }
+
     async findAllAvailable(): Promise<RoomDocument[]> {
         const all = await this.roomModel.find({ isBooked: false }).exec()
         console.log("all findAllAvailable:", all)
         return all
     }
+
+    async findAllBookedRoomsByHotelId(hotel_id): Promise<RoomDocument[]> {
+        const all = await this.roomModel.find({hotel: hotel_id, isBooked: true}).exec()
+        return all
+    }
+
     async findAllIsBooked(): Promise<RoomDocument[]> {
         return await this.roomModel.find({ isBooked: true }).exec()
     }
+
+    async findAllCleanedRoomsByHotelId(hotel_id): Promise<RoomDocument[]> {
+        const all = await this.roomModel.find({hotel: hotel_id, isCleaned: true}).exec()
+        return all
+    }
     async findAllCleaned(): Promise<RoomDocument[]> {
         return await this.roomModel.find({ isCleaned: true }).exec()
+    }
+
+    async findAllNotCleanedRoomsByHotelId(hotel_id): Promise<RoomDocument[]> {
+        const all = await this.roomModel.find({hotel: hotel_id, isCleaned: false }).exec()
+        return all
     }
     async findAllNotCleaned(): Promise<RoomDocument[]> {
         return await this.roomModel.find({ isCleaned: false }).exec()
     }
 
+    async findAllSingleRoomsByHotelId(hotel_id): Promise<RoomDocument[]> {
+        const all = await this.roomModel.find({hotel: hotel_id, room_type: eROOM_enum_type.single}).exec()
+        return all
+    }
+
     async findAllSingle() {
         return await this.roomModel.find({ room_type: eROOM_enum_type.single }).exec()
+    }
+
+    async findAllDoubleRoomsByHotelId(hotel_id): Promise<RoomDocument[]> {
+        const all = await this.roomModel.find({hotel: hotel_id, room_type: eROOM_enum_type.double}).exec()
+        return all
     }
     async findAllDouble() {
         return await this.roomModel.find({ room_type: eROOM_enum_type.double }).exec()
@@ -89,8 +120,14 @@ export class RoomService {
 
     checkRoomIsBooked = async (_id: any) => {
         const room = await this.findOneById(_id)
-        console.log("check room:", room)
+        console.log("checkRoomIsBooked room:", room)
         return room.isBooked //? true : false
+    }
+
+    checkRoomIsCleaned = async (_id: any) => {
+        const room = await this.findOneById(_id)
+        console.log("checkRoomIsCleaned room:", room)
+        return room.isCleaned //? true : false
     }
 
 }

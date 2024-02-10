@@ -5,7 +5,7 @@ import { Hotel, HotelDocument } from './hotel';
 import { AuthGuard } from 'src/auth/auth.guard';
 
 
-@UseGuards(AuthGuard)
+//@UseGuards(AuthGuard)
 @Controller('hotel')
 export class HotelController {
     constructor(private readonly hotelService: HotelService){}
