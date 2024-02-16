@@ -1,11 +1,11 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnInit, DoCheck } from '@angular/core';
 import { HotelService } from './hotel.service';
 import { ROOM_TYPE } from '../common/types';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { CallApiService } from './callAPI/call-api.service';
 import { keys } from '../common/keys';
-import { map } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { ROOM_FILTER } from '../common/enums';
 
 const apiURL = environment.API_URL + 'room/'
@@ -37,6 +37,8 @@ export class RoomService {
 
   room: ROOM_TYPE
   headers = new HttpHeaders()
+
+  freeRooms: BehaviorSubject<ROOM_TYPE[]> = new BehaviorSubject<ROOM_TYPE[]>([])
 
   constructor(
     private http: HttpClient,
@@ -86,6 +88,7 @@ export class RoomService {
 
     result.pipe(map((list: any) => {
       this.availableRoomsByHotel = list
+      this.freeRooms.next(list)
       return Array<ROOM_TYPE>(list)
     })).subscribe(sub => console.log("fetchAllAvailableRoomsByHotelId: ", sub))
   }
@@ -144,7 +147,7 @@ export class RoomService {
         this.filterRooms = data
         return data
       }))
-    
+
 
 
     /*.subscribe((sub) => {
@@ -158,5 +161,7 @@ export class RoomService {
   setEditRoom(room: ROOM_TYPE) {
     this.editRoom = room
   }
+
+  
 
 }

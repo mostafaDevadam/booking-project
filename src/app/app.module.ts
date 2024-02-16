@@ -21,6 +21,7 @@ import { MessageDialogModalComponent } from './shared/components/message-dialog-
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { ChatService } from './services/chat/chat.service';
+import { myBookingsResolver } from './auth/resolvers/my-bookings.resolver';
 
 const config: SocketIoConfig = { url: 'http://localhost:7070/', options: {} };
 
@@ -40,8 +41,14 @@ const config: SocketIoConfig = { url: 'http://localhost:7070/', options: {} };
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {provide: HTTP_INTERCEPTORS, useClass: AddHeaderInterceptor , multi: true},
     CallApiService,
-    AuthService,HotelService,RoomService,BookingService,GuestService,UserService,
+    AuthService,
+    HotelService,
+    GuestService,
+    RoomService,
+    BookingService,
+    UserService,
     ChatService,
+    
 
 
   ],

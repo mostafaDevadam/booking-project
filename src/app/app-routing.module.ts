@@ -7,6 +7,7 @@ import { RoomResolver, roomResolver } from './auth/resolvers/room.resolver';
 import { ChatService } from './services/chat/chat.service';
 import { chatResolverFn,  } from './auth/resolvers/chat.resolver';
 import { GuestGuard } from './auth/guards/guest.guard';
+import { myBookingsResolver } from './auth/resolvers/my-bookings.resolver';
 
 const routes: Routes = [
   {
@@ -75,7 +76,8 @@ const routes: Routes = [
   {
     path: 'my-bookings',
     loadChildren: () => import('./guest/my-bookings/my-bookings.module').then(m => m.MyBookingsPageModule),
-    canLoad: [GuestGuard]
+    canLoad: [GuestGuard],
+    resolve: {'bookings': myBookingsResolver}
   },
   {
     path: 'home-guest',

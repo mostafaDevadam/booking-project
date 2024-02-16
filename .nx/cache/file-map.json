@@ -69,7 +69,7 @@
       },
       {
         "file": ".eslintrc.json",
-        "hash": "18210278994710539225"
+        "hash": "8909125753684764986"
       },
       {
         "file": ".gitignore",
@@ -101,19 +101,19 @@
       },
       {
         "file": "package-lock.json",
-        "hash": "4982951247378591452"
+        "hash": "12234887128130055148"
       },
       {
         "file": "package.json",
-        "hash": "9446641003831745736"
+        "hash": "2280402276536258437"
       },
       {
         "file": "src/app/app-routing.module.ts",
-        "hash": "9165404674732789916"
+        "hash": "18291615438717338372"
       },
       {
         "file": "src/app/app.component.html",
-        "hash": "2396489184792075239"
+        "hash": "1170724444577391683"
       },
       {
         "file": "src/app/app.component.scss",
@@ -125,11 +125,11 @@
       },
       {
         "file": "src/app/app.component.ts",
-        "hash": "1399322020752518374"
+        "hash": "18232506860413877031"
       },
       {
         "file": "src/app/app.module.ts",
-        "hash": "15526894354945337295"
+        "hash": "11688175504082621985"
       },
       {
         "file": "src/app/auth/auth-routing.module.ts",
@@ -141,7 +141,7 @@
       },
       {
         "file": "src/app/auth/auth.page.html",
-        "hash": "4074242013512493012"
+        "hash": "16187728605500495191"
       },
       {
         "file": "src/app/auth/auth.page.scss",
@@ -153,7 +153,7 @@
       },
       {
         "file": "src/app/auth/auth.page.ts",
-        "hash": "7954718623786330080"
+        "hash": "17702175830416323358"
       },
       {
         "file": "src/app/auth/auth.service.spec.ts",
@@ -161,7 +161,7 @@
       },
       {
         "file": "src/app/auth/auth.service.ts",
-        "hash": "12089024462001638677"
+        "hash": "4522666031351870506"
       },
       {
         "file": "src/app/auth/guards/auth.guard.spec.ts",
@@ -169,7 +169,7 @@
       },
       {
         "file": "src/app/auth/guards/auth.guard.ts",
-        "hash": "2023875600251901147"
+        "hash": "16570647244479251036"
       },
       {
         "file": "src/app/auth/guards/guest.guard.spec.ts",
@@ -177,7 +177,7 @@
       },
       {
         "file": "src/app/auth/guards/guest.guard.ts",
-        "hash": "2832151415720565611"
+        "hash": "9257381587054413572"
       },
       {
         "file": "src/app/auth/guards/hotel.guard.spec.ts",
@@ -188,12 +188,60 @@
         "hash": "5394725698727822726"
       },
       {
-        "file": "src/app/auth/user.ts",
-        "hash": "17023916732513305227"
+        "file": "src/app/auth/interceptors/add-header.interceptor.spec.ts",
+        "hash": "17004152047950951051"
+      },
+      {
+        "file": "src/app/auth/interceptors/add-header.interceptor.ts",
+        "hash": "1056763882907152911"
+      },
+      {
+        "file": "src/app/auth/resolvers/api/core/inject",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/auth/resolvers/chat.resolver.spec.ts",
+        "hash": "17639036419969560003"
+      },
+      {
+        "file": "src/app/auth/resolvers/chat.resolver.ts",
+        "hash": "10217283486289790488"
+      },
+      {
+        "file": "src/app/auth/resolvers/data.resolver.spec.ts",
+        "hash": "9591833320559911819"
+      },
+      {
+        "file": "src/app/auth/resolvers/data.resolver.ts",
+        "hash": "6993248168722657780"
+      },
+      {
+        "file": "src/app/auth/resolvers/my-bookings.resolver.spec.ts",
+        "hash": "17797552218429267495"
+      },
+      {
+        "file": "src/app/auth/resolvers/my-bookings.resolver.ts",
+        "hash": "3309955818317236740"
+      },
+      {
+        "file": "src/app/auth/resolvers/room.resolver.spec.ts",
+        "hash": "8597119001692042855"
+      },
+      {
+        "file": "src/app/auth/resolvers/room.resolver.ts",
+        "hash": "16006221849724650006"
       },
       {
         "file": "src/app/common/enums.ts",
-        "hash": "11297339898937973260"
+        "hash": "2892674800661607535"
+      },
+      {
+        "file": "src/app/common/keys.ts",
+        "hash": "9574725290881576555"
+      },
+      {
+        "file": "src/app/common/types.ts",
+        "hash": "15222699900176997753"
       },
       {
         "file": "src/app/guest/home-guest/home-guest-routing.module.ts",
@@ -220,20 +268,84 @@
         "hash": "3764299817559043203"
       },
       {
+        "file": "src/app/guest/my-bookings/components/create-my-booking-form/create-my-booking-form.component.html",
+        "hash": "9029920702443414730"
+      },
+      {
+        "file": "src/app/guest/my-bookings/components/create-my-booking-form/create-my-booking-form.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/guest/my-bookings/components/create-my-booking-form/create-my-booking-form.component.spec.ts",
+        "hash": "3927862871161648019"
+      },
+      {
+        "file": "src/app/guest/my-bookings/components/create-my-booking-form/create-my-booking-form.component.ts",
+        "hash": "6097794778332559012"
+      },
+      {
+        "file": "src/app/guest/my-bookings/components/create-my-booking-modal/create-my-booking-modal.component.html",
+        "hash": "3678615634835075722"
+      },
+      {
+        "file": "src/app/guest/my-bookings/components/create-my-booking-modal/create-my-booking-modal.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/guest/my-bookings/components/create-my-booking-modal/create-my-booking-modal.component.spec.ts",
+        "hash": "4603661357536736365"
+      },
+      {
+        "file": "src/app/guest/my-bookings/components/create-my-booking-modal/create-my-booking-modal.component.ts",
+        "hash": "1692978714540644525"
+      },
+      {
+        "file": "src/app/guest/my-bookings/components/my-booking-form/my-booking-form.component.html",
+        "hash": "4958802937357907243"
+      },
+      {
+        "file": "src/app/guest/my-bookings/components/my-booking-form/my-booking-form.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/guest/my-bookings/components/my-booking-form/my-booking-form.component.spec.ts",
+        "hash": "16074955298531744504"
+      },
+      {
+        "file": "src/app/guest/my-bookings/components/my-booking-form/my-booking-form.component.ts",
+        "hash": "13234062421614946408"
+      },
+      {
+        "file": "src/app/guest/my-bookings/components/my-booking-modal/my-booking-modal.component.html",
+        "hash": "2793089522872153865"
+      },
+      {
+        "file": "src/app/guest/my-bookings/components/my-booking-modal/my-booking-modal.component.scss",
+        "hash": "2806985720929729660"
+      },
+      {
+        "file": "src/app/guest/my-bookings/components/my-booking-modal/my-booking-modal.component.spec.ts",
+        "hash": "16683293546105344140"
+      },
+      {
+        "file": "src/app/guest/my-bookings/components/my-booking-modal/my-booking-modal.component.ts",
+        "hash": "13590479637847293807"
+      },
+      {
         "file": "src/app/guest/my-bookings/my-bookings-routing.module.ts",
         "hash": "15911377909035920321"
       },
       {
         "file": "src/app/guest/my-bookings/my-bookings.module.ts",
-        "hash": "6534106302113272719"
+        "hash": "9942312744327795880"
       },
       {
         "file": "src/app/guest/my-bookings/my-bookings.page.html",
-        "hash": "17113438046503190419"
+        "hash": "8740381180451763032"
       },
       {
         "file": "src/app/guest/my-bookings/my-bookings.page.scss",
-        "hash": "3244421341483603138"
+        "hash": "2235440423832121684"
       },
       {
         "file": "src/app/guest/my-bookings/my-bookings.page.spec.ts",
@@ -241,7 +353,7 @@
       },
       {
         "file": "src/app/guest/my-bookings/my-bookings.page.ts",
-        "hash": "4177571290112284498"
+        "hash": "2000211064621815208"
       },
       {
         "file": "src/app/home/home-routing.module.ts",
@@ -273,11 +385,11 @@
       },
       {
         "file": "src/app/hotel/bookings/bookings.module.ts",
-        "hash": "2815187732609860023"
+        "hash": "14901545570026106517"
       },
       {
         "file": "src/app/hotel/bookings/bookings.page.html",
-        "hash": "1314354463837971152"
+        "hash": "2549560443113472662"
       },
       {
         "file": "src/app/hotel/bookings/bookings.page.scss",
@@ -289,7 +401,39 @@
       },
       {
         "file": "src/app/hotel/bookings/bookings.page.ts",
-        "hash": "1997747513396751370"
+        "hash": "7206674364320104776"
+      },
+      {
+        "file": "src/app/hotel/bookings/components/booking-form/booking-form.component.html",
+        "hash": "5281048799202798640"
+      },
+      {
+        "file": "src/app/hotel/bookings/components/booking-form/booking-form.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/hotel/bookings/components/booking-form/booking-form.component.spec.ts",
+        "hash": "15324875699692591980"
+      },
+      {
+        "file": "src/app/hotel/bookings/components/booking-form/booking-form.component.ts",
+        "hash": "14700140722283571139"
+      },
+      {
+        "file": "src/app/hotel/bookings/components/booking-modal/booking-modal.component.html",
+        "hash": "16261895819020847849"
+      },
+      {
+        "file": "src/app/hotel/bookings/components/booking-modal/booking-modal.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/hotel/bookings/components/booking-modal/booking-modal.component.spec.ts",
+        "hash": "16299993766052212623"
+      },
+      {
+        "file": "src/app/hotel/bookings/components/booking-modal/booking-modal.component.ts",
+        "hash": "5322125398434941866"
       },
       {
         "file": "src/app/hotel/dashboard/dashboard-routing.module.ts",
@@ -313,7 +457,7 @@
       },
       {
         "file": "src/app/hotel/dashboard/dashboard.page.ts",
-        "hash": "13336687465604128618"
+        "hash": "5213954312061909698"
       },
       {
         "file": "src/app/hotel/guests/guests-routing.module.ts",
@@ -321,11 +465,11 @@
       },
       {
         "file": "src/app/hotel/guests/guests.module.ts",
-        "hash": "2784998738680937221"
+        "hash": "11505604682715543482"
       },
       {
         "file": "src/app/hotel/guests/guests.page.html",
-        "hash": "5464143581562477039"
+        "hash": "7722447392363551533"
       },
       {
         "file": "src/app/hotel/guests/guests.page.scss",
@@ -337,7 +481,7 @@
       },
       {
         "file": "src/app/hotel/guests/guests.page.ts",
-        "hash": "16586560846243953438"
+        "hash": "8761428086903534768"
       },
       {
         "file": "src/app/hotel/new-booking/new-booking-routing.module.ts",
@@ -349,7 +493,7 @@
       },
       {
         "file": "src/app/hotel/new-booking/new-booking.page.html",
-        "hash": "335167457744873857"
+        "hash": "17197738677590524805"
       },
       {
         "file": "src/app/hotel/new-booking/new-booking.page.scss",
@@ -361,7 +505,7 @@
       },
       {
         "file": "src/app/hotel/new-booking/new-booking.page.ts",
-        "hash": "5724426055587854003"
+        "hash": "3093540879728955813"
       },
       {
         "file": "src/app/hotel/new-room/new-room-routing.module.ts",
@@ -373,7 +517,7 @@
       },
       {
         "file": "src/app/hotel/new-room/new-room.page.html",
-        "hash": "15152299603716360990"
+        "hash": "15318559483446641682"
       },
       {
         "file": "src/app/hotel/new-room/new-room.page.scss",
@@ -385,7 +529,39 @@
       },
       {
         "file": "src/app/hotel/new-room/new-room.page.ts",
-        "hash": "11508350345722772098"
+        "hash": "2011613584320525802"
+      },
+      {
+        "file": "src/app/hotel/rooms/components/room-form/room-form.component.html",
+        "hash": "11093323673344638758"
+      },
+      {
+        "file": "src/app/hotel/rooms/components/room-form/room-form.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/hotel/rooms/components/room-form/room-form.component.spec.ts",
+        "hash": "4835886838430144284"
+      },
+      {
+        "file": "src/app/hotel/rooms/components/room-form/room-form.component.ts",
+        "hash": "7557648532984645563"
+      },
+      {
+        "file": "src/app/hotel/rooms/components/room-modal/room-modal.component.html",
+        "hash": "10853084180824433068"
+      },
+      {
+        "file": "src/app/hotel/rooms/components/room-modal/room-modal.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/hotel/rooms/components/room-modal/room-modal.component.spec.ts",
+        "hash": "7046720123304937345"
+      },
+      {
+        "file": "src/app/hotel/rooms/components/room-modal/room-modal.component.ts",
+        "hash": "7728611107506959458"
       },
       {
         "file": "src/app/hotel/rooms/rooms-routing.module.ts",
@@ -393,11 +569,11 @@
       },
       {
         "file": "src/app/hotel/rooms/rooms.module.ts",
-        "hash": "12510714517195068686"
+        "hash": "6004077672691019536"
       },
       {
         "file": "src/app/hotel/rooms/rooms.page.html",
-        "hash": "3448174400468959961"
+        "hash": "4577772673762583433"
       },
       {
         "file": "src/app/hotel/rooms/rooms.page.scss",
@@ -409,7 +585,227 @@
       },
       {
         "file": "src/app/hotel/rooms/rooms.page.ts",
-        "hash": "17708018311486870613"
+        "hash": "5933591834702869015"
+      },
+      {
+        "file": "src/app/pages/calendar/calendar-routing.module.ts",
+        "hash": "18165730709361087170"
+      },
+      {
+        "file": "src/app/pages/calendar/calendar.module.ts",
+        "hash": "3308816000871305893"
+      },
+      {
+        "file": "src/app/pages/calendar/calendar.page.html",
+        "hash": "8301478617717210804"
+      },
+      {
+        "file": "src/app/pages/calendar/calendar.page.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/pages/calendar/calendar.page.spec.ts",
+        "hash": "17456996364586513253"
+      },
+      {
+        "file": "src/app/pages/calendar/calendar.page.ts",
+        "hash": "9760799584535306373"
+      },
+      {
+        "file": "src/app/pages/chat/chat-routing.module.ts",
+        "hash": "743194151443682925"
+      },
+      {
+        "file": "src/app/pages/chat/chat.module.ts",
+        "hash": "1545016215181678250"
+      },
+      {
+        "file": "src/app/pages/chat/chat.page.html",
+        "hash": "946815702963487436"
+      },
+      {
+        "file": "src/app/pages/chat/chat.page.scss",
+        "hash": "9972599245206552969"
+      },
+      {
+        "file": "src/app/pages/chat/chat.page.spec.ts",
+        "hash": "16935201815105021385"
+      },
+      {
+        "file": "src/app/pages/chat/chat.page.ts",
+        "hash": "10285253961475057806"
+      },
+      {
+        "file": "src/app/pages/chat/components/view-chat/view-chat.component.html",
+        "hash": "7813010769901853633"
+      },
+      {
+        "file": "src/app/pages/chat/components/view-chat/view-chat.component.scss",
+        "hash": "10606204894435290851"
+      },
+      {
+        "file": "src/app/pages/chat/components/view-chat/view-chat.component.spec.ts",
+        "hash": "6187689014615051597"
+      },
+      {
+        "file": "src/app/pages/chat/components/view-chat/view-chat.component.ts",
+        "hash": "16756729864911034516"
+      },
+      {
+        "file": "src/app/pages/messages/messages-routing.module.ts",
+        "hash": "10750593020951473174"
+      },
+      {
+        "file": "src/app/pages/messages/messages.module.ts",
+        "hash": "1258550466083101951"
+      },
+      {
+        "file": "src/app/pages/messages/messages.page.html",
+        "hash": "12249211783995818343"
+      },
+      {
+        "file": "src/app/pages/messages/messages.page.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/pages/messages/messages.page.spec.ts",
+        "hash": "11174540974491034721"
+      },
+      {
+        "file": "src/app/pages/messages/messages.page.ts",
+        "hash": "15164151876254033816"
+      },
+      {
+        "file": "src/app/services/booking.service.spec.ts",
+        "hash": "6844218431213379696"
+      },
+      {
+        "file": "src/app/services/booking.service.ts",
+        "hash": "11791525727921353891"
+      },
+      {
+        "file": "src/app/services/callAPI/call-api.service.spec.ts",
+        "hash": "11313887332342694266"
+      },
+      {
+        "file": "src/app/services/callAPI/call-api.service.ts",
+        "hash": "9253362203659597005"
+      },
+      {
+        "file": "src/app/services/chat/chat.service.spec.ts",
+        "hash": "2826917460011616502"
+      },
+      {
+        "file": "src/app/services/chat/chat.service.ts",
+        "hash": "4623999220445681819"
+      },
+      {
+        "file": "src/app/services/guest.service.spec.ts",
+        "hash": "12493025894317530591"
+      },
+      {
+        "file": "src/app/services/guest.service.ts",
+        "hash": "3240556047694046471"
+      },
+      {
+        "file": "src/app/services/hotel.service.spec.ts",
+        "hash": "12236493508065124901"
+      },
+      {
+        "file": "src/app/services/hotel.service.ts",
+        "hash": "13488642315344944949"
+      },
+      {
+        "file": "src/app/services/room.service.spec.ts",
+        "hash": "3425511929355561744"
+      },
+      {
+        "file": "src/app/services/room.service.ts",
+        "hash": "13338585613167271252"
+      },
+      {
+        "file": "src/app/services/sockets/chat-socket.service.spec.ts",
+        "hash": "11863430714187207405"
+      },
+      {
+        "file": "src/app/services/sockets/chat-socket.service.ts",
+        "hash": "17863103255978700362"
+      },
+      {
+        "file": "src/app/services/sockets/message-socket.service.spec.ts",
+        "hash": "14543105187551059385"
+      },
+      {
+        "file": "src/app/services/sockets/message-socket.service.ts",
+        "hash": "4830974744205001033"
+      },
+      {
+        "file": "src/app/services/storage.service.spec.ts",
+        "hash": "14247797087209399168"
+      },
+      {
+        "file": "src/app/services/storage.service.ts",
+        "hash": "6262462957628860871"
+      },
+      {
+        "file": "src/app/services/user.service.spec.ts",
+        "hash": "18148047139486964869"
+      },
+      {
+        "file": "src/app/services/user.service.ts",
+        "hash": "13224947910607103154"
+      },
+      {
+        "file": "src/app/shared/components/default-form/default-form.component.html",
+        "hash": "6283113271168669451"
+      },
+      {
+        "file": "src/app/shared/components/default-form/default-form.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/shared/components/default-form/default-form.component.spec.ts",
+        "hash": "4983937340394477101"
+      },
+      {
+        "file": "src/app/shared/components/default-form/default-form.component.ts",
+        "hash": "15325849776326052198"
+      },
+      {
+        "file": "src/app/shared/components/default-modal/default-modal.component.html",
+        "hash": "10154076414166799891"
+      },
+      {
+        "file": "src/app/shared/components/default-modal/default-modal.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/shared/components/default-modal/default-modal.component.spec.ts",
+        "hash": "2013210291592499643"
+      },
+      {
+        "file": "src/app/shared/components/default-modal/default-modal.component.ts",
+        "hash": "14079566079341227668"
+      },
+      {
+        "file": "src/app/shared/components/message-dialog-modal/message-dialog-modal.component.html",
+        "hash": "16877169893280597657"
+      },
+      {
+        "file": "src/app/shared/components/message-dialog-modal/message-dialog-modal.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/shared/components/message-dialog-modal/message-dialog-modal.component.spec.ts",
+        "hash": "5427354693515745607"
+      },
+      {
+        "file": "src/app/shared/components/message-dialog-modal/message-dialog-modal.component.ts",
+        "hash": "12999787185329737644"
+      },
+      {
+        "file": "src/app/shared/user.ts",
+        "hash": "17023916732513305227"
       },
       {
         "file": "src/assets/icon/favicon.png",
@@ -429,7 +825,7 @@
       },
       {
         "file": "src/global.scss",
-        "hash": "16777120732726033300"
+        "hash": "16104900928318509259"
       },
       {
         "file": "src/index.html",
@@ -449,7 +845,7 @@
       },
       {
         "file": "src/theme/variables.scss",
-        "hash": "10683809365950317113"
+        "hash": "7686349952297814804"
       },
       {
         "file": "src/zone-flags.ts",
@@ -461,7 +857,7 @@
       },
       {
         "file": "tsconfig.json",
-        "hash": "9300148005582941852"
+        "hash": "13959289510552301964"
       },
       {
         "file": "tsconfig.spec.json",

@@ -128,9 +128,20 @@ export class ViewChatComponent implements OnInit {
 
   doFormateDateTime = (date_input: any) => {
     const f1 = "YYYY-MM-DD HH:mm"
+    const fd = "YYYY-MM-DD"
+    const ft = "HH:mm"
     const d = moment(date_input).format(f1)
+    const dd = moment(date_input).format(fd)
+    const dt = moment(date_input).format(ft)
     // console.log("formate date-time : ", date_input , d)
-    return d
+    // check date_input equal date-today then display time else display date
+    const now = moment(new Date()).format(fd)
+    if (dd == now) {
+      console.log("date equaled!!")
+      console.log("now: ", now, dd)
+      return dt
+    }
+    return dd
   }
 
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CallApiService } from './callAPI/call-api.service';
-import { map } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { BOOKING_TYPE } from '../common/types';
 
 @Injectable({
@@ -9,6 +9,7 @@ import { BOOKING_TYPE } from '../common/types';
 export class BookingService {
 
   bookingsByHotel: BOOKING_TYPE[] = []
+  myBookingsByGuestId: BOOKING_TYPE[] = []
   editBooking: BOOKING_TYPE
   preEditBooking: BOOKING_TYPE
   currentBooking: BOOKING_TYPE
@@ -16,6 +17,10 @@ export class BookingService {
 
   msgRemoved: string = ''
   isRemoved: boolean = false
+
+  myBookingsListByGuestId: BehaviorSubject<BOOKING_TYPE[]> = new BehaviorSubject<BOOKING_TYPE[]>([])
+  myBooking: BehaviorSubject<BOOKING_TYPE> = new BehaviorSubject<BOOKING_TYPE>({})
+
 
   constructor(
     private callAPiService: CallApiService,
@@ -32,6 +37,17 @@ export class BookingService {
     ).subscribe((sub) => console.log("fetchAllBookingsByHotelId: ", sub))
   }
 
+  fetchAllBookingsByGuestId = async (guest_id: any) => {
+    const result = await this.callAPiService.get('booking/all/guest/' + guest_id);
+    result.pipe(
+      map((list: any): BOOKING_TYPE[] => {
+        this.myBookingsByGuestId = list
+        this.myBookingsListByGuestId.next(list)
+        return list
+      })
+    ).subscribe((sub) => console.log("fetchAllBookingsByGuestId: ", sub))
+  }
+
 
   postCreateBookingByHotelIdAndRoomIdAndGuestId = async (hotel_id: any, room_id: any, guest_id: any, data: Partial<BOOKING_TYPE>) => {
     const result = await this.callAPiService.post(`booking/hotel/${hotel_id}/room/${room_id}/guest/${guest_id}`, data);
@@ -46,6 +62,7 @@ export class BookingService {
     const result = await this.callAPiService.get(`booking/${_id}`)
     result.pipe(map((data: any) => {
       this.booking = data
+      this.myBooking.next(data)
       return data
     }))
       .subscribe((sub) => {
@@ -83,7 +100,7 @@ export class BookingService {
       return data
     }))
 
-      //.subscribe((sub) => console.log(" deleteBookingById:", sub))
+    //.subscribe((sub) => console.log(" deleteBookingById:", sub))
   }
 
   setPreEditBooking = (el: BOOKING_TYPE) => {

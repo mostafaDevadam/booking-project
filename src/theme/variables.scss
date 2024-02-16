@@ -82,7 +82,10 @@
   --ion-color-rose-contrast-rgb: 255, 255, 255;
   --ion-color-rose-shade: #73153b;
   --ion-color-rose-tint: #8f2f56;
-  
+
+  /** mute text color */
+  --ion-color-mut-text: #787474c1;
+
 }
 
 @media (prefers-color-scheme: dark) {

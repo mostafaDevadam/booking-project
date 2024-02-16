@@ -10,14 +10,129 @@
 
 <ion-content class="ion-padding">
 
+  <div class="m-block">
+    <ion-card>
+      <ion-card-content>
+        <ion-row>
+          <ion-col size="3">
+            <ion-thumbnail>
+              <ion-img alt="Silhouette of mountains"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt5NgZ4zm9lYsEj7HQo3AT-8opP0ccd6q6BLI8U3Z68Kf1w6bHypVdsFzOzXnsRCfcU4k&usqp=CAU"></ion-img>
+            </ion-thumbnail>
+          </ion-col>
+          <ion-col size="9">
+            <ion-row>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</ion-row>
+            <!--<ion-row>2</ion-row>-->
+          </ion-col>
+        </ion-row>
+        <!--<footer>
+          footer
+        </footer>-->
+      </ion-card-content>
+
+    </ion-card>
+
+    <div class="m-text-left m-margin-left-20">
+      <ion-text>2024-02-22</ion-text>
+    </div>
+
+  </div>
+
+
+
+  <div class="m-block">
+    <ion-card>
+      <ion-card-content>
+        <ion-row>
+
+          <ion-col size="9">
+            <ion-row>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</ion-row>
+            <!--<ion-row>2</ion-row>-->
+          </ion-col>
+
+          <ion-col size="3" class="m-flex m-flex-col">
+            <ion-thumbnail title="username">
+              <ion-img alt="Silhouette of mountains"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt5NgZ4zm9lYsEj7HQo3AT-8opP0ccd6q6BLI8U3Z68Kf1w6bHypVdsFzOzXnsRCfcU4k&usqp=CAU"></ion-img>
+            </ion-thumbnail>
+            <ion-label>name</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+
+    </ion-card>
+
+    <div class="m-text-right m-margin-right-20">
+      <!-- if dateOfMsg equal dateOfToday then display the time("HH:mm")-->
+      <ion-text>2024-02-22</ion-text>
+    </div>
+
+  </div>
 
 
 
 
-  <div *ngFor="let item of messages">
+  <div class="m-block" *ngFor="let item of messages">
+
+    <ion-card>
+      <ion-card-content>
+        <ion-row>
+
+          <ion-col size="3" class="m-flex m-flex-col" *ngIf="userService.currentUser._id !== item.sender">
+            <ion-thumbnail title="username">
+              <ion-img alt="Silhouette of mountains"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt5NgZ4zm9lYsEj7HQo3AT-8opP0ccd6q6BLI8U3Z68Kf1w6bHypVdsFzOzXnsRCfcU4k&usqp=CAU"></ion-img>
+            </ion-thumbnail>
+            <ion-label>name</ion-label>
+          </ion-col>
+
+          <ion-col size="9">
+            <ion-row> {{ item.message ? item.message : "Lorem ipsum dolor sit amet, consectetur adipisicing elit." }}</ion-row>
+            <!--<ion-row>2</ion-row>-->
+          </ion-col>
+
+          <ion-col size="3" class="m-flex m-flex-col" *ngIf="userService.currentUser._id === item.sender">
+            <ion-thumbnail title="username">
+              <ion-img alt="Silhouette of mountains"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt5NgZ4zm9lYsEj7HQo3AT-8opP0ccd6q6BLI8U3Z68Kf1w6bHypVdsFzOzXnsRCfcU4k&usqp=CAU"></ion-img>
+            </ion-thumbnail>
+            <ion-label>name</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+
+    </ion-card>
+
+    <div [class]="userService.currentUser._id !== item.sender ? 'm-margin-left-20 m-text-left' : 'm-margin-right-20 m-text-right' ">
+      <!-- if dateOfMsg equal dateOfToday then display the time("HH:mm")-->
+      <ion-text> {{doFormateDateTime(item.created_at)}}</ion-text>
+    </div>
 
 
+    <!-- receiver in left -->
+    <!--<div class="receiver" *ngIf="userService.currentUser._id !== item.sender">
+      <div class="left-col">left-col</div>
+      <div class="right-col">
+        <div class="row-top">
+          <ion-text>row-top</ion-text>
 
+        </div>
+        <div class="row-medium">row-second</div>
+      </div>
+
+    </div>-->
+
+    <!-- sender in right -->
+    <!--<div class="sender" *ngIf="userService.currentUser._id === item.sender">
+      <div>
+        <div></div>
+        <div></div>
+      </div>
+      <div></div>
+    </div>-->
+
+
+    <!--
     <div>
       <ion-row *ngIf="userService.currentUser._id !== item.sender">
         <ion-col size="2" offset="">avatar</ion-col>
@@ -60,7 +175,7 @@
         </ion-col>
         <ion-col size="1" offset="">avatar</ion-col>
       </ion-row>
-    </div>
+    </div>-->
 
 
     <!--<ion-card class="ion-padding">
@@ -72,11 +187,11 @@
       </div>
 
     </ion-card>-->
-    <div [class]="userService.currentUser._id === item.sender ?  'ion-text-end' : 'ion-text-start' ">
+    <!-- <div [class]="userService.currentUser._id === item.sender ?  'ion-text-end' : 'ion-text-start' ">
       <ion-text
         [class]="userService.currentUser._id === item.sender ? 'ion-margin-end ion-margin-bottom' : 'ion-margin-start ion-margin-bottom'">{{
         doFormateDateTime(item.created_at)}}</ion-text>
-    </div>
+    </div> -->
   </div>
 
 </ion-content>

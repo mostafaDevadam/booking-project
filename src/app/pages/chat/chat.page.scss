@@ -1,0 +1,42 @@
+
+.block {
+  display: flex;
+  flex-direction: column;
+
+  footer {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  div {
+    /*text-align: left;*/
+    margin-top: -17px;
+    margin-left: 20px;
+
+    ion-text {
+      color: var(--ion-color-mut-text)
+    }
+  }
+}
+
+.block2 {
+  display: flex;
+  flex-direction: column;
+
+
+
+  div {
+    /*text-align: right;*/
+    margin-top: -17px;
+    margin-right: 20px;
+
+    ion-text {
+      color: var(--ion-color-mut-text)
+    }
+  }
+}
+
+.m-flex{ display: flex;}
+.m-flex-col{ flex-direction: column;}
+.m-text-right {text-align: right;}
+.m-text-left {text-align: left;}

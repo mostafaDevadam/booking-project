@@ -1,5 +1,5 @@
 import { FormControl, FormGroup } from "@angular/forms"
-import { GENDER_ENUM, KIND_OF_ROOM_ENUM, ROLE_ENUM, SENDER_RECEIVER_ROLE } from "./enums"
+import { GENDER_ENUM, KIND_OF_ROOM_ENUM, ROLE_ENUM, ROLE_MODAL_UI_ENUM, SENDER_RECEIVER_ROLE } from "./enums"
 
 
 export type AUTH_INPUTS_TYPE = {
@@ -140,3 +140,48 @@ export type CHAT_TYPE = {
   created_at?: any
   updated_at?: any
 }
+//
+export type PROP_TYPE = {
+ role: ROLE_MODAL_UI_ENUM
+}
+// Modal-UI
+export type MODAL_UI_PROPS<T> = {
+ //role: ROLE_MODAL_UI_ENUM
+  //[k in keyof T]: T
+  //[key: string]: T
+  //[key: string]: T
+}
+
+export type MY_BOOKING_MODAL_PROPS<T> = {
+  role: ROLE_MODAL_UI_ENUM
+  booking?: T
+}
+/*
+
+type M_TYPE = {
+  [key: string]: string
+}
+
+
+type M_TYPE_<T> = {
+  [key: string]: T
+}
+
+type M_TYPE_T <T> = {
+  [k in keyof T]: T;
+};
+
+usage
+ type L = {data: any, code: any}
+
+   const booking_: L = {data: "", code: ""}
+
+
+    const obj: M_TYPE_<typeof booking_> = {
+      "booking": booking_
+    }
+
+    const obj2: M_TYPE_T<typeof booking_> = booking_
+
+
+*/

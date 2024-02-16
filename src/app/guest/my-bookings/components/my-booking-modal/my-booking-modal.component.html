@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="close()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>{{isCreate ? "Create Booking" : isEdit ? "Edit Booking" : "View Booking"}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!--<ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">*******</ion-title>
+    </ion-toolbar>
+  </ion-header>-->
+
+  <div *ngIf="isCreate">
+    <!--
+      get guest_id
+      display all hotels -> hotel(select-hotel<-fetchAllAvailable rooms by hotel_id ) -> display all free rooms -> room <- select-room
+      get hotel_id, room_id
+
+      if guest_id, hotel_id, room_id sind true then show form and submit -> close-modal
+
+
+    -->
+    <app-my-booking-form [role]="role_form.create" [booking]="props.booking" [hotels]="props.hotels"
+      [isCreate]="isCreate"></app-my-booking-form>
+  </div>
+
+  <div *ngIf="isEdit">
+    <app-my-booking-form [role]="role_form.edit" [booking]="props.booking" [hotels]="props.hotels"
+      [isEdit]="isEdit"></app-my-booking-form>
+  </div>
+  <!-- <p>hotel-name, location, room-number, total_price, start-date, end date</p> -->
+
+  <div *ngIf="isView">
+
+    <ion-card>
+      <ion-card-content>
+        <div class="card-body">
+
+          <div>Hotel Name: <ion-text>{{booking.hotel?.name}}</ion-text></div>
+          <div>Room Number: <ion-text>{{booking.room?.room_number}}</ion-text></div>
+          <div>Nights: <ion-text>{{booking.nights}}</ion-text></div>
+          <div>Start Date: <ion-text>{{booking.start_date}}</ion-text></div>
+          <div>End Date: <ion-text>{{booking.end_date}}</ion-text></div>
+          <div>Location: <ion-text>City, Country</ion-text></div>
+          <div>Total Price: <ion-text>{{booking.total_price}}</ion-text></div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+
+
+
+
+
+
+  </div>
+
+
+</ion-content>

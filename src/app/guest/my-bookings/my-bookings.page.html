@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>MyBookings</ion-title>
+    <ion-title>MyBookings*</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +14,45 @@
     </ion-toolbar>
   </ion-header>
 
-  <p>display all bookings by guest_id oder currentUser._id </p>
+  <div class="div_top">
+    <ion-button (click)="showCreateMyBookingModal()">Create Booking</ion-button>
+  </div>
+
+
+  <div>
+    <div *ngFor="let item of myBookings">
+
+      <ion-card>
+        <ion-card-content>
+          <!--<div class="block">
+            <div>Nights: <ion-text>{{ item.nights}}</ion-text> </div>
+            <div>Start: <ion-text>{{item.start_date}}</ion-text></div>
+          </div>-->
+          <ion-row>
+            <ion-col size="3">Nights: </ion-col>
+            <ion-col size="3">{{ item.nights}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="3">Start:</ion-col>
+            <ion-col size="5">{{item.start_date}}</ion-col>
+          </ion-row>
+        </ion-card-content>
+        <ion-toolbar>
+          <ion-buttons>
+            <ion-button (click)="showViewMyBookingModal(item)">View</ion-button>
+            <ion-button (click)="showEditMyBookingModal(item)">Edit</ion-button>
+          </ion-buttons>
+
+        </ion-toolbar>
+
+      </ion-card>
+
+
+
+
+
+    </div>
+  </div>
 
 
 </ion-content>

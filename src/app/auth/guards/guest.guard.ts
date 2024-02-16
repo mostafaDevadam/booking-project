@@ -16,8 +16,8 @@ export class GuestGuard {
   canLoad(route: Route): boolean {
     let url = route.path?.toString();
     console.log('Url:' , url);
-    if (this.authService.isUserLoggedIn() && this.authService.getRole() == 'guest') {
-      console.log("auth role in guest guard: ", this.authService.getRole())
+    if (this.authService.isUserLoggedIn()){ // && this.authService.getRole() == 'guest') {
+      //console.log("auth role in guest guard: ", this.authService.getRole())
       return true;
     }
     this.authService.setRedirectUrl(String(url));

@@ -34,3 +34,23 @@ export enum SENDER_RECEIVER_ROLE {
   Hotel = 'Hotel',
   Guest = 'Guest',
 }
+
+export enum ROLE_FORM_ENUM {
+  create = 'create',
+  edit = 'edit',
+}
+
+export enum ROLE_MODAL_UI_ENUM {
+  create = 'create',
+  edit = 'edit',
+  view = 'view',
+}
+
+
+export enum ACTION_ROLE_ENUM {
+
+}
+
+export enum ACTION_ROLE_FORM_ENUM {
+
+}
