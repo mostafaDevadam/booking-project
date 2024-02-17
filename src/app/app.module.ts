@@ -22,13 +22,20 @@ import { MessageDialogModalComponent } from './shared/components/message-dialog-
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { ChatService } from './services/chat/chat.service';
 import { myBookingsResolver } from './auth/resolvers/my-bookings.resolver';
+import { ChartComponent } from './shared/components/chart/chart.component';
+import { FusionChartsModule } from 'angular-fusioncharts';
+import * as Charts from "fusioncharts/fusioncharts.charts";
+import * as FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
+import * as FusionCharts from "fusioncharts";
+
+FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme);
 
 const config: SocketIoConfig = { url: 'http://localhost:7070/', options: {} };
 
 
 
 @NgModule({
-  declarations: [AppComponent, MessageDialogModalComponent],
+  declarations: [AppComponent, MessageDialogModalComponent, ],
   imports: [
     BrowserModule,
     SocketIoModule.forRoot(config),
@@ -37,6 +44,7 @@ const config: SocketIoConfig = { url: 'http://localhost:7070/', options: {} };
      AppRoutingModule,
      //ServerModule,
      IonicServerModule,
+     FusionChartsModule,
     ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {provide: HTTP_INTERCEPTORS, useClass: AddHeaderInterceptor , multi: true},
@@ -48,7 +56,8 @@ const config: SocketIoConfig = { url: 'http://localhost:7070/', options: {} };
     BookingService,
     UserService,
     ChatService,
-    
+
+
 
 
   ],
