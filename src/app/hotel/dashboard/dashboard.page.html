@@ -13,4 +13,39 @@
       <ion-title size="large">Dashboard</ion-title>
     </ion-toolbar>
   </ion-header>
+
+
+  <!--
+    chart by date-month:
+    booked-room, available-rooms,
+    cleaned-,-not-cleaned-rooms,
+    single-,double-rooms,
+    incomes,
+    guests, active-guests,
+
+  -->
+
+  <div class="m-flex m-flex-col">
+    <ion-card>
+      <app-chart [data]="roomsDataForChart" [categories]="['Available','Booked']"></app-chart>
+    </ion-card>
+
+    <ion-card>
+      <app-chart [data]="roomsTypeDataForChart" [categories]="['Single','Double']"></app-chart>
+    </ion-card>
+
+    <ion-card>
+      <app-chart [data]="guestsDataForChart" [categories]="['All Guests','Active']"></app-chart>
+    </ion-card>
+
+    <ion-card>
+      <app-chart [data]="cleanRoomsDataForChart" [categories]="['Cleaned','Not-Cleaned']"></app-chart>
+    </ion-card>
+
+    <ion-card>
+      <app-chart [data]="incomesDataForChart" [categories]="['Low incomes','Good Rooms']"></app-chart>
+    </ion-card>
+  </div>
+
+
 </ion-content>
