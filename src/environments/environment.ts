@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   API_URL: 'http://localhost:5001/api/v0/',
+  Socket_URL: 'http://localhost:7070/',
 };
 
 /*
@@ -15,3 +16,4 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
+import { Socket } from 'ngx-socket-io';
