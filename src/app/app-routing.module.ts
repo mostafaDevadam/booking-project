@@ -1,5 +1,5 @@
 import { NgModule, inject } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes, CanLoad } from '@angular/router';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { HotelGuard } from './auth/guards/hotel.guard';
 import { DataResolver } from './auth/resolvers/data.resolver';
@@ -8,6 +8,7 @@ import { ChatService } from './services/chat/chat.service';
 import { chatResolverFn,  } from './auth/resolvers/chat.resolver';
 import { GuestGuard } from './auth/guards/guest.guard';
 import { myBookingsResolver } from './auth/resolvers/my-bookings.resolver';
+import { feedbackResolverFn } from './auth/resolvers/feedback.resolver';
 
 const routes: Routes = [
   {
@@ -70,6 +71,12 @@ const routes: Routes = [
     canLoad: [HotelGuard],
     resolve: {'chats': chatResolverFn}
   },
+  {
+    path: 'feedback',
+    loadChildren: () => import('./pages/feedback/feedback.module').then(m => m.FeedbackPageModule),
+    canLoad: [HotelGuard],
+    resolve: { feedbacks: feedbackResolverFn }
+  },
 
 
   // for guest
@@ -84,10 +91,15 @@ const routes: Routes = [
     loadChildren: () => import('./guest/home-guest/home-guest.module').then(m => m.HomeGuestPageModule),
     canLoad: [GuestGuard]
   },
+
+
+
+  // auth
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthPageModule)
   },
+
 
 
 
