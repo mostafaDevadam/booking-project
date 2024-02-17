@@ -72,5 +72,31 @@ ion-datetime::part(calendar-day) {
 }*/
 
 ion-range{
-  
+
 }
+
+
+// global classes
+.m-flex {
+  display: flex;
+}
+.m-flex-col {
+  flex-direction: column;
+}
+.m-flex-row {
+  flex-direction: row;
+}
+
+.m-text-right {
+  text-align: right;
+}
+.m-text-left {
+  text-align: left;
+}
+.m-margin-left-20 {
+  margin-left: 20px;
+}
+.m-margin-right-20 {
+  margin-right: 20px;
+}
+
