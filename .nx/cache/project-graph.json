@@ -7021,6 +7021,24 @@
         "hash": "sha512-7kIufnBqdsBGcSZLPJwqHT3yhk1QTsSlFsVD3kx5ixH/AlgBs9yM1q6DPhXZ8f8gtdqgh7N7/5btRLpQsS2gHw=="
       }
     },
+    "npm:highcharts": {
+      "type": "npm",
+      "name": "npm:highcharts",
+      "data": {
+        "version": "11.3.0",
+        "packageName": "highcharts",
+        "hash": "sha512-Dk+Qfk/xit8KnXKPDxmcVcq48ZlcVSq7oYJR5VZlAVWnJ0BY3JFFi1GOvgSNUzlh2wzsfenihWpkAkWoag4Xqg=="
+      }
+    },
+    "npm:highcharts-angular": {
+      "type": "npm",
+      "name": "npm:highcharts-angular",
+      "data": {
+        "version": "4.0.0",
+        "packageName": "highcharts-angular",
+        "hash": "sha512-0ghWnKvab6u+AgSDR1mgmWa2RLZHeAQ1tHyfqx/8nJr6iy1NA5m6kVRERF6NAofrLQoZ0v+lNP2AlN/pim0d9A=="
+      }
+    },
     "npm:hosted-git-info": {
       "type": "npm",
       "name": "npm:hosted-git-info",
@@ -20509,6 +20527,28 @@
       {
         "source": "npm:hdr-histogram-js",
         "target": "npm:pako",
+        "type": "static"
+      }
+    ],
+    "npm:highcharts-angular": [
+      {
+        "source": "npm:highcharts-angular",
+        "target": "npm:@angular/common",
+        "type": "static"
+      },
+      {
+        "source": "npm:highcharts-angular",
+        "target": "npm:@angular/core",
+        "type": "static"
+      },
+      {
+        "source": "npm:highcharts-angular",
+        "target": "npm:highcharts",
+        "type": "static"
+      },
+      {
+        "source": "npm:highcharts-angular",
+        "target": "npm:tslib",
         "type": "static"
       }
     ],

@@ -3,27 +3,69 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>feedback</ion-title>
+    <ion-title>feedback*</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">feedback</ion-title>
+      <ion-title size="large">{{user.role === 'guest' ? "My feedback" : "feedback"}}</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div class="">
-    <ion-button>Create</ion-button>
-  </div>
+  <!--<div class="" *ngIf="user.role === 'guest' ">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="3" push="4">
+        <ion-button (click)="openAlert()">Create</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </div> -->
+
 
   <div>
-    <div *ngFor="let item of [1,2,3,4,5]">
+    <div *ngFor="let item of feedbacksList; index as i; ">
       <ion-card>
         <ion-card-content>
-          {{ item }}
+          <div class="m-flex">
+
+            <ion-row>
+              <ion-col size="5">
+
+                <div>
+                  <ion-text class="" *ngIf="user.role === 'hotel' ">{{ item.guest && item.guest.name ? item.guest?.name || item.guest?.email : 'guest-name'}}</ion-text>
+                  <ion-text class="" *ngIf="user.role === 'guest' ">{{ item.hotel && item.hotel.name ? item.hotel?.name : 'hotel-name'}}</ion-text>
+                </div>
+
+              </ion-col>
+              <ion-col size="7">
+
+                <div>
+                  <ion-text>
+                    {{ item.content ? item.content : 'content Lorem ipsum dolor sit amet consectetur adipisicing elit.'}}
+
+                  </ion-text>
+                </div>
+
+              </ion-col>
+
+            </ion-row>
+
+
+          </div>
+          <ion-chip>{{ i }}</ion-chip>
         </ion-card-content>
+
+        <ion-toolbar *ngIf="user.role === 'guest' ">
+          <ion-buttons slot="start">
+            <ion-button (click)="openAlert('edit', item)">Edit</ion-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button (click)="openAlert('remove', item)">Remove</ion-button>
+          </ion-buttons>
+
+        </ion-toolbar>
       </ion-card>
     </div>
 

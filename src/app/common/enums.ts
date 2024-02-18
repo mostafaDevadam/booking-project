@@ -46,6 +46,14 @@ export enum ROLE_MODAL_UI_ENUM {
   view = 'view',
 }
 
+export enum eAUTHOR_ROLE_ENUM {
+  Hotel = 'Hotel',
+  Guest = 'Guest',
+}
+
+
+
+
 
 export enum ACTION_ROLE_ENUM {
 

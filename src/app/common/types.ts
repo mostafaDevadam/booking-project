@@ -1,5 +1,5 @@
 import { FormControl, FormGroup } from "@angular/forms"
-import { GENDER_ENUM, KIND_OF_ROOM_ENUM, ROLE_ENUM, ROLE_MODAL_UI_ENUM, SENDER_RECEIVER_ROLE } from "./enums"
+import { GENDER_ENUM, KIND_OF_ROOM_ENUM, ROLE_ENUM, ROLE_MODAL_UI_ENUM, SENDER_RECEIVER_ROLE, eAUTHOR_ROLE_ENUM } from "./enums"
 
 
 export type AUTH_INPUTS_TYPE = {
@@ -22,9 +22,9 @@ export type CURRENT_USER = {
 
 //export type USER =( HOTEL_TYPE & {role: ROLE_ENUM}) | (GUEST_TYPE & {role: ROLE_ENUM})
 
-export type USER_TYPE_<H,G> = ((H | G) & { role: ROLE_ENUM })
+export type USER_TYPE_<H, G> = ((H | G) & { role: ROLE_ENUM })
 
-export type USER_TYPE<T> = ( T & { role?: ROLE_ENUM })
+export type USER_TYPE<T> = (T & { role?: ROLE_ENUM })
 
 
 
@@ -104,7 +104,23 @@ export type ION_USER_TYPE = {
 
 }
 
+export type FEEDBACK_TYPE = {
+  _id?: any
+  content?: string
+  hotel?: any | HOTEL_TYPE
+  guest?: any | GUEST_TYPE
+  created_at?: any
+  updated_at?: any
+}
 
+export type NOTE_TYPE = {
+  _id?: any
+  content?: string
+  author_role?: eAUTHOR_ROLE_ENUM
+  author?: any
+  booking?: any
+
+}
 
 export type MESSAGE_INPUT_TYPE = {
   chat_id?: any
@@ -142,11 +158,11 @@ export type CHAT_TYPE = {
 }
 //
 export type PROP_TYPE = {
- role: ROLE_MODAL_UI_ENUM
+  role: ROLE_MODAL_UI_ENUM
 }
 // Modal-UI
 export type MODAL_UI_PROPS<T> = {
- //role: ROLE_MODAL_UI_ENUM
+  //role: ROLE_MODAL_UI_ENUM
   //[k in keyof T]: T
   //[key: string]: T
   //[key: string]: T
@@ -185,3 +201,12 @@ usage
 
 
 */
+
+
+
+//
+export type ALERT_PROPS = {
+  header: string
+  subHeader: string
+  message: string
+}

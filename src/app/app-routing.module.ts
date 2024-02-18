@@ -75,7 +75,7 @@ const routes: Routes = [
     path: 'feedback',
     loadChildren: () => import('./pages/feedback/feedback.module').then(m => m.FeedbackPageModule),
     canLoad: [HotelGuard],
-    resolve: { feedbacks: feedbackResolverFn }
+    resolve: { 'data': feedbackResolverFn }
   },
 
 

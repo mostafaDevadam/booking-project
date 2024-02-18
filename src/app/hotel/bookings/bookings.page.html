@@ -15,40 +15,45 @@
   </ion-header>
 
 
- <div *ngFor="let item of bookingService.bookingsByHotel">
-  <ion-card >
-    <ion-card-header >
-      <ion-card-title>Booking</ion-card-title>
-      <ion-card-subtitle>Room room_number</ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
+  <div *ngFor="let item of bookingService.bookingsByHotel">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Booking</ion-card-title>
+        <ion-card-subtitle>Room room_number</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
 
-      <ion-row>
-        <ion-col size="">
-          <ion-row><p>nights: {{ item.nights }}</p></ion-row>
-          <ion-row>
-            <p>Total Price: {{ item.total_price ? item.total_price  : 105}}</p>
-            <p>Guest Name</p>
-            <p>Guest Email</p>
-          </ion-row>
-        </ion-col>
-      </ion-row>
+        <ion-row>
+          <ion-col size="">
+            <ion-row>
+              <p>nights: {{ item.nights }}</p>
+            </ion-row>
+            <ion-row>
+              <p>Total Price: {{ item.total_price ? item.total_price : 105}}</p>
+              <p>Guest Name</p>
+              <p>Guest Email</p>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+
+        <ion-buttons>
+          <ion-button><ion-chip>Add Note</ion-chip></ion-button>
+        </ion-buttons>
+
+      </ion-card-content>
+
+      <ion-buttons class="ion-padding">
+        <ion-button class="ion-padding" (click)="viewBooking(item)"><ion-icon name="eye"></ion-icon>View</ion-button>
+        <ion-button class="ion-padding" (click)="editBooking(item)">Edit</ion-button>
+        <ion-button class="ion-padding" (click)="removeBooking(item)">
+          <ion-icon name="trash"></ion-icon>Remove</ion-button>
+      </ion-buttons>
 
 
 
-      <p ></p>
 
-    </ion-card-content>
-
-    <ion-buttons class="ion-padding">
-      <ion-button class="ion-padding" (click)="viewBooking(item)"><ion-icon name="eye"></ion-icon>View</ion-button>
-      <ion-button class="ion-padding" (click)="editBooking(item)">Edit</ion-button>
-      <ion-button class="ion-padding" (click)="removeBooking(item)"><ion-icon name="trash"></ion-icon>Remove</ion-button>
-    </ion-buttons>
-
-
-  </ion-card>
-</div>
+    </ion-card>
+  </div>
 
 
 

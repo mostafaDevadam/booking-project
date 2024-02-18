@@ -23,11 +23,29 @@
     <div *ngFor="let item of myBookings">
 
       <ion-card>
+        <ion-card-header>
+
+          <!--<ion-row class="ion-justify-content-end">
+            <ion-col size="3" push="1">
+              <ion-button fill="clear" ><ion-icon name="ellipsis-vertical-sharp"></ion-icon></ion-button>
+            </ion-col>
+          </ion-row>-->
+        </ion-card-header>
+
+
+
         <ion-card-content>
           <!--<div class="block">
             <div>Nights: <ion-text>{{ item.nights}}</ion-text> </div>
             <div>Start: <ion-text>{{item.start_date}}</ion-text></div>
           </div>-->
+
+
+          <ion-row>
+            <ion-col size="4">Hotel Name: </ion-col>
+            <ion-col size="4">hotel-name</ion-col>
+          </ion-row>
+
           <ion-row>
             <ion-col size="3">Nights: </ion-col>
             <ion-col size="3">{{ item.nights}}</ion-col>
@@ -36,11 +54,17 @@
             <ion-col size="3">Start:</ion-col>
             <ion-col size="5">{{item.start_date}}</ion-col>
           </ion-row>
+          <ion-row>
+            <ion-col size="3">End:</ion-col>
+            <ion-col size="5">{{item.end_date}}</ion-col>
+          </ion-row>
         </ion-card-content>
         <ion-toolbar>
           <ion-buttons>
             <ion-button (click)="showViewMyBookingModal(item)">View</ion-button>
             <ion-button (click)="showEditMyBookingModal(item)">Edit</ion-button>
+            <ion-button (click)="openAlert('note',item)"><ion-chip>Add Note</ion-chip></ion-button>
+            <ion-button (click)="openAlert('feedback',item)"><ion-chip>Write Feedback</ion-chip></ion-button>
           </ion-buttons>
 
         </ion-toolbar>

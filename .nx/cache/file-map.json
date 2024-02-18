@@ -118,19 +118,19 @@
       },
       {
         "file": "package-lock.json",
-        "hash": "12234887128130055148"
+        "hash": "17833689010575901197"
       },
       {
         "file": "package.json",
-        "hash": "2280402276536258437"
+        "hash": "1746268100958848207"
       },
       {
         "file": "src/app/app-routing.module.ts",
-        "hash": "18291615438717338372"
+        "hash": "17298808704625184473"
       },
       {
         "file": "src/app/app.component.html",
-        "hash": "1170724444577391683"
+        "hash": "10387694432171718996"
       },
       {
         "file": "src/app/app.component.scss",
@@ -146,7 +146,7 @@
       },
       {
         "file": "src/app/app.module.ts",
-        "hash": "11688175504082621985"
+        "hash": "3640212158637374401"
       },
       {
         "file": "src/app/auth/auth-routing.module.ts",
@@ -213,10 +213,6 @@
         "hash": "1056763882907152911"
       },
       {
-        "file": "src/app/auth/resolvers/api/core/inject",
-        "hash": "3244421341483603138"
-      },
-      {
         "file": "src/app/auth/resolvers/chat.resolver.spec.ts",
         "hash": "17639036419969560003"
       },
@@ -231,6 +227,14 @@
       {
         "file": "src/app/auth/resolvers/data.resolver.ts",
         "hash": "6993248168722657780"
+      },
+      {
+        "file": "src/app/auth/resolvers/feedback.resolver.spec.ts",
+        "hash": "6668669161998272375"
+      },
+      {
+        "file": "src/app/auth/resolvers/feedback.resolver.ts",
+        "hash": "3604648401114291279"
       },
       {
         "file": "src/app/auth/resolvers/my-bookings.resolver.spec.ts",
@@ -250,7 +254,7 @@
       },
       {
         "file": "src/app/common/enums.ts",
-        "hash": "2892674800661607535"
+        "hash": "2384369236155576172"
       },
       {
         "file": "src/app/common/keys.ts",
@@ -258,7 +262,7 @@
       },
       {
         "file": "src/app/common/types.ts",
-        "hash": "15222699900176997753"
+        "hash": "16269750938721478995"
       },
       {
         "file": "src/app/guest/home-guest/home-guest-routing.module.ts",
@@ -318,7 +322,7 @@
       },
       {
         "file": "src/app/guest/my-bookings/components/my-booking-form/my-booking-form.component.html",
-        "hash": "4958802937357907243"
+        "hash": "8345009167620769774"
       },
       {
         "file": "src/app/guest/my-bookings/components/my-booking-form/my-booking-form.component.scss",
@@ -334,7 +338,7 @@
       },
       {
         "file": "src/app/guest/my-bookings/components/my-booking-modal/my-booking-modal.component.html",
-        "hash": "2793089522872153865"
+        "hash": "3195271739780076929"
       },
       {
         "file": "src/app/guest/my-bookings/components/my-booking-modal/my-booking-modal.component.scss",
@@ -358,7 +362,7 @@
       },
       {
         "file": "src/app/guest/my-bookings/my-bookings.page.html",
-        "hash": "8740381180451763032"
+        "hash": "6040096329442482349"
       },
       {
         "file": "src/app/guest/my-bookings/my-bookings.page.scss",
@@ -370,7 +374,7 @@
       },
       {
         "file": "src/app/guest/my-bookings/my-bookings.page.ts",
-        "hash": "2000211064621815208"
+        "hash": "9353932560491451002"
       },
       {
         "file": "src/app/home/home-routing.module.ts",
@@ -406,7 +410,7 @@
       },
       {
         "file": "src/app/hotel/bookings/bookings.page.html",
-        "hash": "2549560443113472662"
+        "hash": "8519728333258918001"
       },
       {
         "file": "src/app/hotel/bookings/bookings.page.scss",
@@ -438,7 +442,7 @@
       },
       {
         "file": "src/app/hotel/bookings/components/booking-modal/booking-modal.component.html",
-        "hash": "16261895819020847849"
+        "hash": "9486117862351513881"
       },
       {
         "file": "src/app/hotel/bookings/components/booking-modal/booking-modal.component.scss",
@@ -458,15 +462,15 @@
       },
       {
         "file": "src/app/hotel/dashboard/dashboard.module.ts",
-        "hash": "1729686176567888049"
+        "hash": "6517507103432339313"
       },
       {
         "file": "src/app/hotel/dashboard/dashboard.page.html",
-        "hash": "6524582806437730738"
+        "hash": "14366860337356135317"
       },
       {
         "file": "src/app/hotel/dashboard/dashboard.page.scss",
-        "hash": "3244421341483603138"
+        "hash": "14958017108574102821"
       },
       {
         "file": "src/app/hotel/dashboard/dashboard.page.spec.ts",
@@ -474,7 +478,7 @@
       },
       {
         "file": "src/app/hotel/dashboard/dashboard.page.ts",
-        "hash": "5213954312061909698"
+        "hash": "10592445698288690468"
       },
       {
         "file": "src/app/hotel/guests/guests-routing.module.ts",
@@ -669,6 +673,66 @@
         "hash": "16756729864911034516"
       },
       {
+        "file": "src/app/pages/feedback/components/feedback-form/feedback-form.component.html",
+        "hash": "10114218429460825686"
+      },
+      {
+        "file": "src/app/pages/feedback/components/feedback-form/feedback-form.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/pages/feedback/components/feedback-form/feedback-form.component.spec.ts",
+        "hash": "9822868407906120605"
+      },
+      {
+        "file": "src/app/pages/feedback/components/feedback-form/feedback-form.component.ts",
+        "hash": "14029252676180495107"
+      },
+      {
+        "file": "src/app/pages/feedback/components/feedback-modal/feedback-modal.component.html",
+        "hash": "17323782028380596062"
+      },
+      {
+        "file": "src/app/pages/feedback/components/feedback-modal/feedback-modal.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/pages/feedback/components/feedback-modal/feedback-modal.component.spec.ts",
+        "hash": "2874717115001778625"
+      },
+      {
+        "file": "src/app/pages/feedback/components/feedback-modal/feedback-modal.component.ts",
+        "hash": "15306952029991835697"
+      },
+      {
+        "file": "src/app/pages/feedback/feedback-routing.module.ts",
+        "hash": "5476508663326366884"
+      },
+      {
+        "file": "src/app/pages/feedback/feedback.module.ts",
+        "hash": "3829499289568949825"
+      },
+      {
+        "file": "src/app/pages/feedback/feedback.page.html",
+        "hash": "799007019289063473"
+      },
+      {
+        "file": "src/app/pages/feedback/feedback.page.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/pages/feedback/feedback.page.spec.ts",
+        "hash": "1065787149117286432"
+      },
+      {
+        "file": "src/app/pages/feedback/feedback.page.ts",
+        "hash": "9415382354233507587"
+      },
+      {
+        "file": "src/app/pages/feedback/feedback.pipe.ts",
+        "hash": "5303928260215335680"
+      },
+      {
         "file": "src/app/pages/messages/messages-routing.module.ts",
         "hash": "10750593020951473174"
       },
@@ -715,6 +779,14 @@
       {
         "file": "src/app/services/chat/chat.service.ts",
         "hash": "4623999220445681819"
+      },
+      {
+        "file": "src/app/services/feedback.service.spec.ts",
+        "hash": "14750006361443100554"
+      },
+      {
+        "file": "src/app/services/feedback.service.ts",
+        "hash": "8411759564953568843"
       },
       {
         "file": "src/app/services/guest.service.spec.ts",
@@ -771,6 +843,22 @@
       {
         "file": "src/app/services/user.service.ts",
         "hash": "13224947910607103154"
+      },
+      {
+        "file": "src/app/shared/components/chart/chart.component.html",
+        "hash": "4945425309935445970"
+      },
+      {
+        "file": "src/app/shared/components/chart/chart.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/shared/components/chart/chart.component.spec.ts",
+        "hash": "202888506608489101"
+      },
+      {
+        "file": "src/app/shared/components/chart/chart.component.ts",
+        "hash": "16998799434585426523"
       },
       {
         "file": "src/app/shared/components/default-form/default-form.component.html",
@@ -838,11 +926,11 @@
       },
       {
         "file": "src/environments/environment.ts",
-        "hash": "853016174310957791"
+        "hash": "15277739347138762998"
       },
       {
         "file": "src/global.scss",
-        "hash": "16104900928318509259"
+        "hash": "11785289785916342247"
       },
       {
         "file": "src/index.html",
