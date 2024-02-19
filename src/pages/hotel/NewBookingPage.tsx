@@ -213,13 +213,6 @@ const NewBookingPage = () => {
             </Form>
           </div>}
 
-
-          <div>
-            <span>Room: </span>
-            <Button size={"sm"} onClick={openDialogModal}>Choose room</Button>
-          </div>
-
-
           {isNextForm &&
             <>
 

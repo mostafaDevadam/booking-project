@@ -14,8 +14,8 @@ const GuestsPage = () => {
 
   useEffect(() => {
     if (hotelSelector._id) {
-      dispatch(GuestThunkFunctions.fetchAllGuestsByHotelId(hotelSelector._id))
-      console.log("guests:", guestSelector.data.List)
+      //dispatch(GuestThunkFunctions.fetchAllGuestsByHotelId(hotelSelector._id))
+      //console.log("guests:", guestSelector.data.List)
       setGuests(guestSelector.data.List)
     }
   }, [guests])
@@ -28,7 +28,12 @@ const GuestsPage = () => {
 
         {guestSelector.loading && "loading..."}
 
-        {!guestSelector.loading && guests && guests.map((m) => (<div key={m._id}>{m.name} - {m.email}</div>))
+        {!guestSelector.loading && guests && guests.map((m) =>
+        (
+          <div key={m._id}>
+            <p>{m.name} -row</p>
+            <p>{m.email} -row</p>
+          </div>))
         }
 
       </div>
