@@ -46,5 +46,8 @@ export class GuestController {
         return await this.guestService.updateById(_id, guest)
     }
 
+    // get count guests
+    
+
 
 }
