@@ -56,6 +56,9 @@ export class Booking {
     @Prop()
     total_price: string
 
+    // expired_date: string
+    // isExpired: boolean
+
     // ref
     @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Hotel', required: true })
     hotel: MongooseSchema.Types.ObjectId

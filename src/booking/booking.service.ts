@@ -23,7 +23,7 @@ export class BookingService {
         // else book the room -> update the room: isBooked = true and create the booking doc
         const isBooked = await this.roomService.checkRoomIsBooked(room_id)
         const isCleaned = await this.roomService.checkRoomIsCleaned(room_id)
-         if(!isCleaned) return { error: "You can't book the room because it's not cleaned" }
+        if (!isCleaned) return { error: "You can't book the room because it's not cleaned" }
         // check if room is cleaned then error: "You can't book the because it's not cleaned"
         console.log("isBooked", isBooked)
         if (isBooked) {
@@ -56,8 +56,8 @@ export class BookingService {
     }
 
     async findOneById(_id): Promise<BookingDocument | any> {
-        const one = await (await this.bookingModel.findById(_id))
-            .populate('room')
+        const one = await(await (await this.bookingModel.findById(_id))
+            .populate('room')).populate('hotel')
         return one
     }
 
@@ -120,7 +120,7 @@ export class BookingService {
         // get booking by _id, room_id
         const booking = await this.bookingModel.findOne({ _id: booking_id }) //, room: room_id })//.exists()
         //console.log("booking: ", booking)
-        if(!booking) return { error: 'cannot remove it' }
+        if (!booking) return { error: 'cannot remove it' }
 
         if (booking) {
             // if booking ist exist
@@ -137,11 +137,14 @@ export class BookingService {
 
     // private
     private async calculateTotalPrice(room_id: any, nights: number) {
-        const room = await this.roomService.findOneById(room_id)
-        if (!room?.price) return ''
-        const total_price = Number(room?.price) * nights
-        console.log("total_price: ", room?.price, nights, typeof total_price, total_price)
-        return total_price.toString()
+        if (room_id && nights) {
+            const room = await this.roomService.findOneById(room_id)
+            if (!room?.price) return ''
+            const total_price = Number(room?.price) * nights
+            console.log("total_price: ", room?.price, nights, typeof total_price, total_price)
+            return total_price.toString()
+        }
+
     }
 
 
