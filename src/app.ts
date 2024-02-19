@@ -13,7 +13,7 @@ import { UserManager } from "./users/user.manager";
 import { UserRoleSpecification } from "./users/user.specifications";
 import { StorageUser } from "./users/user.storage";
 
-/*
+
 // feedback: hotel_id, guest_id, content
 // usage user
 const uManager = new UserManager()
@@ -104,6 +104,5 @@ const filterUser = new FilterUser()
 const filterUserByRoleSpec = filterUser.filter(allUsers, userRoleSpec)
 
 console.log("filterUserByRoleSpec: ", filterUserByRoleSpec)
-*/
 
 
