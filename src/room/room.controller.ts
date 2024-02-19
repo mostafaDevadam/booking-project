@@ -10,6 +10,7 @@ export class RoomController {
 
     @Get()
     async start() {
+        await this.roomService.insertMany()
         return { "msg": "start room api" }
     }
 
@@ -56,10 +57,10 @@ export class RoomController {
     }
 
 
-   /*@Get('all/booked')
-    async getAllBooked() {
-        return await this.roomService.findAllIsBooked()
-    }*/
+    /*@Get('all/booked')
+     async getAllBooked() {
+         return await this.roomService.findAllIsBooked()
+     }*/
 
     @Get('all/cleaned/hotel/:hotel_id')
     async getAllCleanedByHotelId(@Param('hotel_id') hotel_id: any) {
@@ -114,6 +115,25 @@ export class RoomController {
     async removeOne(@Param('_id') _id: any) {
         return await this.roomService.removeOne(_id)
     }
+    // for charts
+    // get count booked-rooms
+    // get count available-rooms
+    // get count rooms
+    // get count single rooms
+    // get count double rooms
+    // get count cleaned-rooms
+    // get count not-cleaned-rooms
+    /*
+     objCount={
+     rooms: ,
+     booked: ,
+     available: ,
+     single: ,
+     double: ,
+     cleaned: ,
+
+     }
+    */
 
 
 }

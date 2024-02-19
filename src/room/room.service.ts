@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Room, RoomDocument, eROOM_enum_type } from './room';
+import { Types } from 'mongoose';
 
 @Injectable()
 export class RoomService {
@@ -47,7 +48,7 @@ export class RoomService {
     }*/
 
     async findAllAvailableRoomsByHotelId(hotel_id): Promise<RoomDocument[]> {
-        const all = await this.roomModel.find({hotel: hotel_id, isBooked: false}).exec()
+        const all = await this.roomModel.find({ hotel: hotel_id, isBooked: false }).exec()
         return all
     }
 
@@ -58,7 +59,7 @@ export class RoomService {
     }
 
     async findAllBookedRoomsByHotelId(hotel_id): Promise<RoomDocument[]> {
-        const all = await this.roomModel.find({hotel: hotel_id, isBooked: true}).exec()
+        const all = await this.roomModel.find({ hotel: hotel_id, isBooked: true }).exec()
         return all
     }
 
@@ -67,7 +68,7 @@ export class RoomService {
     }
 
     async findAllCleanedRoomsByHotelId(hotel_id): Promise<RoomDocument[]> {
-        const all = await this.roomModel.find({hotel: hotel_id, isCleaned: true}).exec()
+        const all = await this.roomModel.find({ hotel: hotel_id, isCleaned: true }).exec()
         return all
     }
     async findAllCleaned(): Promise<RoomDocument[]> {
@@ -75,7 +76,7 @@ export class RoomService {
     }
 
     async findAllNotCleanedRoomsByHotelId(hotel_id): Promise<RoomDocument[]> {
-        const all = await this.roomModel.find({hotel: hotel_id, isCleaned: false }).exec()
+        const all = await this.roomModel.find({ hotel: hotel_id, isCleaned: false }).exec()
         return all
     }
     async findAllNotCleaned(): Promise<RoomDocument[]> {
@@ -83,7 +84,7 @@ export class RoomService {
     }
 
     async findAllSingleRoomsByHotelId(hotel_id): Promise<RoomDocument[]> {
-        const all = await this.roomModel.find({hotel: hotel_id, room_type: eROOM_enum_type.single}).exec()
+        const all = await this.roomModel.find({ hotel: hotel_id, room_type: eROOM_enum_type.single }).exec()
         return all
     }
 
@@ -92,7 +93,7 @@ export class RoomService {
     }
 
     async findAllDoubleRoomsByHotelId(hotel_id): Promise<RoomDocument[]> {
-        const all = await this.roomModel.find({hotel: hotel_id, room_type: eROOM_enum_type.double}).exec()
+        const all = await this.roomModel.find({ hotel: hotel_id, room_type: eROOM_enum_type.double }).exec()
         return all
     }
     async findAllDouble() {
@@ -128,6 +129,60 @@ export class RoomService {
         const room = await this.findOneById(_id)
         console.log("checkRoomIsCleaned room:", room)
         return room.isCleaned //? true : false
+    }
+    //
+    insertMany = async () => {
+        const hotel_ids = ["65aee26575e0be677b51126c", "65aee7fcc048a97c8244f033",
+            "65afd368a60f21acd2744c42", "65b241db49f7c3dd13c80976"]
+        const count = 10
+
+
+        const hotel_id = hotel_ids[3]
+
+        const numOfDocs = await this.roomModel.countDocuments() //.where('hotel', hotel_id)
+
+        /*const room: any = {
+            room_number: "24", //(Math.floor(Math.random() * 1000) + numOfDocs).toString(),
+            room_type: eROOM_enum_type.single,
+             hotel: hotel_id, //new Types.ObjectId(hotel_id),
+        }
+
+        console.log("room: ", room)*/
+
+        //await this.create(hotel_id, room)
+        //const r = new this.roomModel(room , { $out: true})
+        // await this.roomModel.create(room)
+
+
+        for (let i = 1; i <= count; i++) {
+
+            console.log(`hotel ${hotel_id} ${i} ,
+             count: ${numOfDocs},
+             increment: ${numOfDocs + i}`)
+            const num = numOfDocs + i
+
+
+            const room: any = {
+                room_number: (Math.floor(Math.random() * 1000 * num + i)).toString(),
+                room_type: eROOM_enum_type.single,
+                hotel: hotel_id,
+            }
+
+            console.log("room: ", room)
+
+
+            await this.roomModel.create(room)
+
+
+
+        }
+
+
+        /*for(const hotel_id of hotel_ids){
+            const numOfDocs = await this.roomModel.countDocuments().where('hotel', hotel_id)
+
+
+        }*/
     }
 
 }
