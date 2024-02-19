@@ -9,6 +9,7 @@ import { MyBookingModalComponent } from './components/my-booking-modal/my-bookin
 import { ROLE_MODAL_UI_ENUM, eAUTHOR_ROLE_ENUM } from 'src/app/common/enums';
 import { HotelService } from 'src/app/services/hotel.service';
 import { FeedbackService } from 'src/app/services/feedback.service';
+import { NoteService } from 'src/app/services/note.service';
 
 
 type M_TYPE = {
@@ -47,6 +48,7 @@ export class MyBookingsPage implements OnInit {
     private hotelService: HotelService,
     private alertCtrl: AlertController,
     private feedbackService: FeedbackService,
+    private noteService: NoteService,
 
   ) { }
 
@@ -113,6 +115,7 @@ export class MyBookingsPage implements OnInit {
   showViewMyBookingModal = async (item: BOOKING_TYPE) => {
     if (this.userService.currentUser.role === 'guest') {
       await this.bookingService.fetchBookingById(item._id)
+      // fetchAllNotesByBookingId and pass it to Modal-UI
       this.presentModal(MyBookingModalComponent, { role: "view", booking: item })
     }
 
@@ -148,7 +151,7 @@ export class MyBookingsPage implements OnInit {
         booking: item._id,
       }
       console.log("create note obj:", data)
-      // await this.noteService.postCreateOneByBookingId(item._id, data)
+      await this.noteService.postCreateOneByBookingId(item._id, data)
 
 
     }
@@ -184,11 +187,17 @@ export class MyBookingsPage implements OnInit {
         header: 'Note',
         subHeader: 'Write My Note',
         message: 'Create A New Note for My Booking'
-      }, 'Write your note here...')
+      }, 'Write your note here...',
+        {
+          label: 'Public',
+          type: 'radio',
+         // value: false,
+        }
+      )
     }
   }
 
-  async presentAlert<T>(state: string, item: T, props: ALERT_PROPS, placeholder?: string) {
+  async presentAlert<T>(state: string, item: T, props: ALERT_PROPS, placeholder?: string, inputs?: any) {
 
     const alert = await this.alertCtrl.create({
       /*header: 'Feedback',
@@ -222,6 +231,13 @@ export class MyBookingsPage implements OnInit {
 
       ],
       inputs: [
+        /*{
+          label: 'Public',
+          type: 'radio',
+          //value: 'false',
+          checked: false
+
+        },*/
         {
           label: 'Note',
           value: this.new_feedback_text,
@@ -235,6 +251,13 @@ export class MyBookingsPage implements OnInit {
 
           },
 
+
+        },
+        {
+          label: 'Public',
+          type: 'radio',
+          value: 'false',
+          checked: false
 
         }
       ],
