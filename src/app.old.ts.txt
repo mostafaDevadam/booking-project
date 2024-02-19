@@ -1,0 +1,472 @@
+console.log("start")
+
+// enums
+//--- Room
+enum eCOLOR {
+    BLUE = 'blue',
+    GREEN = 'green',
+    WHITE = 'white',
+}
+
+
+enum eROOM_SIZE {
+    SINGLE = "single",
+    DOUBLE = "double",
+}
+
+// interfaces
+interface IBase_Mutation {
+
+    create(data: any): any | false
+    update(_id: number, data: any): any | false
+    remove(_id: number): any | false
+
+}
+
+interface IBase_Query {
+    findOneById(): any | false
+    findAll(): any | false
+
+}
+
+interface IBase_Storage {
+    store(data: any): void
+    getList(): any
+}
+
+
+// interfaces Manager
+interface IRoom_Manager extends IBase_Mutation { }
+interface IUser_Manager extends IBase_Mutation { }
+interface IBooking_Manager extends IBase_Mutation { }
+
+
+// interfaces Storage
+interface IStorage_Room extends IBase_Storage, IBase_Query { }
+interface IStorage_User extends IBase_Storage, IBase_Query { }
+interface IStorage_Booking extends IBase_Storage, IBase_Query { }
+
+// interfaces filters
+interface IFilter<T, SP> {
+    filter(cl: T[], specification: SP): T[]
+}
+
+interface IFilter_User extends IFilter<User, Specification_G<User>> {
+}
+
+// abstract classes
+abstract class Specification {
+    public abstract isValid(room: Room): boolean
+}
+
+abstract class Specification_G<T> {
+    public abstract isValid(t: T): boolean
+}
+
+
+
+
+// imp.
+
+class Room {
+    private _id: number;
+    private room_number: string;
+    private room_color: eCOLOR;
+    private room_size: eROOM_SIZE;
+    private hotel: User;
+    private price: string
+
+    constructor(hotel: User, price: string, room_number: string, room_color: eCOLOR, room_size: eROOM_SIZE) {
+        this.room_color = room_color
+        this.room_number = room_number
+        this.room_size = room_size
+        this.hotel = hotel
+        this.price = price
+    }
+
+
+    public set_id(_id: number): void {
+        this._id = _id
+    }
+
+    get_id(): number {
+        return this._id
+    }
+
+    public set_hotel(hotel: User): void {
+        // this.hotel_id = hotel_id
+        this.hotel = hotel
+    }
+
+    set_price(price: string): void {
+        this.price = price
+    }
+
+    getPrice(): string {
+        return this.price
+    }
+
+    public get_room_number(): string { return this.room_number }
+    public get_room_color(): eCOLOR { return this.room_color }
+    public get_room_size(): eROOM_SIZE { return this.room_size }
+
+
+}
+
+class Manager {
+
+    createRoom(hotel: User, price: string, room_number: string, room_color: eCOLOR, room_size: eROOM_SIZE): Room | false {
+        if (hotel.get_role() === eUSER_ROLE.HOTEL) {
+            return new Room(hotel, price, room_number, room_color, room_size)
+        }
+
+        return false
+    }
+}
+
+class Storage {
+    private rooms: Room[] = []
+
+    storeRooms(room: Room): void {
+        room.set_id(this.rooms.length++)
+        this.rooms.push(room)
+    }
+
+    getRooms(): Room[] {
+        return this.rooms
+    }
+}
+
+
+
+//------------------------ User
+enum eUSER_ROLE {
+    HOTEL = 'hotel',
+    GUEST = 'guest',
+    //OWNER = 'owner',
+}
+
+class User {
+
+    private _id: number
+    private name: string
+    private email: string
+    private password: string
+    private role: eUSER_ROLE
+
+    constructor(name: string, email: string, password: string, role: eUSER_ROLE) {
+        this.name = name
+        this.email = email
+        this.password = password
+        this.role = role
+    }
+
+    // it reads arrow-function as anonymous-function
+    /*
+    Arrow functions are anonymous functions i.e.
+    functions without a name but they are often assigned to any variable.
+    They are also called Lambda Functions.
+    Arrow functions are a type of anonymous function
+    */
+    // public get_ = (): string =>  this.name
+
+    set_id(_id: number): void {
+        this._id = _id
+    }
+
+    get_id(): number {
+        return this._id
+    }
+
+    public get_name(): string { return this.name }
+    public get_email(): string { return this.email }
+    public get_password(): string { return this.password }
+    public get_role(): eUSER_ROLE { return this.role }
+}
+class UserManager {
+    createUser(name: string, email: string, password: string, role: eUSER_ROLE): User {
+        return new User(name, email, password, role)
+    }
+}
+class StorageUser {
+    private users: User[] = []
+
+    storeUser(user: User): void {
+        user.set_id(this.users.length++)
+        this.users.push(user)
+    }
+
+    getUsers(): User[] { return this.users }
+}
+
+
+
+// booking
+class Booking {
+    private _id: number
+
+    private hotel: User
+    private guest: User
+    private room: Room
+    private nights: number
+    private total_price: string
+
+    constructor(nights: number, hotel: User, guest: User, room: Room) {
+        this.hotel = hotel
+        this.guest = guest
+        this.room = room
+        this.nights = nights
+        //this.total_price = (Number(this.room.getPrice()) * nights).toString()
+    }
+
+    set_id(_id: number): void {
+        this._id = _id
+    }
+
+    get_id(): number {
+        return this._id
+    }
+
+    get_nights(): number {
+        return this.nights
+    }
+
+    set_total_price(total_price: string): void {
+        this.total_price = total_price
+    }
+
+    get_total_price(): string {
+        return this.total_price
+    }
+
+    get_room(): Room {
+        return this.room
+    }
+
+}
+
+class BookingManager {
+
+    createBooking(nights: number, hotel: User, guest: User, room: Room): Booking | false {
+        if (hotel.get_role() === eUSER_ROLE.HOTEL && guest.get_role() === eUSER_ROLE.GUEST) {
+            const b: Booking = new Booking(nights, hotel, guest, room)
+            // b.set_total_price((Number(room.getPrice()) * nights).toString())
+            return b
+        }
+        return false
+
+    }
+
+}
+
+class StorageBooking {
+    private bookings: Booking[] = []
+
+    setBooking(booking: Booking): void {
+        booking.set_id(this.bookings.length++)
+        const total_price = (Number(booking.get_room().getPrice()) * booking.get_nights()).toString()
+        booking.set_total_price(total_price)
+        this.bookings.push(booking)
+    }
+
+    getBookings(): Booking[] {
+        return this.bookings
+    }
+
+}
+
+
+
+
+
+
+// color-spec
+class ColorSpecification extends Specification {
+
+    private color: eCOLOR
+
+    constructor(color: eCOLOR) {
+        super()
+        this.color = color
+    }
+
+    public isValid(room: Room): boolean {
+        return room.get_room_color() === this.color
+    }
+
+}
+
+// room_size_spec
+class RoomSizeSpecification extends Specification {
+
+
+    private room_size: eROOM_SIZE
+
+    constructor(room_size: eROOM_SIZE) {
+        super()
+        this.room_size = room_size
+    }
+
+    public isValid(room: Room): boolean {
+        return room.get_room_size() === this.room_size
+    }
+
+}
+
+// user_role_spec
+class UserRoleSpecification extends Specification_G<User> {
+    private user_role: eUSER_ROLE
+
+    constructor(user_role: eUSER_ROLE) {
+        super()
+        this.user_role = user_role
+    }
+
+    public isValid(user: User): boolean {
+        return user.get_role() === this.user_role
+    }
+}
+
+
+
+
+class FilterRoom {
+
+    filter(rooms: Room[], specification: Specification): Room[] {
+        return rooms.filter(room => specification.isValid(room))
+    }
+
+}
+
+class FilterUser2 implements IFilter_User {
+    filter(users: User[], specification: Specification_G<User>): User[] {
+        return users.filter(user => specification.isValid(user))
+    }
+
+}
+
+
+// filter user by name, email, role, _id
+class FilterUser {
+
+    // findOneById,
+    filter(users: User[], specification: Specification_G<User>): User[] {
+        return users.filter(user => specification.isValid(user))
+    }
+
+
+
+}
+
+
+
+
+// filter room by color, size, hotel_1, _id
+
+
+
+
+
+
+
+
+// filter booking by room_id, user(_id, role: 'hotel' / 'guest'), _id
+
+
+
+
+
+
+
+
+
+
+
+// usage user
+const uManager = new UserManager()
+const storageUser = new StorageUser()
+
+const guest1: User = uManager.createUser("guest1", "guest1@test.de", "123", eUSER_ROLE.GUEST)
+const guest2: User = uManager.createUser("guest2", "guest2@test.de", "789", eUSER_ROLE.GUEST)
+
+const hotel1: User = uManager.createUser("hotel1", "hotel1@test.de", "456", eUSER_ROLE.HOTEL)
+
+storageUser.storeUser(guest1)
+storageUser.storeUser(guest2)
+
+storageUser.storeUser(hotel1)
+
+const allUsers: User[] = storageUser.getUsers()
+
+console.log("allUsers: ", allUsers)
+
+// usage room
+const manager: Manager = new Manager()
+const storage: Storage = new Storage()
+
+const room1: Room | boolean = manager.createRoom(hotel1, "55", "01", eCOLOR.BLUE, eROOM_SIZE.SINGLE)
+const room2: Room | boolean = manager.createRoom(hotel1, "65", "02", eCOLOR.GREEN, eROOM_SIZE.SINGLE)
+const room3: Room | boolean = manager.createRoom(hotel1, "75", "03", eCOLOR.GREEN, eROOM_SIZE.DOUBLE)
+const room4: Room | boolean = manager.createRoom(hotel1, "80", "04", eCOLOR.GREEN, eROOM_SIZE.DOUBLE)
+
+
+if (room1) storage.storeRooms(room1)
+
+if (room2) storage.storeRooms(room2)
+
+if (room3) storage.storeRooms(room3)
+
+if (room4) storage.storeRooms(room4)
+
+
+const allRooms: Room[] = storage.getRooms()
+
+console.log("allRooms:", allRooms)
+
+// usage Booking
+const booking_manager: BookingManager = new BookingManager()
+const storage_booking: StorageBooking = new StorageBooking()
+
+if (room1) {
+    const booking1: Booking | boolean = booking_manager.createBooking(
+        2,
+        hotel1,
+        guest1,
+        room1,
+    )
+    if (booking1) storage_booking.setBooking(booking1)
+}
+
+if (room2) {
+    const booking2: Booking | boolean = booking_manager.createBooking(
+        4,
+        hotel1,
+        guest2,
+        room2,
+    )
+    if (booking2) storage_booking.setBooking(booking2)
+}
+const allBookings: Booking[] = storage_booking.getBookings()
+console.log("allBookings:", allBookings)
+
+// usage filter
+
+const colorSpec: ColorSpecification = new ColorSpecification(eCOLOR.BLUE)
+const roomSizeSpec: RoomSizeSpecification = new RoomSizeSpecification(eROOM_SIZE.DOUBLE)
+const filterRoom = new FilterRoom()
+const filterRoomsByColor = filterRoom.filter(allRooms, colorSpec)
+const filterRoomsBySize = filterRoom.filter(allRooms, roomSizeSpec)
+
+console.log("filterRoomsByColor: ", filterRoomsByColor)
+console.log("filterRoomsBySize: ", filterRoomsBySize)
+
+//
+const userRoleSpec: UserRoleSpecification = new UserRoleSpecification(eUSER_ROLE.HOTEL)
+const filterUser = new FilterUser()
+const filterUserByRoleSpec = filterUser.filter(allUsers, userRoleSpec)
+
+console.log("filterUserByRoleSpec: ", filterUserByRoleSpec)
+//
+const filterUser2 = new FilterUser2()
+const filterUserByRoleSpec2 = filterUser2.filter(allUsers, userRoleSpec)
+console.log("filterUserByRoleSpec2: ", filterUserByRoleSpec2)

@@ -1,0 +1,22 @@
+user: role: enum['hotel', 'guest', 'owner']
+room,
+hotel,
+booking: hotel_id, guest_id (if user.role is 'guest'), room_id
+
+
+# decorators
+1- @Variable_Name('var-name')
+2- @Alias_Name('alias-name')
+3- @Method_Name('method-name')
+4- @Function_Name('func-name')
+
+@Class_Name('class-name)
+@Base_Mutation()
+@Base_Query()
+@Base_Filter()
+@Base_Storage()
+@Base_Specification()
+@Set()
+@Get()
+@TypeOption()
+@ClassOption()
