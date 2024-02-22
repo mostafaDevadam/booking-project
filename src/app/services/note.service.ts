@@ -1,11 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable, computed, signal, effect } from '@angular/core';
 import { CallApiService } from './callAPI/call-api.service';
 import { NOTE_TYPE } from '../common/types';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoteService {
+
+  list = signal<NOTE_TYPE[]>([])
+
+
+  compute : any /*= computed(() => {
+    const docs = this.list()
+    if (docs) {
+      return this.list()
+    }
+    return []
+  })*/
+
 
   constructor(private callApiService: CallApiService) { }
 
@@ -16,7 +29,15 @@ export class NoteService {
   }
   // findAllByBookingId
   async findAllByBookingId(booking_id: any) {
-    return await this.callApiService.get(`note/all/booking/${booking_id}`)
+    const result = await this.callApiService.get(`note/all/booking/${booking_id}`)
+    return result.pipe(map((data: any) => {
+      this.list.set(data)
+    /*  this.compute = computed(() => {
+        if (data) return data
+        return []
+      })*/
+      return data
+    }))//.subscribe((sub) => console.log("findAllByBookingId: ", sub))
   }
   // findAllByAuthorIdAsGuest if AuthorRole is 'Guest'
   async findAllByAuthorIdAsGuest(guest_id: any) {
@@ -33,10 +54,13 @@ export class NoteService {
   }
   //updateById
   async updateById(_id: any, data: NOTE_TYPE) {
-    return await this.callApiService.patch(`note/${_id}`, data)
+    const result = await this.callApiService.patch(`note/${_id}`, data)
+    result.subscribe((sub) => console.log("updateById: ", sub))
+
   }
   // removeById
   async removeById(_id: any) {
-    return await this.callApiService.remove(`note/${_id}`)
+    const result = await this.callApiService.remove(`note/${_id}`)
+    result.subscribe((sub) => console.log("removeById: ", sub))
   }
 }

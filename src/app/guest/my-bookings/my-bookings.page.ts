@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { GuestService } from '../../services/guest.service';
 import { BookingService } from 'src/app/services/booking.service';
@@ -10,6 +10,9 @@ import { ROLE_MODAL_UI_ENUM, eAUTHOR_ROLE_ENUM } from 'src/app/common/enums';
 import { HotelService } from 'src/app/services/hotel.service';
 import { FeedbackService } from 'src/app/services/feedback.service';
 import { NoteService } from 'src/app/services/note.service';
+import { IonModal } from '@ionic/angular/common';
+import { OverlayEventDetail } from '@ionic/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 
 type M_TYPE = {
@@ -30,6 +33,8 @@ type M_TYPE_T<T> = {
   styleUrls: ['./my-bookings.page.scss'],
 })
 export class MyBookingsPage implements OnInit {
+  @ViewChild(IonModal) modal: IonModal;
+
   // user-service, auth-service, guest-service, booking-service
   myBookings: BOOKING_TYPE[]
   guest_id: any
@@ -37,6 +42,17 @@ export class MyBookingsPage implements OnInit {
 
   public new_feedback_text: any
   new_note_text: any
+  public user: any
+
+
+  public message: string = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
+  public name: string;
+
+  isModalOpen = false;
+
+  noteForm: FormGroup
+
+  currentBooking: BOOKING_TYPE
 
 
   constructor(
@@ -55,6 +71,7 @@ export class MyBookingsPage implements OnInit {
   async ngOnInit() {
     console.log("---MyBookingsPage---")
     if (this.userService.currentUser.role === 'guest') {
+      this.user = this.userService.currentUser
       console.log("user role is guest")
       this.myBookings = this.bookingService.myBookingsByGuestId
       console.log("myBookings: ", this.myBookings)
@@ -73,6 +90,20 @@ export class MyBookingsPage implements OnInit {
 
     }
 
+    this.init()
+
+  }
+
+  init() {
+
+    this.initNoteForm()
+  }
+
+  initNoteForm() {
+    this.noteForm = new FormGroup({
+      content: new FormControl<string>(''),
+      isPublic: new FormControl<Boolean>(false)
+    })
   }
 
 
@@ -116,7 +147,8 @@ export class MyBookingsPage implements OnInit {
     if (this.userService.currentUser.role === 'guest') {
       await this.bookingService.fetchBookingById(item._id)
       // fetchAllNotesByBookingId and pass it to Modal-UI
-      this.presentModal(MyBookingModalComponent, { role: "view", booking: item })
+      await this.noteService.findAllByBookingId(item._id)
+      this.presentModal(MyBookingModalComponent, { role: "view", booking: item, user: this.user })
     }
 
   }
@@ -152,8 +184,6 @@ export class MyBookingsPage implements OnInit {
       }
       console.log("create note obj:", data)
       await this.noteService.postCreateOneByBookingId(item._id, data)
-
-
     }
 
   }
@@ -174,15 +204,15 @@ export class MyBookingsPage implements OnInit {
 
   }
 
-  async openAlert(state: string, item: BOOKING_TYPE) {
-    if (state === 'feedback') {
+  async openAlert(state: string, item: BOOKING_TYPE = this.currentBooking) {
+    if (state === 'feedback' && this.currentBooking) {
       await this.presentAlert<BOOKING_TYPE>(state, item,
         {
           header: 'Feedback',
           subHeader: 'Write My Feedback',
           message: 'Create A New FeedBack for the Hotel'
         }, 'Write your Feedback here...')
-    } else if (state === 'note') {
+    } /*else if (state === 'note') {
       await this.presentAlert<BOOKING_TYPE>(state, item, {
         header: 'Note',
         subHeader: 'Write My Note',
@@ -191,10 +221,10 @@ export class MyBookingsPage implements OnInit {
         {
           label: 'Public',
           type: 'radio',
-         // value: false,
+          // value: false,
         }
       )
-    }
+    }*/
   }
 
   async presentAlert<T>(state: string, item: T, props: ALERT_PROPS, placeholder?: string, inputs?: any) {
@@ -252,13 +282,6 @@ export class MyBookingsPage implements OnInit {
           },
 
 
-        },
-        {
-          label: 'Public',
-          type: 'radio',
-          value: 'false',
-          checked: false
-
         }
       ],
 
@@ -281,4 +304,62 @@ export class MyBookingsPage implements OnInit {
   }
 
 
+  // for inline-ion-Modal
+
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  confirm() {
+    if (this.modal) {
+      this.modal.dismiss(this.name, 'confirm');
+    }
+
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      this.message = `Hello, ${ev.detail.data}!`;
+    }
+  }
+
+
+
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
+
+  async submitNoteForm() {
+    const user = this.userService.currentUser
+
+
+    if (this.noteForm.value && this.currentBooking && user._id == this.currentBooking.guest) {
+      console.log("currentBooking: ", this.currentBooking)
+      console.log("submitNoteForm: ", this.noteForm.value)
+      const user = this.userService.currentUser
+
+
+      const data: NOTE_TYPE = {
+        author_role: eAUTHOR_ROLE_ENUM.Guest,
+        author: this.currentBooking.guest,
+        content: this.noteForm.value.content,
+        isPublic: this.noteForm.value.isPublic,
+        booking: this.currentBooking._id,
+      }
+
+        console.log("create note obj:", data)
+        await this.noteService.postCreateOneByBookingId(this.currentBooking._id, data)
+
+      this.setOpen(false)
+
+    }
+
+  }
+
+  selectBooking(item: BOOKING_TYPE) {
+    this.currentBooking = item
+    console.log("selectBooking: ", this.currentBooking)
+
+  }
 }

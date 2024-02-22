@@ -262,7 +262,7 @@
       },
       {
         "file": "src/app/common/types.ts",
-        "hash": "16269750938721478995"
+        "hash": "10751171469592572911"
       },
       {
         "file": "src/app/guest/home-guest/home-guest-routing.module.ts",
@@ -274,7 +274,7 @@
       },
       {
         "file": "src/app/guest/home-guest/home-guest.page.html",
-        "hash": "8238885216443132155"
+        "hash": "9361304271579263880"
       },
       {
         "file": "src/app/guest/home-guest/home-guest.page.scss",
@@ -286,7 +286,7 @@
       },
       {
         "file": "src/app/guest/home-guest/home-guest.page.ts",
-        "hash": "3764299817559043203"
+        "hash": "7380189743964023660"
       },
       {
         "file": "src/app/guest/my-bookings/components/create-my-booking-form/create-my-booking-form.component.html",
@@ -338,7 +338,7 @@
       },
       {
         "file": "src/app/guest/my-bookings/components/my-booking-modal/my-booking-modal.component.html",
-        "hash": "3195271739780076929"
+        "hash": "12561595246878748555"
       },
       {
         "file": "src/app/guest/my-bookings/components/my-booking-modal/my-booking-modal.component.scss",
@@ -350,7 +350,7 @@
       },
       {
         "file": "src/app/guest/my-bookings/components/my-booking-modal/my-booking-modal.component.ts",
-        "hash": "13590479637847293807"
+        "hash": "6521361705195974293"
       },
       {
         "file": "src/app/guest/my-bookings/my-bookings-routing.module.ts",
@@ -362,7 +362,7 @@
       },
       {
         "file": "src/app/guest/my-bookings/my-bookings.page.html",
-        "hash": "6040096329442482349"
+        "hash": "8988955384572815332"
       },
       {
         "file": "src/app/guest/my-bookings/my-bookings.page.scss",
@@ -374,7 +374,7 @@
       },
       {
         "file": "src/app/guest/my-bookings/my-bookings.page.ts",
-        "hash": "9353932560491451002"
+        "hash": "1876577198920084711"
       },
       {
         "file": "src/app/home/home-routing.module.ts",
@@ -410,7 +410,7 @@
       },
       {
         "file": "src/app/hotel/bookings/bookings.page.html",
-        "hash": "8519728333258918001"
+        "hash": "3981953845272755516"
       },
       {
         "file": "src/app/hotel/bookings/bookings.page.scss",
@@ -422,7 +422,7 @@
       },
       {
         "file": "src/app/hotel/bookings/bookings.page.ts",
-        "hash": "7206674364320104776"
+        "hash": "16893337674606847039"
       },
       {
         "file": "src/app/hotel/bookings/components/booking-form/booking-form.component.html",
@@ -442,7 +442,7 @@
       },
       {
         "file": "src/app/hotel/bookings/components/booking-modal/booking-modal.component.html",
-        "hash": "9486117862351513881"
+        "hash": "1666937401041617684"
       },
       {
         "file": "src/app/hotel/bookings/components/booking-modal/booking-modal.component.scss",
@@ -454,7 +454,7 @@
       },
       {
         "file": "src/app/hotel/bookings/components/booking-modal/booking-modal.component.ts",
-        "hash": "5322125398434941866"
+        "hash": "5996900904108214064"
       },
       {
         "file": "src/app/hotel/dashboard/dashboard-routing.module.ts",
@@ -714,7 +714,7 @@
       },
       {
         "file": "src/app/pages/feedback/feedback.page.html",
-        "hash": "799007019289063473"
+        "hash": "5327488632818280026"
       },
       {
         "file": "src/app/pages/feedback/feedback.page.scss",
@@ -726,7 +726,7 @@
       },
       {
         "file": "src/app/pages/feedback/feedback.page.ts",
-        "hash": "9415382354233507587"
+        "hash": "14669585237136625333"
       },
       {
         "file": "src/app/pages/feedback/feedback.pipe.ts",
@@ -786,7 +786,7 @@
       },
       {
         "file": "src/app/services/feedback.service.ts",
-        "hash": "8411759564953568843"
+        "hash": "741223792020170152"
       },
       {
         "file": "src/app/services/guest.service.spec.ts",
@@ -803,6 +803,14 @@
       {
         "file": "src/app/services/hotel.service.ts",
         "hash": "13488642315344944949"
+      },
+      {
+        "file": "src/app/services/note.service.spec.ts",
+        "hash": "12375022754592813343"
+      },
+      {
+        "file": "src/app/services/note.service.ts",
+        "hash": "10668483902374634951"
       },
       {
         "file": "src/app/services/room.service.spec.ts",

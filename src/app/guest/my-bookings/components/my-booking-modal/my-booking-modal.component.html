@@ -36,6 +36,10 @@
 
   <div *ngIf="isView">
 
+    <ion-text class="ion-text-center">
+      <h4>My Booking</h4>
+    </ion-text>
+
     <ion-card>
       <ion-card-content>
         <div class="card-body">
@@ -49,17 +53,118 @@
           <div>Location: <ion-text>City, Country</ion-text></div>
           <div>Total Price: <ion-text>{{booking.total_price}}</ion-text></div>
 
-          <div>
-            My Notes
-          </div>
+
         </div>
       </ion-card-content>
     </ion-card>
 
 
+    <div>
+
+      <ion-text class="ion-text-center">
+        <h4>My Notes</h4>
+      </ion-text>
+
+      <div *ngFor="let item of notes">
+        <ion-card>
+          <ion-card-content>
+            <div class="m-flex">
+
+              <ion-row>
+                <ion-col size="1">
+
+                  <div>
+
+                  </div>
+
+                </ion-col>
+                <ion-col size="11">
+
+                  <div>
+                    <ion-text>
+                      {{ item.content ? item.content : 'content Lorem ipsum dolor sit amet consectetur adipisicing
+                      elit.'}}
+                    </ion-text>
+                    <ion-text>
+
+                      @if (item.isPublic) {
+
+                      }
+                      <ion-chip>{{item.isPublic ? "public" : "private"}}</ion-chip>
+
+                    </ion-text>
+                  </div>
+
+                </ion-col>
+
+              </ion-row>
+
+
+            </div>
+          </ion-card-content>
+
+          <ion-toolbar (click)="selectNote(item)">
+            <ion-buttons slot="start">
+              <ion-button (click)="setOpen(true)">Edit</ion-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button (click)="openAlert('remove', item)">Remove</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+
+
+        </ion-card>
+      </div>
+
+
+    </div>
 
 
 
+
+
+<ion-modal [isOpen]="isModalOpen">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Modal</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="setOpen(false)">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+
+      <div>
+        <form [formGroup]="noteForm" (ngSubmit)="submitNoteForm()">
+
+          <ion-list>
+            <ion-item>
+              <!--<ion-checkbox labelPlacement="start" formControlName="isPublic">Public</ion-checkbox>-->
+              <ion-toggle labelPlacement="start" formControlName="isPublic">Public</ion-toggle>
+            </ion-item>
+
+            <ion-item>
+              <ion-textarea rows="3" cols="40" label="Note" formControlName="content"></ion-textarea>
+            </ion-item>
+          </ion-list>
+
+          <div class="">
+            <ion-buttons slot="end">
+              <ion-button type="submit">Update Note</ion-button>
+
+            </ion-buttons>
+
+          </div>
+
+
+
+        </form>
+
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
 
 
   </div>

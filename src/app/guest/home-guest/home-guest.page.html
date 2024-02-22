@@ -13,4 +13,28 @@
       <ion-title size="large">HomeGuest</ion-title>
     </ion-toolbar>
   </ion-header>
+
+
+  <div>
+    <div>
+      Array Value: {{ computedDisplay() }}
+    </div>
+
+    <ion-button (click)="appendValue()">Append Value</ion-button>
+    <ion-button (click)="appendAndShow()">Append and Show </ion-button>
+    <ion-button (click)="showWithUpdate()">Show Update </ion-button>
+
+  </div>
+
+  <div>
+
+    <ol>
+      @for(item of warenkorb(); track $index) {
+      <ion-button (click)="addItem(item)">add</ion-button>
+      <li>{{ item }}</li>
+      }
+
+    </ol>
+
+  </div>
 </ion-content>

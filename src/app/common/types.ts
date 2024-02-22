@@ -119,6 +119,7 @@ export type NOTE_TYPE = {
   author_role?: eAUTHOR_ROLE_ENUM
   author?: any
   booking?: any
+  isPublic?: boolean
 
 }
 

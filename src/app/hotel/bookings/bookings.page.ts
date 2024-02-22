@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
-import { BOOKING_TYPE } from 'src/app/common/types';
+import { BOOKING_TYPE, NOTE_TYPE } from 'src/app/common/types';
 import { BookingService } from 'src/app/services/booking.service';
 import { HotelService } from 'src/app/services/hotel.service';
 import { BookingModalComponent } from './components/booking-modal/booking-modal.component';
 import { RoomService } from 'src/app/services/room.service';
 import { MessageDialogModalComponent } from 'src/app/shared/components/message-dialog-modal/message-dialog-modal.component';
+import { NoteService } from 'src/app/services/note.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { eAUTHOR_ROLE_ENUM } from 'src/app/common/enums';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-bookings',
@@ -15,6 +19,10 @@ import { MessageDialogModalComponent } from 'src/app/shared/components/message-d
 export class BookingsPage implements OnInit {
   hotel_id: any
   selectedBooking: BOOKING_TYPE
+  currentBooking: BOOKING_TYPE
+
+  isModalOpen = false;
+  noteForm: FormGroup
 
   constructor(
     private hotelService: HotelService,
@@ -23,6 +31,9 @@ export class BookingsPage implements OnInit {
     private modalCtrl: ModalController,
     public roomService: RoomService,
     private toastCtrl: ToastController,
+    private noteService: NoteService,
+    private userService: UserService,
+
 
   ) { }
 
@@ -36,8 +47,10 @@ export class BookingsPage implements OnInit {
       this.hotel_id = this.hotelService.getHotelId()
       this.bookingService.fetchAllBookingsByHotelId(this.hotel_id)
       await this.roomService.fetchAllAvailableRoomsByHotelId(this.hotelService.getHotelId())
+      this.initNoteForm()
     }
   }
+
 
   ionViewWillEnter() {
     console.log('----ionViewWillEnter-----')
@@ -45,6 +58,13 @@ export class BookingsPage implements OnInit {
 
   }
 
+
+  initNoteForm() {
+    this.noteForm = new FormGroup({
+      content: new FormControl<string>(''),
+      isPublic: new FormControl<Boolean>(false)
+    })
+  }
 
 
 
@@ -139,6 +159,65 @@ export class BookingsPage implements OnInit {
 
     if (data) {
       await this.bookingService.patchUpdateBookingById(data._id, data)
+    }
+
+  }
+
+  selectBooking(item: BOOKING_TYPE) {
+    this.currentBooking = item
+    console.log("currentBooking: ", this.currentBooking)
+
+  }
+
+  async createNote(item: BOOKING_TYPE) {
+    const user = this.userService.currentUser
+    if (this.noteForm.value && user._id == item.hotel) {
+
+      const data: NOTE_TYPE = {
+        author_role: eAUTHOR_ROLE_ENUM.Hotel,
+        author: item.hotel,
+        content: this.noteForm.value.content,
+        //isPublic: false,
+        booking: item._id,
+      }
+      console.log("create note obj:", data)
+      await this.noteService.postCreateOneByBookingId(item._id, data)
+    }
+
+  }
+
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
+
+
+
+
+  async submitNoteForm() {
+    // const user = this.userService.currentUser
+
+
+    if (this.noteForm.value && this.currentBooking) {
+      console.log("submitNoteForm: ", this.noteForm.value)
+      const user = this.userService.currentUser
+
+      /*
+            const data: NOTE_TYPE = {
+              _id: this.currentBooking._id,
+              author_role: this.currentNote.author_role,
+              author: this.currentNote.author,
+              content: this.noteForm.value.content,
+              isPublic: this.noteForm.value.isPublic,
+              booking: this.currentNote.booking,
+            }
+            */
+
+      //console.log("update note obj:", data)
+      //  await this.noteService.updateById(this.currentNote._id, data)
+      await this.createNote(this.currentBooking)
+
+      this.setOpen(false)
+
     }
 
   }

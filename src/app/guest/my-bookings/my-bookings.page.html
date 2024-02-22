@@ -19,15 +19,20 @@
   </div>
 
 
+  <div class="div_modal">
+
+
+  </div>
+
   <div>
-    <div *ngFor="let item of myBookings">
+    <div *ngFor="let item of myBookings; index as i">
 
       <ion-card>
         <ion-card-header>
 
           <!--<ion-row class="ion-justify-content-end">
             <ion-col size="3" push="1">
-              <ion-button fill="clear" ><ion-icon name="ellipsis-vertical-sharp"></ion-icon></ion-button>
+              <ion-button fill="clear" id="click-trigger"><ion-icon name="ellipsis-vertical-sharp"></ion-icon></ion-button>
             </ion-col>
           </ion-row>-->
         </ion-card-header>
@@ -59,12 +64,15 @@
             <ion-col size="5">{{item.end_date}}</ion-col>
           </ion-row>
         </ion-card-content>
-        <ion-toolbar>
+        <ion-toolbar (click)="selectBooking(item)">
           <ion-buttons>
             <ion-button (click)="showViewMyBookingModal(item)">View</ion-button>
             <ion-button (click)="showEditMyBookingModal(item)">Edit</ion-button>
-            <ion-button (click)="openAlert('note',item)"><ion-chip>Add Note</ion-chip></ion-button>
-            <ion-button (click)="openAlert('feedback',item)"><ion-chip>Write Feedback</ion-chip></ion-button>
+            <!--<ion-button (click)="setOpen(true)"><ion-chip>Add Note</ion-chip></ion-button>
+            <ion-button (click)="openAlert('feedback',item)"><ion-chip>Feedback</ion-chip></ion-button>-->
+            <ion-button [id]="i" fill="clear"><ion-chip>Write</ion-chip>
+              <!--<ion-icon name="add-circle-sharp" color="dark"></ion-icon>--> </ion-button>
+
           </ion-buttons>
 
         </ion-toolbar>
@@ -72,11 +80,77 @@
       </ion-card>
 
 
-
+      <ion-popover [trigger]="i" triggerAction="click" side="bottom">
+        <ng-template>
+          <ion-content>
+            <ion-list>
+              <ion-item [button]="true" [detail]="false" (click)="setOpen(true)">Note</ion-item>
+              <ion-item [button]="true" [detail]="false" (click)="openAlert('feedback')">Feedback</ion-item>
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-popover>
 
 
     </div>
   </div>
 
+  <ion-button expand="block" (click)="setOpen(true)">Open</ion-button>
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Modal</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+
+        <div>
+          <form [formGroup]="noteForm" (ngSubmit)="submitNoteForm()">
+
+            <ion-list>
+              <ion-item>
+                <ion-checkbox labelPlacement="start" formControlName="isPublic">Public</ion-checkbox>
+              </ion-item>
+
+              <ion-item>
+                <ion-textarea rows="3" cols="40" label="Note" formControlName="content"></ion-textarea>
+              </ion-item>
+            </ion-list>
+
+            <div class="">
+              <ion-buttons slot="end">
+                <ion-button type="submit">Create Note</ion-button>
+
+              </ion-buttons>
+
+            </div>
+
+
+
+          </form>
+
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <div>
+    <ion-button id="click-trigger" fill="clear">Write</ion-button>
+    <ion-popover trigger="click-trigger" triggerAction="click" side="bottom">
+      <ng-template>
+        <ion-content>
+          <ion-list>
+            <ion-item [button]="true" [detail]="false" (click)="setOpen(true)">Note</ion-item>
+            <ion-item [button]="true" [detail]="false" (click)="openAlert('feedback')">Feedback</ion-item>
+          </ion-list>
+        </ion-content>
+      </ng-template>
+    </ion-popover>
+
+  </div>
 
 </ion-content>
